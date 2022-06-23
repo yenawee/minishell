@@ -15,11 +15,6 @@ char	*ft_trim(char *line, char *s)
 	return (line);
 }
 
-void	ft_memset(void *p, size_t len)
-{
-	return ;
-}
-
 void	stack_push(t_stack *stack, char c)
 {
 	stack->stack[stack->len] = c;
@@ -142,17 +137,17 @@ void    seperate_by_space(char *line)
 		handle_token(first_index, line - 1);
 }
 
-int	main(void)
-{
-	seperate_by_space("tr 'a' ' '");
-	printf("=======================\n");
-	seperate_by_space("echo 123\' 456 \" 123 \' 234 \" \" \' \" \'");
-	printf("=======================\n");
-	seperate_by_space("echo 333\'444\'555");
-	printf("=======================\n");
+// int	main(void)
+// {
+// 	seperate_by_space("tr 'a' ' '");
+// 	printf("=======================\n");
+// 	seperate_by_space("echo 123\' 456 \" 123 \' 234 \" \" \' \" \'");
+// 	printf("=======================\n");
+// 	seperate_by_space("echo 333\'444\'555");
+// 	printf("=======================\n");
 
 	
-}
+// }
 
 void    parse_split(char *line)
 {

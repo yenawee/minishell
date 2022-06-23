@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../../include/minishell.h"
 
 t_list	*envp_init(char **envp)
 {
@@ -121,17 +121,17 @@ void	ft_export(t_list **list, char **str)
 	}
 }
 
-int main(int argc, char **argv, char **envp)
-{
-	t_list *env_list;
+// int main(int argc, char **argv, char **envp)
+// {
+// 	t_list *env_list;
 
-	env_list = envp_init(envp);
-	char	**keys = malloc(sizeof(void *) * 3);
-	keys[0] = ft_strdup("a=111");
-	keys[1] =  ft_strdup("b=222");
-	keys[2] = NULL;
-	ft_export(&env_list, keys);
-	// ft_unset(&env_list, keys);
-	ft_env(env_list);
-	return 0;
-}
+// 	env_list = envp_init(envp);
+// 	char	**keys = malloc(sizeof(void *) * 3);
+// 	keys[0] = ft_strdup("a=111");
+// 	keys[1] =  ft_strdup("b=222");
+// 	keys[2] = NULL;
+// 	ft_export(&env_list, keys);
+// 	// ft_unset(&env_list, keys);
+// 	ft_env(env_list);
+// 	return 0;
+// }

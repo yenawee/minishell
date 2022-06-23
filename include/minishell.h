@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #define S_QUOTE '\''
 #define D_QUOTE '\"'
@@ -48,3 +49,14 @@ size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
 void	ft_safe_free(void **p);
+
+t_list	*envp_init(char **envp);
+void 	ft_env(t_list *list);
+void	ft_del(void *p);
+void	ft_lst_remove_if(t_list **list, char *key);
+void	ft_unset(t_list **list, char **keys);
+void	ft_export_one(t_list **list, char *key, char *value);
+void	ft_export(t_list **list, char **str);
+
+void	ft_pwd(t_list	*env_list);
+
