@@ -1,6 +1,6 @@
 #include "../../include/minishell.h"
 
-void	ft_pwd(t_list	*env_list)
+void	ft_pwd(t_list *env_list)
 {
 	t_list *curr;
 	t_env	*tmp;
