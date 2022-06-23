@@ -78,11 +78,11 @@ void    f_getenv_test(void)
 
 }
 
-int	main(void)
-{
-	f_isatty_test();
-    f_ttyname_test();
-    f_ttyslot_test();
-    f_ioctl_test();
-    f_getenv_test();
-}
+// int	main(void)
+// {
+// 	f_isatty_test();
+//     f_ttyname_test();
+//     f_ttyslot_test();
+//     f_ioctl_test();
+//     f_getenv_test();
+// }

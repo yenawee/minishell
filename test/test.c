@@ -115,14 +115,14 @@ void	_dir()
     exit(EXIT_SUCCESS);
 }
 
-int main()
-{
-	// readline_test();
-	// _signal();
-	// _kill();
-	// _getcwd();
-	// _chdir();
-	_dir();
+// int main()
+// {
+// 	// readline_test();
+// 	// _signal();
+// 	// _kill();
+// 	// _getcwd();
+// 	// _chdir();
+// 	_dir();
 
-	return 0;
-}
+// 	return 0;
+// }
