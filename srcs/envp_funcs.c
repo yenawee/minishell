@@ -78,15 +78,60 @@ void	ft_unset(t_list **list, char **keys)
 		ft_lst_remove_if(list, *keys++);
 }
 
+void	ft_export_one(t_list **list, char *key, char *value)
+{
+	t_list	*curr;
+	t_env	*tmp;
+	t_env	*content;
+	t_list	*new_node;
+
+	curr = *list;
+	while (curr)
+	{
+		tmp = (t_env *)curr->content;
+		if (!ft_strcmp((const char *)tmp->key, (const char *)key))
+		{
+			free(tmp->value);
+			tmp->value = ft_strdup(value);
+			return ;
+		}
+		curr = curr->next;
+	}
+	content = malloc(sizeof(t_env));
+	content->key = ft_strdup(key);
+	content->value = ft_strdup(value);
+	new_node = ft_lstnew(content);
+	ft_lstadd_back(list, new_node);
+}
+
+void	ft_export(t_list **list, char **str)
+{
+	char	*key;
+	char	*value;
+	char	*s;
+
+	while (*str)
+	{
+		s = ft_strchr(*str, '=');
+		*s = '\0';
+		key = *str;
+		value = s + 1;
+		ft_export_one(list, key, value);
+		str++;
+	}
+}
+
 int main(int argc, char **argv, char **envp)
 {
 	t_list *env_list;
 
 	env_list = envp_init(envp);
-	char	**keys = malloc(sizeof(void *) * 2);
-	keys[0] = "a";
-	keys[1] =  NULL;
-	ft_unset(&env_list, keys);
+	char	**keys = malloc(sizeof(void *) * 3);
+	keys[0] = ft_strdup("a=111");
+	keys[1] =  ft_strdup("b=222");
+	keys[2] = NULL;
+	ft_export(&env_list, keys);
+	// ft_unset(&env_list, keys);
 	ft_env(env_list);
 	return 0;
 }
