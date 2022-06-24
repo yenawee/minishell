@@ -44,7 +44,7 @@ void	getcwd_chdir_test(void)
 	printf("\n");
 }
 
-int	main(void)
-{
-	getcwd_chdir_test();
-}
+// int	main(void)
+// {
+// 	getcwd_chdir_test();
+// }
