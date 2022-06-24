@@ -28,7 +28,6 @@ void readline_test(){
 	}
 }
 
-
 //signal
 void handle_sigtstp(int sig)
 {
@@ -100,6 +99,39 @@ void _chdir()
 	system("pwd");
 }
 
+void	_getcwd_chdir_test()
+{
+	// in test folder
+	printf("errno: %d\n", errno);
+	printf("getcwd(NULL, 0) => return: %s\n", getcwd(NULL, 0));
+	printf("\n");
+	
+	// chmod 0 no_permission_dir
+	printf("chdir(\"no_permission_dir\") => return: %d\n", chdir("no_permission_dir"));
+	printf("errno: %d\n", errno);// no permission => 13
+	perror(NULL);// Permission denied
+	printf("\n");
+
+	// notExist 
+	printf("chdir(\"notExist\") => return: %d\n", chdir("notExist"));
+	printf("errno: %d\n", errno);// no permission => 2
+	perror(NULL);// No such file or directory
+	printf("\n");
+	
+	// file
+	printf("chdir(\"file\") => return: %d\n", chdir("file"));
+	printf("errno: %d\n", errno);// no permission => 2
+	perror(NULL);// Not a directory
+	printf("\n");
+	
+	// no_permission_file
+	printf("chdir(\"no_permission_file\") => return: %d\n", chdir("no_permission_file"));
+	printf("errno: %d\n", errno);// no permission => 2
+	perror(NULL);// Not a directory
+	printf("\n");
+	
+}
+
 //opendir, readdir
 void	_dir()
 {
@@ -115,14 +147,15 @@ void	_dir()
     exit(EXIT_SUCCESS);
 }
 
-// int main()
-// {
-// 	// readline_test();
-// 	// _signal();
-// 	// _kill();
-// 	// _getcwd();
-// 	// _chdir();
-// 	_dir();
+int main()
+{
+	// readline_test();
+	// _signal();
+	// _kill();
+	// _getcwd();
+	// _chdir();
+	_getcwd_chdir_test();
+	// _dir();
 
-// 	return 0;
-// }
+	return 0;
+}
