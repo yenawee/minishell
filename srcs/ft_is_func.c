@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 23:09:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/06/23 23:17:02 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:15:07 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
 
 int	ft_isalpha(int c)
 {

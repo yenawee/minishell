@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_safe_free.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:45:56 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/06/23 17:45:57 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/06/27 17:15:18 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
 
 void	ft_safe_free(void **p)
 {

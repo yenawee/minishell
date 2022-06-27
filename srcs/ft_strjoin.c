@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 17:29:18 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/06/27 17:15:36 by ywee             ###   ########.fr       */
+/*   Created: 2021/11/28 10:11:22 by ywee              #+#    #+#             */
+/*   Updated: 2022/06/27 17:14:35 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	size;
-	size_t	i;
-	size_t	size_t_start;
-	char	*ret;
+	char	*rst;
+	size_t	s1_len;
+	size_t	s2_len;
 
-	size_t_start = (size_t) start;
-	size = ft_strlen(s);
-	if (size <= size_t_start)
-		len = 0;
-	else if (size <= len)
-		len = size;
-	ret = malloc(sizeof(char) * (len + 1));
-	if (ret == NULL)
+	if (!s1 && !s2)
 		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		ret[i] = s[size_t_start + i];
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	rst = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!rst)
+		return (NULL);
+	ft_strlcpy(rst, s1, s1_len + 1);
+	ft_strlcpy(rst + s1_len, s2, s2_len + 1);
+	return (rst);
 }

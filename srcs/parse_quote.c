@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../include/minishell.h"
 
 void	_temp_join(t_list *head, char *res)
 {
@@ -152,5 +152,5 @@ void	parse_quote(char *s)
 // 	// parse_quote("12'3a'bc'45'6");
 // 	parse_quote("123\' 456 \" 123 \' 234 \" \" \' \" \'");
 // 	// parse_quote("123\'abc 123 \" \' 456 \" \" \' \" \'");
-// 	//123 456 " 123 ' 234 " " ' " 
+// 	//123 456 " 123 ' 234 " " ' "
 // }

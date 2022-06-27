@@ -146,7 +146,7 @@ void    seperate_by_space(char *line)
 // 	seperate_by_space("echo 333\'444\'555");
 // 	printf("=======================\n");
 
-	
+
 // }
 
 void    parse_split(char *line)
@@ -156,7 +156,7 @@ void    parse_split(char *line)
 
 	// char    stack[1000];
 	// ft_memset(stack, (size_t)1000);
-	
+
 	// 1.trim
 	trimed = ft_trim(line, "123");
 	if (!is_valid(trimed))
