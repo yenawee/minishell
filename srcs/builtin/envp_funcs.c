@@ -65,7 +65,7 @@ void	ft_lst_remove_if(t_list **list, char *key)
 				*list = curr->next;
 			else
 				tmp->next = curr->next;
-			ft_lstdelone(curr, ft_del); 
+			ft_lstdelone(curr, ft_del);
 		}
 		tmp = curr;
 		curr = curr->next;
@@ -78,21 +78,30 @@ void	ft_unset(t_list **list, char **keys)
 		ft_lst_remove_if(list, *keys++);
 }
 
-void	ft_export_one(t_list **list, char *key, char *value)
+void	ft_export_one(t_list **list, char *key, char *value, int plus_flag)
 {
 	t_list	*curr;
 	t_env	*tmp;
 	t_env	*content;
 	t_list	*new_node;
-
+	char	*temp;
 	curr = *list;
 	while (curr)
 	{
 		tmp = (t_env *)curr->content;
 		if (!ft_strcmp((const char *)tmp->key, (const char *)key))
 		{
-			free(tmp->value);
-			tmp->value = ft_strdup(value);
+			if (plus_flag)
+			{
+				temp = tmp->value;
+				tmp->value = ft_strjoin(temp, value);
+				free(temp);
+			}
+			else
+			{
+				free(tmp->value);
+				tmp->value = ft_strdup(value);
+			}
 			return ;
 		}
 		curr = curr->next;
@@ -109,29 +118,45 @@ void	ft_export(t_list **list, char **str)
 	char	*key;
 	char	*value;
 	char	*s;
+	int		plus_flag;
+	char	*p;
 
+	plus_flag = 0;
 	while (*str)
 	{
+		p = ft_strchr(*str, '+');
 		s = ft_strchr(*str, '=');
+		if (p + 1 == s)
+		{
+			plus_flag = 1;
+			*p = '\0';
+		}
 		*s = '\0';
 		key = *str;
+		/*
+			variable name rule
+			alpha + _
+			alpha + _ + numeric
+			a=123
+			a=123
+		*/
 		value = s + 1;
-		ft_export_one(list, key, value);
+		ft_export_one(list, key, value, plus_flag);
 		str++;
 	}
 }
 
-// int main(int argc, char **argv, char **envp)
-// {
-// 	t_list *env_list;
+int main(int argc, char **argv, char **envp)
+{
+	t_list *env_list;
 
-// 	env_list = envp_init(envp);
-// 	char	**keys = malloc(sizeof(void *) * 3);
-// 	keys[0] = ft_strdup("a=111");
-// 	keys[1] =  ft_strdup("b=222");
-// 	keys[2] = NULL;
-// 	ft_export(&env_list, keys);
-// 	// ft_unset(&env_list, keys);
-// 	ft_env(env_list);
-// 	return 0;
-// }
+	env_list = envp_init(envp);
+	char	**keys = malloc(sizeof(void *) * 3);
+	keys[0] = ft_strdup("=111");
+	keys[1] =  ft_strdup("=222");
+	keys[2] = NULL;
+	ft_export(&env_list, keys);
+	// ft_unset(&env_list, keys);
+	ft_env(env_list);
+	return 0;
+}
