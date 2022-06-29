@@ -66,53 +66,37 @@ void parse(t_token *list, char *line)
 	{
 		while (ft_isspace(*begin))
 			begin++;
-		if (ft_strchr("<>", *begin))
-		{
-			if (*begin == *(begin + 1))
-				end = begin + 1;
-			else
-				end = begin;
-			addtoken(&list, begin, end);
-		}
-		else if (*begin == '|')
-		{
-			if (*begin == *(begin + 1))
-			{
-				printf("syntax err!");
-				exit(EXIT_FAILURE);
-			}
+		if (ft_strchr("<>", *begin)) /*	1. 리다이렉션 < && > && << && >>	*/
+			end = begin + (*begin == *(begin + 1));
+		else if (*begin == '|') /*	2. 파이프	*/
 			end = begin;
-			addtoken(&list, begin, end);
-		}
-		else if (ft_strchr("\"\'", *begin))
-		{
-			end = ft_strchr(begin + 1, *begin);
-			if (!end)
-			{
-				printf("syntax err!");
-				exit(EXIT_FAILURE);
-			}
-			addtoken(&list, begin, end);
-		}
-		else if (ft_strchr(";&", *begin))
-		{
-			printf("syntax err!");
-			exit(EXIT_FAILURE);
-		}
 		else
 		{
 			end = begin;
 			while (*end != '\0' && !ft_isspace(*end) && !ft_isoperator(*end))
+			{
+				if (ft_strchr("\"\'", *end))
+				{
+					end = ft_strchr(end + 1, *end);
+					if (!end)
+					{
+						printf("syntax err!");
+						exit(EXIT_FAILURE);
+					}
+				}
 				end++;
+			}
 			end = end - 1;
+		}
+		if (begin <= end)
+		{
 			addtoken(&list, begin, end);
 		}
 		begin = end + 1;
 	}
-
 	while (list)
 	{
-		printf("%s\n", list->str);
+		printf("token: |%s|\n", list->str);
 		list = list->next;
 	}
 }
@@ -121,7 +105,6 @@ int main()
 {
 	t_token *list;
 	list = NULL;
-	parse(list, "<infile cat grep \"$abc\" << hi | echo hello");
-
+	parse(list, "<<eof < infile > outfile cat -e abc\" 123 456 \"");
 	return 0;
 }
