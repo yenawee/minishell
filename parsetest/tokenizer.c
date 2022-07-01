@@ -1,51 +1,21 @@
 #include "test.h"
 
-int check_quote_match(char *str)
+void	addtoken(t_token **list, char *begin, char *end, t_list *env_list)
 {
-	int i;
-
-	while (str[i])
-		i++;
-	i--;
-	if (str[0] == '\'' && str[i] != '\'')
-		return (FALSE);
-	if (str[0] == '\"' && str[i] != '\"')
-		return (FALSE);
-	if (str[0] != '\'' && str[i] == '\'')
-		return (FALSE);
-	if (str[0] != '\"' && str[i] == '\"')
-		return (FALSE);
-	return (TRUE);
-}
-
-void	addtoken(t_token **list, char *begin, char *end)
-{
-	t_token *new_node = malloc(sizeof(t_token));
+	t_token *new_node = ft_calloc(1, sizeof(t_token));
 	t_token *tmp;
 	tmp = *list;
 
 	int i = 0;
-	char *str = malloc(sizeof(end - begin + 2));
+	char *str = malloc(end - begin + 2);
 	while (i < end - begin + 1)
 	{
 		str[i] = begin[i];
 		i++;
 	}
 	str[i] = '\0';
-	if (!check_quote_match(str))
-	{
-		printf("syntax err!");
-		exit(EXIT_FAILURE);
-	}
-
-	//char *token_str = expand_env(str);
-	//free(str);
-	// expand variables , quote 떼기
-	new_node->str = str;
-	new_node->type = 0;
-	new_node->next = NULL;
-	new_node->prev = NULL;
-
+	char *token_str = expand_str(str, env_list);
+	new_node->str = token_str;
 	if (*list == NULL)
 	{
 		*list = new_node;
@@ -57,56 +27,40 @@ void	addtoken(t_token **list, char *begin, char *end)
 	new_node->prev = tmp;
 }
 
-void parse(t_token *list, char *line)
+void parse(t_token *list, char *line, char **envp)
 {
 	char *begin = ft_strtrim(line, " \n\t");
 	char *end;
+	t_list *env_list = envp_init(envp);
 
 	while (*begin)
 	{
 		while (ft_isspace(*begin))
 			begin++;
-		if (ft_strchr("<>", *begin))
-		{
-			if (*begin == *(begin + 1))
-				end = begin + 1;
-			else
-				end = begin;
-			addtoken(&list, begin, end);
-		}
-		else if (*begin == '|')
-		{
-			if (*begin == *(begin + 1))
-			{
-				printf("syntax err!");
-				exit(EXIT_FAILURE);
-			}
+		if (ft_strchr("<>", *begin)) /*	1. 리다이렉션 < && > && << && >>	*/
+			end = begin + (*begin == *(begin + 1));
+		else if (*begin == '|') /*	2. 파이프	*/
 			end = begin;
-			addtoken(&list, begin, end);
-		}
-		else if (ft_strchr("\"\'", *begin))
-		{
-			end = ft_strchr(begin + 1, *begin);
-			if (!end)
-			{
-				printf("syntax err!");
-				exit(EXIT_FAILURE);
-			}
-			addtoken(&list, begin, end);
-		}
-		else if (ft_strchr(";&", *begin))
-		{
-			printf("syntax err!");
-			exit(EXIT_FAILURE);
-		}
 		else
 		{
 			end = begin;
 			while (*end != '\0' && !ft_isspace(*end) && !ft_isoperator(*end))
+			{
+				if (ft_strchr("\"\'", *end))
+				{
+					end = ft_strchr(end + 1, *end);
+					if (!end)
+					{
+						printf("syntax err!");
+						exit(EXIT_FAILURE);
+					}
+				}
 				end++;
+			}
 			end = end - 1;
-			addtoken(&list, begin, end);
 		}
+		if (begin <= end)
+			addtoken(&list, begin, end, env_list);
 		begin = end + 1;
 	}
 
@@ -117,11 +71,12 @@ void parse(t_token *list, char *line)
 	}
 }
 
-int main()
+int main(int ac, char **av, char **envp)
 {
 	t_token *list;
-	list = NULL;
-	parse(list, "<infile cat grep \"$abc\" << hi | echo hello");
 
+	list = NULL;
+
+	parse(list, "echo $?HO\"$HOME\" || \'good$PATH\' << sssss", envp);
 	return 0;
 }
