@@ -58,13 +58,6 @@ void parse(t_token *list, char *line, char **envp)
 				end++;
 			}
 			end = end - 1;
-<<<<<<< HEAD
-=======
-		}
-		if (begin <= end)
-		{
-			addtoken(&list, begin, end);
->>>>>>> 87cae1f6dc415e9862fa2810bcc9a74be9ff5f77
 		}
 		if (begin <= end)
 			addtoken(&list, begin, end, env_list);
@@ -82,11 +75,7 @@ int main(int ac, char **av, char **envp)
 	t_token *list;
 
 	list = NULL;
-<<<<<<< HEAD
 
-	parse(list, "echo $?HO\"$HOME\" || \'good$PATH\' << sssss", envp);
-=======
-	parse(list, "<<eof < infile > outfile cat -e abc\" 123 456 \"");
->>>>>>> 87cae1f6dc415e9862fa2810bcc9a74be9ff5f77
+	parse(list, "echo $HOME$$PATH", envp);
 	return 0;
 }
