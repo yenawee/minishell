@@ -40,7 +40,9 @@ void parse(t_token *list, char *line, char **envp)
 		if (ft_strchr("<>", *begin)) /*	1. 리다이렉션 < && > && << && >>	*/
 			end = begin + (*begin == *(begin + 1));
 		else if (*begin == '|') /*	2. 파이프	*/
-			end = begin;
+			end = begin + (*begin == *(begin + 1));
+		else if (*begin == '&' && *(begin + 1) == '&') /* 3. && */
+			end = begin + 1;
 		else
 		{
 			end = begin;
@@ -55,6 +57,8 @@ void parse(t_token *list, char *line, char **envp)
 						exit(EXIT_FAILURE);
 					}
 				}
+				if (*end == '&' && *(end + 1) == '&')
+					break ;
 				end++;
 			}
 			end = end - 1;
@@ -76,6 +80,6 @@ int main(int ac, char **av, char **envp)
 
 	list = NULL;
 
-	parse(list, "echo \"$H\'OM\'E$PATH\"dddddd >> hihi <<HEREDOC", envp);
+	parse(list, "echo $HOME", envp);
 	return 0;
 }

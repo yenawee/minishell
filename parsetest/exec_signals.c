@@ -22,10 +22,10 @@ void	exec_signals() // 자식 process fork 뜬 후 확인
 	signal(SIGQUIT, quit_process);
 }
 
-int main()
-{
-	while (TRUE){
-	exec_signals();
-	}
-	return 0;
-}
+// int main()
+// {
+// 	while (TRUE){
+// 	exec_signals();
+// 	}
+// 	return 0;
+// }
