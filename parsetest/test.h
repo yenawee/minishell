@@ -1,5 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <signal.h>
+#include <errno.h>
+#include <sys/wait.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -50,5 +56,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 char	*expand_env(char *str, t_list *env_list);
 void	*ft_memset(void *b, int c, size_t len);
+void	exec_signals();
 
 
