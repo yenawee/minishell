@@ -67,9 +67,11 @@ void parse(t_token *list, char *line, char **envp)
 			addtoken(&list, begin, end, env_list);
 		begin = end + 1;
 	}
+	list = define_type(list);
+
 	while (list)
 	{
-		printf("token: |%s|\n", list->str);
+		printf("type : |%d|, token: |%s|\n", list->type, list->str);
 		list = list->next;
 	}
 }
@@ -80,6 +82,6 @@ int main(int ac, char **av, char **envp)
 
 	list = NULL;
 
-	parse(list, "echo $HOME", envp);
+	parse(list, "echo >>> *dddd | good", envp);
 	return 0;
 }

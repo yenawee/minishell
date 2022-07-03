@@ -24,6 +24,19 @@ typedef struct	s_list
 	struct s_list	*next;
 }	t_list;
 
+enum e_type
+{
+	T_CMD,
+	T_REDIRECT,
+	T_HEREDOC,
+	T_APPEND,
+	T_PIPE,
+	T_AND,
+	T_OR,
+	T_FILE,
+	T_WORD
+};
+
 typedef struct s_token
 {
 	char *str;
@@ -57,5 +70,6 @@ t_list	*ft_lstlast(t_list *lst);
 char	*expand_env(char *str, t_list *env_list);
 void	*ft_memset(void *b, int c, size_t len);
 void	exec_signals();
+t_token	*define_type(t_token *list);
 
 
