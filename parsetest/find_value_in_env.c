@@ -3,8 +3,6 @@
 
 char	*find_value_in_env(char *key, t_list *env_list)
 {
-
-
 	while (env_list)
 	{
 		char *s = ((t_env *)env_list->content)->key;

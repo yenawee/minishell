@@ -76,6 +76,6 @@ int main(int ac, char **av, char **envp)
 
 	list = NULL;
 
-	parse(list, "echo $HOME$$PATH", envp);
+	parse(list, "echo \"$H\'OM\'E$PATH\"dddddd >> hihi <<HEREDOC", envp);
 	return 0;
 }
