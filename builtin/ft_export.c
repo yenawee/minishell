@@ -1,20 +1,5 @@
 #include "../include/minishell.h"
 
-void 	ft_env(t_list *list)
-{
-	t_list *curr;
-	t_env	*temp;
-
-	curr = list;
-	while (curr)
-	{
-		temp = (t_env *)curr->content;
-		if (temp->value)
-			printf("%s=%s\n", temp->key, temp->value);
-		curr = curr->next;
-	}
-}
-
 void	ft_del(void *p)
 {
 	t_env	*content;
@@ -143,20 +128,21 @@ void	ft_export(t_list **list, char **str)
 		}
 		str++;
 	}
+	return (EXIT_SUCCESS);
 }
 
-int main(int argc, char **argv, char **envp)
-{
-	t_list *env_list;
+// int main(int argc, char **argv, char **envp)
+// {
+// 	t_list *env_list;
 
-	env_list = envp_init(envp);
-	char	**keys = malloc(sizeof(void *) * 3);
-	keys[0] = ft_strdup("a");
-	keys[1] =  ft_strdup("b=222");
-	keys[2] = NULL;
-	ft_export(&env_list, keys);
-	ft_export_no_arg(env_list);
-	// ft_unset(&env_list, keys);
-	// ft_env(env_list);
-	return 0;
-}
+// 	env_list = envp_init(envp);
+// 	char	**keys = malloc(sizeof(void *) * 3);
+// 	keys[0] = ft_strdup("a");
+// 	keys[1] =  ft_strdup("b=222");
+// 	keys[2] = NULL;
+// 	ft_export(&env_list, keys);
+// 	ft_export_no_arg(env_list);
+// 	// ft_unset(&env_list, keys);
+// 	// ft_env(env_list);
+// 	return 0;
+// }
