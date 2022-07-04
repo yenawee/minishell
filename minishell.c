@@ -1,22 +1,40 @@
-#include "minishell.h"
+#include "./include/minishell.h"
 
-void	loop(char *input, t_list **env_list)
+static void	new_prompt(int signal)
 {
-	char	*prompt = "🐚 > ";
+	(void)signal;
+	rl_replace_line("", 0);
+	write(1, "\n", 1);
+	rl_on_new_line();
+	rl_redisplay();
+}
 
+static void	set_signal(void)
+{
+	signal(SIGINT, new_prompt);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+static void	loop(char *input, t_list **env_list)
+{
+	const char	*prompt = "🐚 > ";
+	char		*trimed;
+
+	trimed = NULL;
 	while (TRUE)
 	{
-		safe_free(&input);
+		safe_free((void **)&trimed);
 		input = readline(prompt);
 		if (!input)
 			exit_msg(EXIT_SUCCESS, STDOUT_FILENO, "exit\n");
 		if (*input)
 			add_history(input);
+		trimed = ft_strtrim(input, " \t");
+		safe_free((void **)&input);
+		if (*trimed == '\0')
+			continue ;
 	}
 }
-
-
-
 
 int main(int ac, char **av, char **envp)
 {
@@ -25,8 +43,9 @@ int main(int ac, char **av, char **envp)
 
 	input = NULL;
 	if (ac != 1)
-		printf("No argument need.\n");
+		printf("No arguments needed!\n");
 	env_list = envp_init(envp);
+	set_signal();
 	loop(input, &env_list);
 	return (0);
 }

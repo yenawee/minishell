@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 18:05:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/06/27 17:16:46 by ywee             ###   ########.fr       */
+/*   Created: 2022/06/23 17:29:15 by hyeonjan          #+#    #+#             */
+/*   Updated: 2022/06/27 17:15:34 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-t_list	*ft_lstlast(t_list *lst)
+size_t	ft_strlen(const char *s)
 {
-	t_list	*cur;
+	const char	*origin;
 
-	if (!lst)
-		return (NULL);
-	cur = lst;
-	while (cur->next)
-		cur = cur->next;
-	return (cur);
+	origin = s;
+	while (*s)
+		s++;
+	return ((size_t)(s - origin));
 }

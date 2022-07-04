@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-void	ft_putstr_fd(int fd, char msg)
+void	ft_putstr_fd(int fd, char *msg)
 {
 	size_t	size;
 	size_t	n;

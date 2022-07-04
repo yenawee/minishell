@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 14:27:58 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/06/27 17:16:42 by ywee             ###   ########.fr       */
+/*   Created: 2022/06/23 14:36:27 by hyeonjan          #+#    #+#             */
+/*   Updated: 2022/07/04 17:24:09 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+int	ft_lstsize(t_list *lst)
 {
-	if (lst)
+	t_list	*cur;
+	int		size;
+
+	cur = lst;
+	size = 0;
+	while (cur)
 	{
-		del(lst->content);
-		free(lst);
+		size++;
+		cur = cur->next;
 	}
+	return (size);
 }

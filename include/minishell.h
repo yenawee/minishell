@@ -1,8 +1,12 @@
-#include <stdbool.h>
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <stdbool.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <signal.h>
+#include <errno.h>
+#include <sys/wait.h>
 
 #define S_QUOTE '\''
 #define D_QUOTE '\"'
@@ -94,5 +98,6 @@ int		ft_isprint(int c);
 
 // new
 void	safe_free(void **p);
-void	exit_msg(int exit_status, int fd, char msg);
-void	ft_putstr_fd(int fd, char msg);
+void	exit_msg(int exit_status, int fd, char *msg);
+void	ft_putstr_fd(int fd, char *msg);
+char	*ft_strtrim(char const *s1, char const *set);

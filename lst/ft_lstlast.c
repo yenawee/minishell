@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 14:38:46 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/06/27 17:16:44 by ywee             ###   ########.fr       */
+/*   Created: 2022/06/23 18:05:38 by hyeonjan          #+#    #+#             */
+/*   Updated: 2022/07/04 17:24:01 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "../include/minishell.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+t_list	*ft_lstlast(t_list *lst)
 {
 	t_list	*cur;
 
+	if (!lst)
+		return (NULL);
 	cur = lst;
-	while (cur)
-	{
-		f(lst->content);
+	while (cur->next)
 		cur = cur->next;
-	}
+	return (cur);
 }
