@@ -6,18 +6,44 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:07:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/04 22:21:15 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/04 23:41:33 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+int	syntax_check_near_arrow(t_token *tokens, int token_size)
+{
+	t_token	*cur;
+
+	cur = tokens;
+	while (token_size)
+	{
+		--token_size;
+		if (((cur->type == T_REDIRECT || cur->type == T_APPEND) && \
+			(token_size == 0 || cur->next->type != T_FILE)) || \
+			(cur->type == T_HEREDOC && \
+			(token_size == 0 || cur->next->type != T_WORD)))
+			{
+				ft_putstr_fd(STDERR_FILENO, "🐚 > syntax error near unexpected token `");
+				if (cur->next)
+					ft_putstr_fd(STDERR_FILENO, cur->next->str);
+				else
+					ft_putstr_fd(STDERR_FILENO, "newline");
+				ft_putstr_fd(STDERR_FILENO, "'\n");
+				return (FAIL);
+			}
+		cur = cur->next;
+	}
+	return (SUCCESS);
+}
 
 int	set_command(t_command *command, t_token *tokens)
 {
 	command->tokens = tokens;
 	if (command->token_size == 0)
 		return (FAIL);
-	return (SUCCESS);
+	return (syntax_check_near_arrow(tokens, command->token_size));
 }
 
 int	make_commands(t_command **commands, t_token *tokens)
