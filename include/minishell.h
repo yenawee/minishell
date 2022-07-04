@@ -49,6 +49,21 @@ typedef struct s_token
 	struct s_token	*next;
 } t_token;
 
+typedef struct s_command {
+	t_token				*tokens; /* 토큰 !!!!!*/
+	int					token_size;
+	struct s_command	*next;
+}	t_command;
+
+typedef struct s_pipeline {
+	t_token				*tokens; /* 토큰 !!!!!*/
+	int					token_size;
+	int					seperated_type;
+	t_command			*commands;
+	struct s_pipeline	*next;
+
+}	t_pipeline;
+
 void	*ft_calloc(size_t count, size_t size);
 void	ft_lstadd_back(t_list	**head, t_list *new);
 void	ft_lstadd_front(t_list	**head, t_list *new);
@@ -105,3 +120,5 @@ char	*expand_env(char *str, t_list *env_list);
 void	exec_signals();
 t_token	*define_type(t_token *list);
 int		parse(t_token **list, char *line, t_list *env_list);
+void	*ft_alert_calloc(size_t count, size_t size);
+int		make_pipelines(t_pipeline **pipelines, t_token *tokens);

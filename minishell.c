@@ -20,9 +20,11 @@ static void	loop(char *input, t_list **env_list)
 	const char	*prompt = "🐚 > ";
 	char		*trimed;
 	t_token		*tokens;
+	t_pipeline	*list;
 
 	tokens = NULL;
 	trimed = NULL;
+	list = NULL;
 	while (TRUE)
 	{
 		safe_free((void **)&trimed);
@@ -37,11 +39,10 @@ static void	loop(char *input, t_list **env_list)
 			continue ;
 		if (!parse(&tokens, trimed, *env_list))
 			continue ;
-		// while (tokens)
-		// {
-		// 	printf("type : %d, str : %s\n", tokens->type, tokens->str);
-		// 	tokens = tokens->next;
-		// }
+		if (!make_pipelines(&list, tokens))
+			printf("syntax error occur\n");
+		list = NULL;//clear 함수 구현해야 함
+		tokens = NULL;
 	}
 }
 
