@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_no_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/06/27 23:05:39 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:31:16 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../include/minishell.h"
 
 void	_swap_t_env(t_env **a, t_env **b)
 {

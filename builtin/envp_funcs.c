@@ -1,26 +1,4 @@
-#include "../../include/minishell.h"
-
-t_list	*envp_init(char **envp)
-{
-	t_list	*env_list;//8byte
-	t_list	*new_node;
-	t_env	*content;
-	char	*s;
-
-	env_list = NULL;
-	while (*envp)
-	{
-		s = ft_strchr(*envp, '=');
-		*s = '\0';
-		content = malloc(sizeof(t_env));
-		content->key = ft_strdup(*envp);
-		content->value = ft_strdup(s + 1);
-		new_node = ft_lstnew(content);
-		ft_lstadd_back(&env_list, new_node);
-		envp++;
-	}
-	return (env_list);
-}
+#include "../include/minishell.h"
 
 void 	ft_env(t_list *list)
 {
@@ -43,8 +21,8 @@ void	ft_del(void *p)
 	content = (t_env *)p;
 	if (content)
 	{
-		ft_safe_free((void **)&content->key);
-		ft_safe_free((void **)&content->value);
+		safe_free((void **)&content->key);
+		safe_free((void **)&content->value);
 		free(content);
 	}
 }
@@ -113,6 +91,17 @@ void	ft_export_one(t_list **list, char *key, char *value, int plus_flag)
 	ft_lstadd_back(list, new_node);
 }
 
+static int	check_valid_key(char *key)
+{
+	int	len;
+
+	len = ft_strlen(key);
+	if (is_valid_key_first(key[0]) && is_valid_key_last(key[len - 1]))
+		return (TRUE);
+	return (FALSE);
+}
+
+
 void	ft_export(t_list **list, char **str)
 {
 	char	*key;
@@ -133,30 +122,26 @@ void	ft_export(t_list **list, char **str)
 		}
 		*s = '\0';
 		key = *str;
-		/*
-			variable name rule
-			alpha + _
-			alpha + _ + numeric
-			a=123
-			a=123
-		*/
 		value = s + 1;
-		ft_export_one(list, key, value, plus_flag);
+		if (check_valid_key(key))
+			ft_export_one(list, key, value, plus_flag);
+		else
+			printf("not a valid identifier\n");
 		str++;
 	}
 }
 
-int main(int argc, char **argv, char **envp)
-{
-	t_list *env_list;
+// int main(int argc, char **argv, char **envp)
+// {
+// 	t_list *env_list;
 
-	env_list = envp_init(envp);
-	char	**keys = malloc(sizeof(void *) * 3);
-	keys[0] = ft_strdup("=111");
-	keys[1] =  ft_strdup("=222");
-	keys[2] = NULL;
-	ft_export(&env_list, keys);
-	// ft_unset(&env_list, keys);
-	ft_env(env_list);
-	return 0;
-}
+// 	env_list = envp_init(envp);
+// 	char	**keys = malloc(sizeof(void *) * 3);
+// 	keys[0] = ft_strdup("=111");
+// 	keys[1] =  ft_strdup("b=222");
+// 	keys[2] = NULL;
+// 	ft_export(&env_list, keys);
+// 	// ft_unset(&env_list, keys);
+// 	ft_env(env_list);
+// 	return 0;
+// }

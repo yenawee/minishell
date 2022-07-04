@@ -1,15 +1,5 @@
 #include "../include/minishell.h"
 
-int	is_valid_key_first(char c)
-{
-	return (ft_isalpha(c) || c == '_');
-}
-
-int	is_valid_key_last(char c)
-{
-	return (ft_isalnum(c) || c == '_');
-}
-
 char	*expand_env(char *str, t_list *env_list)
 {
 	char	*ret;

@@ -85,6 +85,9 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		is_valid_key_first(char c);
+int		is_valid_key_last(char c);
+
 
 
 // new
