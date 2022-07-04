@@ -27,8 +27,11 @@ static void	loop(char *input, t_list **env_list)
 	list = NULL;
 	while (TRUE)
 	{
+		//clear 함수 구현해야 함
 		safe_free((void **)&trimed);
 		input = readline(prompt);
+		list = NULL;
+		tokens = NULL;
 		if (!input)
 			exit_msg(EXIT_SUCCESS, STDOUT_FILENO, "exit\n");
 		if (*input)
@@ -40,9 +43,7 @@ static void	loop(char *input, t_list **env_list)
 		if (!parse(&tokens, trimed, *env_list))
 			continue ;
 		if (!make_pipelines(&list, tokens))
-			printf("syntax error occur\n");
-		list = NULL;//clear 함수 구현해야 함
-		tokens = NULL;
+			continue ;
 	}
 }
 
