@@ -128,7 +128,6 @@ void	ft_export(t_list **list, char **str)
 		}
 		str++;
 	}
-	return (EXIT_SUCCESS);
 }
 
 // int main(int argc, char **argv, char **envp)
