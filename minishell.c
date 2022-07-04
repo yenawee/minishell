@@ -11,7 +11,7 @@ static void	new_prompt(int signal)
 
 static void	set_signal(void)
 {
-	signal(SIGINT, new_prompt);
+	// signal(SIGINT, new_prompt);
 	signal(SIGQUIT, SIG_IGN);
 }
 
@@ -19,7 +19,9 @@ static void	loop(char *input, t_list **env_list)
 {
 	const char	*prompt = "🐚 > ";
 	char		*trimed;
+	t_token		*tokens;
 
+	tokens = NULL;
 	trimed = NULL;
 	while (TRUE)
 	{
@@ -33,6 +35,13 @@ static void	loop(char *input, t_list **env_list)
 		safe_free((void **)&input);
 		if (*trimed == '\0')
 			continue ;
+		if (!parse(&tokens, trimed, *env_list))
+			continue ;
+		// while (tokens)
+		// {
+		// 	printf("type : %d, str : %s\n", tokens->type, tokens->str);
+		// 	tokens = tokens->next;
+		// }
 	}
 }
 

@@ -12,6 +12,8 @@
 #define D_QUOTE '\"'
 #define TRUE	1
 #define FALSE 	0
+#define SUCCESS 1
+#define FAIL	0
 
 typedef struct s_env
 {
@@ -25,17 +27,6 @@ typedef struct	s_list
 	struct s_list	*next;
 }	t_list;
 
-typedef struct	s_stack
-{
-	char	stack[1000];
-	int		len;
-}	t_stack;
-
-typedef struct s_str
-{
-	char			*str;
-	struct s_str	*next;
-}	t_str;
 
 enum e_type
 {
@@ -101,3 +92,12 @@ void	safe_free(void **p);
 void	exit_msg(int exit_status, int fd, char *msg);
 void	ft_putstr_fd(int fd, char *msg);
 char	*ft_strtrim(char const *s1, char const *set);
+int		ft_isspace(char c);
+int		ft_isoperator(char c);
+char	*expand_str(char *str, t_list *env_list);
+t_list	*envp_init(char **envp);
+char	*find_value_in_env(char *key, t_list *env_list);
+char	*expand_env(char *str, t_list *env_list);
+void	exec_signals();
+t_token	*define_type(t_token *list);
+int		parse(t_token **list, char *line, t_list *env_list);
