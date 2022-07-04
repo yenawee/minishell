@@ -6,6 +6,8 @@
 
 #define S_QUOTE '\''
 #define D_QUOTE '\"'
+#define TRUE	1
+#define FALSE 	0
 
 typedef struct s_env
 {
@@ -33,19 +35,15 @@ typedef struct s_str
 
 enum e_type
 {
-	T_NULL,
-	T_WORD,
-	T_SINQ, // single quote
-	T_DOUB, // double quote
-	T_DLAR, // $
-	T_BSLA, // '\'
-	T_PIPE, // |
-	T_DPIP, // ||
-	T_SEMI, // ;
-	T_RIGT, // >
-	T_LEFT, // <
-	T_DRGT, // >>
-	T_DLFT // <<
+	T_CMD,
+	T_REDIRECT,
+	T_HEREDOC,
+	T_APPEND,
+	T_PIPE,
+	T_AND,
+	T_OR,
+	T_FILE,
+	T_WORD
 };
 
 typedef struct s_token
@@ -92,3 +90,9 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+
+
+// new
+void	safe_free(void **p);
+void	exit_msg(int exit_status, int fd, char msg);
+void	ft_putstr_fd(int fd, char msg);
