@@ -6,7 +6,7 @@
 /*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/04 19:31:16 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/04 19:52:27 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,10 +108,3 @@ void	ft_export_no_arg(t_list *env_list)
 // 	ft_export_no_arg(env_list);
 // 	free(env_list);
 // }
-
-/*	command for test at ./minishell (e.g pwd => /Users/hyeonjan/Documents/minishell)
-	cc ./srcs/lst/*.c ./srcs/ft*.c ./srcs/builtin/envp_funcs.c -I./include
-	./a.out > my_res
-	export > builtin_res
-	diff my_res builtin_res
-*/
