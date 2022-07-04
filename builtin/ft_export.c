@@ -36,10 +36,11 @@ void	ft_lst_remove_if(t_list **list, char *key)
 	}
 }
 
-void	ft_unset(t_list **list, char **keys)
+int	ft_unset(t_list **list, char **keys)
 {
 	while (*keys)
 		ft_lst_remove_if(list, *keys++);
+	return (EXIT_SUCCESS);
 }
 
 void	ft_export_one(t_list **list, char *key, char *value, int plus_flag)
@@ -91,7 +92,7 @@ static int	check_valid_key(char *key)
 }
 
 
-void	ft_export(t_list **list, char **str)
+int	ft_export(t_list **list, char **str)
 {
 	char	*key;
 	char	*value;
@@ -128,6 +129,7 @@ void	ft_export(t_list **list, char **str)
 		}
 		str++;
 	}
+	return (EXIT_SUCCESS);
 }
 
 // int main(int argc, char **argv, char **envp)

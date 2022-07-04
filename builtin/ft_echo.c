@@ -24,7 +24,7 @@ int	ft_echo(char **argv)
 	new_line_opt_flag = check_echo_opt(argv[1]);
 	i = 1;
 	i += new_line_opt_flag;
-	// exit_failure 반환할 때 ?? -> argv[0] 이 없을 때
+	// exit_failure 반환할 때 ?? -> 없는거같은디 ??
 	while (argv[i])
 	{
 		ft_putstr_fd(STDOUT_FILENO, argv[i]);

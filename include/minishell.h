@@ -72,15 +72,15 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	ft_safe_free(void **p);
 
 t_list	*envp_init(char **envp);
-void 	ft_env(t_list *list);
+int		ft_env(t_list *list);
 void	ft_del(void *p);
 void	ft_lst_remove_if(t_list **list, char *key);
-void	ft_unset(t_list **list, char **keys);
+int		ft_unset(t_list **list, char **keys);
 void	ft_export_one(t_list **list, char *key, char *value, int plus_flag);
-void	ft_export(t_list **list, char **str);
-void	ft_export_no_arg(t_list *env_list);
+int		ft_export(t_list **list, char **str);
+int		ft_export_no_arg(t_list *env_list);
 
-void	ft_pwd(void);
+int		ft_pwd(void);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);

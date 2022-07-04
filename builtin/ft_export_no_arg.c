@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_no_arg.c                                    :+:      :+:    :+:   */
+/*   ft_export_no_arg.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/04 19:52:27 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/04 21:43:38 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_env	**_ft_sorted_t_env_from_t_list(t_list *env_list)
 	return (env_arr);
 }
 
-void	ft_export_no_arg(t_list *env_list)
+int	ft_export_no_arg(t_list *env_list)
 {
 	t_env	**ret;
 	t_env	**origin;
@@ -94,6 +94,7 @@ void	ft_export_no_arg(t_list *env_list)
 		ret++;
 	}
 	free(origin);
+	return (EXIT_SUCCESS);
 }
 
 // int	main(int ac, char **av, char **envp)

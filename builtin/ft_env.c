@@ -1,6 +1,6 @@
 #include "../include/minishell.h"
 
-void 	ft_env(t_list *list)
+int	ft_env(t_list *list)
 {
 	t_list *curr;
 	t_env	*temp;
@@ -13,4 +13,5 @@ void 	ft_env(t_list *list)
 			printf("%s=%s\n", temp->key, temp->value);
 		curr = curr->next;
 	}
+	return (EXIT_SUCCESS);
 }
