@@ -37,7 +37,7 @@ READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(INCLUDE) $(READLINE_FLAG) -c $< -o $@
+	$(CC) $(INCLUDE) $(READLINE_FLAG) -w -c $< -o $@
 
 $(NAME) : $(OBJS)
 	$(CC) $(READLINE_FLAG) $? -o $@
