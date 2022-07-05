@@ -4,6 +4,10 @@ BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg
 BUILTIN_DIR = ./builtin/
 BUILTIN = $(addprefix $(BUILTIN_DIR), $(BUILTIN_NAME))
 
+HEREDOC_NAME = expand_in_heredoc.c heredoc.c
+HEREDOC_DIR = ./heredoc/
+HEREDOC = $(addprefix $(HEREDOC_DIR), $(HEREDOC_NAME))
+
 LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c tokenizer.c
 LEXER_DIR = ./lexer/
 LEXER = $(addprefix $(LEXER_DIR), $(LEXER_NAME))
@@ -29,7 +33,8 @@ MAIN_NAME = minishell.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(ENV)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV)
+
 OBJS = $(SRCS:.c=.o)
 
 INCLUDE = -Iinclude
