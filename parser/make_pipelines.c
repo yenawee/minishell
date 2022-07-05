@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_pipelines.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:07:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/04 23:41:33 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/05 16:09:36 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ int	set_command(t_command *command, t_token *tokens)
 {
 	command->tokens = tokens;
 	if (command->token_size == 0)
+	{
+		ft_putstr_fd(STDERR_FILENO, "🐚 > error111!\n");
 		return (FAIL);
+	}
 	return (syntax_check_near_arrow(tokens, command->token_size));
 }
 
@@ -79,15 +82,18 @@ int	set_pipeline(t_pipeline	*pipeline, t_token *tokens, int seperated_type)
 	pipeline->seperated_type = seperated_type;
 	pipeline->tokens = tokens;
 	if (pipeline->token_size == 0)
+	{
+		ft_putstr_fd(STDERR_FILENO, "🐚 > error222!\n");
 		return (FAIL);
+	}
 	return (make_commands(&pipeline->commands, pipeline->tokens));
 }
 
 /**
  * @brief make one list = make pipelines
- * 
+ *
  * @param pipelines 생성된 파이프라인의 주소를 저장할 주소
- * 
+ *
  * @param input 파이프라인 생성에 기반 문자열(사용자 입력 전체)
  * @return int 실행결과 (성공 / 실패)
  */
