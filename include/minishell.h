@@ -127,3 +127,5 @@ char	*expand_in_heredoc(char *input, int fd, t_list *env_list);
 int		handle_heredoc(t_token *tokens, t_list *env_list);
 void	test_list(t_pipeline *list);
 int		ft_isalnum(int c);
+char	**env_list_to_char_arr(t_list *env_list);
+void	exec_signals();
