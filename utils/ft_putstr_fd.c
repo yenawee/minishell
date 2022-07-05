@@ -8,7 +8,7 @@ void	ft_putstr_fd(int fd, char *msg)
 	size = ft_strlen(msg);
 	while (size)
 	{
-		n = write(1, msg, size);
+		n = write(fd, msg, size);
 		msg += n;
 		size -= n;
 	}

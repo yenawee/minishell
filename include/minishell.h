@@ -7,6 +7,7 @@
 #include <signal.h>
 #include <errno.h>
 #include <sys/wait.h>
+#include <fcntl.h>
 
 #define S_QUOTE '\''
 #define D_QUOTE '\"'
@@ -122,5 +123,9 @@ t_token	*define_type(t_token *list);
 int		parse(t_token **list, char *line, t_list *env_list);
 void	*ft_alert_calloc(size_t count, size_t size);
 int		make_pipelines(t_pipeline **pipelines, t_token *tokens);
+char	*expand_in_heredoc(char *input, int fd, t_list *env_list);
+int		handle_heredoc(t_token *tokens, t_list *env_list);
+void	test_list(t_pipeline *list);
+int		ft_isalnum(int c);
 char	**env_list_to_char_arr(t_list *env_list);
 void	exec_signals();
