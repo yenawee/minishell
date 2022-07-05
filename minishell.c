@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
+/*   Updated: 2022/07/05 19:23:20 by hyeonjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./include/minishell.h"
 
 static void	new_prompt(int signal)
@@ -44,10 +56,13 @@ static void	loop(char *input, t_list **env_list)
 			continue ;
 		if (!make_pipelines(&list, tokens))
 			continue ;
+		if (!handle_heredoc(tokens, *env_list))
+			continue ;
+		test_list(list);
 	}
 }
 
-int main(int ac, char **av, char **envp)
+int	main(int ac, char **av, char **envp)
 {
 	char	*input;
 	t_list	*env_list;
