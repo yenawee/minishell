@@ -12,7 +12,7 @@ PARSER_NAME = make_pipelines.c test_make_pipelines.c
 PARSER_DIR = ./parser/
 PARSER = $(addprefix $(PARSER_DIR), $(PARSER_NAME))
 
-UTILS_NAME = env_init.c exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
+UTILS_NAME = exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
 			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c
 UTILS_DIR = ./utils/
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_NAME))
@@ -21,11 +21,15 @@ LST_NAME = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_ls
 LST_DIR = ./lst/
 LST = $(addprefix $(LST_DIR), $(LST_NAME))
 
+ENV_NAME = env_init.c env_list_to_char_array.c
+ENV_DIR = ./env/
+ENV = $(addprefix $(ENV_DIR), $(ENV_NAME))
+
 MAIN_NAME = minishell.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(ENV)
 OBJS = $(SRCS:.c=.o)
 
 INCLUDE = -Iinclude
