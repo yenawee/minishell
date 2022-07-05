@@ -9,7 +9,7 @@ static void	new_prompt(int signal)
 	rl_redisplay();
 }
 
-static void	set_signal(void)
+static void	set_input_signal(void)
 {
 	// signal(SIGINT, new_prompt);
 	signal(SIGQUIT, SIG_IGN);
@@ -56,7 +56,7 @@ int main(int ac, char **av, char **envp)
 	if (ac != 1)
 		printf("No arguments needed!\n");
 	env_list = envp_init(envp);
-	set_signal();
+	set_input_signal();
 	loop(input, &env_list);
 	return (0);
 }
