@@ -1,33 +1,47 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdbool.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <errno.h>
-#include <sys/wait.h>
-#include <fcntl.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
+/*   Updated: 2022/07/05 22:18:47 by hyeonjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#define S_QUOTE '\''
-#define D_QUOTE '\"'
-#define TRUE	1
-#define FALSE 	0
-#define SUCCESS 1
-#define FAIL	0
+#ifndef MINISHELL_H
+# define MINISHELL_H
+
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdbool.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <errno.h>
+# include <sys/wait.h>
+# include <fcntl.h>
+
+# define S_QUOTE '\''
+# define D_QUOTE '\"'
+# define TRUE	1
+# define FALSE 	0
+# define SUCCESS 1
+# define FAIL	0
 
 typedef struct s_env
 {
 	char	*key;
 	char	*value;
-} t_env;
+}	t_env;
 
-typedef struct	s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
-
 
 enum e_type
 {
@@ -48,16 +62,16 @@ typedef struct s_token
 	char			*str;
 	struct s_token	*prev;
 	struct s_token	*next;
-} t_token;
+}	t_token;
 
 typedef struct s_command {
-	t_token				*tokens; /* 토큰 !!!!!*/
+	t_token				*tokens;
 	int					token_size;
 	struct s_command	*next;
 }	t_command;
 
 typedef struct s_pipeline {
-	t_token				*tokens; /* 토큰 !!!!!*/
+	t_token				*tokens;
 	int					token_size;
 	int					seperated_type;
 	t_command			*commands;
@@ -65,10 +79,17 @@ typedef struct s_pipeline {
 
 }	t_pipeline;
 
+typedef struct s_wildcard {
+	char	*front_token;
+	char	*rear_token;
+	t_list	*middle_tokens;
+	int		total_len;
+}	t_wildcard;
+
 void	*ft_calloc(size_t count, size_t size);
 void	ft_lstadd_back(t_list	**head, t_list *new);
 void	ft_lstadd_front(t_list	**head, t_list *new);
-void 	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
@@ -105,8 +126,6 @@ int		ft_isprint(int c);
 int		is_valid_key_first(char c);
 int		is_valid_key_last(char c);
 
-
-
 // new
 void	safe_free(void **p);
 void	exit_msg(int exit_status, int fd, char *msg);
@@ -118,7 +137,7 @@ char	*expand_str(char *str, t_list *env_list);
 t_list	*envp_init(char **envp);
 char	*find_value_in_env(char *key, t_list *env_list);
 char	*expand_env(char *str, t_list *env_list);
-void	exec_signals();
+void	exec_signals(void);
 t_token	*define_type(t_token *list);
 int		parse(t_token **list, char *line, t_list *env_list);
 void	*ft_alert_calloc(size_t count, size_t size);
@@ -128,4 +147,9 @@ int		handle_heredoc(t_token *tokens, t_list *env_list);
 void	test_list(t_pipeline *list);
 int		ft_isalnum(int c);
 char	**env_list_to_char_arr(t_list *env_list);
-void	exec_signals();
+void	exec_signals(void);
+t_wildcard	*str_to_t_wildcard(char *str);
+int		is_matched(char *file_name, t_wildcard *wildcard);
+void	match_wildcard(char **file_names, int file_count, \
+						t_wildcard **wildcards, int wildcard_count);
+#endif

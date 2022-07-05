@@ -8,6 +8,10 @@ HEREDOC_NAME = expand_in_heredoc.c heredoc.c
 HEREDOC_DIR = ./heredoc/
 HEREDOC = $(addprefix $(HEREDOC_DIR), $(HEREDOC_NAME))
 
+WILDCARD_NAME = match_wildcard.c is_matched.c match_wildcard.c str_to_t_wildcard.c main_for_test.c
+WILDCARD_DIR = ./wildcard/
+WILDCARD = $(addprefix $(WILDCARD_DIR), $(WILDCARD_NAME))
+
 LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c tokenizer.c
 LEXER_DIR = ./lexer/
 LEXER = $(addprefix $(LEXER_DIR), $(LEXER_NAME))
@@ -33,7 +37,7 @@ MAIN_NAME = minishell.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD)
 
 OBJS = $(SRCS:.c=.o)
 
