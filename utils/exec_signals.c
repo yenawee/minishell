@@ -1,4 +1,4 @@
-#include "test.h"
+#include "../include/minishell.h"
 
 void	interrupt_process(int signal)
 {
@@ -10,7 +10,7 @@ void	interrupt_process(int signal)
 void	quit_process(int signal)
 {
 	(void)signal;
-	printf("Quit : \n");
+	printf("Quit: 3 \n");
 	exit(1);
 }
 

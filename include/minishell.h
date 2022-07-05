@@ -122,3 +122,5 @@ t_token	*define_type(t_token *list);
 int		parse(t_token **list, char *line, t_list *env_list);
 void	*ft_alert_calloc(size_t count, size_t size);
 int		make_pipelines(t_pipeline **pipelines, t_token *tokens);
+char	**env_list_to_char_arr(t_list *env_list);
+void	exec_signals();
