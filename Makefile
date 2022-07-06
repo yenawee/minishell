@@ -12,7 +12,7 @@ WILDCARD_NAME = match_wildcard.c is_matched.c match_wildcard.c str_to_t_wildcard
 WILDCARD_DIR = ./wildcard/
 WILDCARD = $(addprefix $(WILDCARD_DIR), $(WILDCARD_NAME))
 
-LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c tokenizer.c
+LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c add_token.c parse.c
 LEXER_DIR = ./lexer/
 LEXER = $(addprefix $(LEXER_DIR), $(LEXER_NAME))
 
@@ -45,15 +45,15 @@ INCLUDE = -Iinclude
 CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
-READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${USER}/.brew/opt/readline/include
+READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
 
 all : $(NAME)
 
 %.o : %.c
-	@$(CC) $(INCLUDE) $(READLINE_FLAG) -w -c $< -o $@
+	@$(CC) $(INCLUDE) $(READLINE_FLAG) -w -c $< -o $@ -g
 
 $(NAME) : $(OBJS)
-	$(CC) $(READLINE_FLAG) $? -o $@
+	$(CC) $(READLINE_FLAG) $? -o $@ -g
 	@echo "\033[47;30m* $(NAME) was created *\033[0m"
 
 clean :

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 22:18:47 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/06 20:49:48 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ typedef struct s_pipeline {
 	int					seperated_type;
 	t_command			*commands;
 	struct s_pipeline	*next;
-
 }	t_pipeline;
 
 typedef struct s_wildcard {
@@ -152,4 +151,5 @@ t_wildcard	*str_to_t_wildcard(char *str);
 int		is_matched(char *file_name, t_wildcard *wildcard);
 void	match_wildcard(char **file_names, int file_count, \
 						t_wildcard **wildcards, int wildcard_count);
+void	addtoken(t_token **list, char *begin, char *end, t_list *env_list);
 #endif
