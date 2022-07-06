@@ -21,7 +21,7 @@ PARSER_DIR = ./parser/
 PARSER = $(addprefix $(PARSER_DIR), $(PARSER_NAME))
 
 UTILS_NAME = exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
-			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c exec_signals.c
+			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c
 UTILS_DIR = ./utils/
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_NAME))
 
@@ -33,11 +33,15 @@ ENV_NAME = env_init.c env_list_to_char_array.c
 ENV_DIR = ./env/
 ENV = $(addprefix $(ENV_DIR), $(ENV_NAME))
 
+SIGNAL_NAME = exec_signals.c input_signal.c
+SIGNAL_DIR = ./signal/
+SIGNAL = $(addprefix $(SIGNAL_DIR), $(SIGNAL_NAME))
+
 MAIN_NAME = minishell.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL)
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/06 22:20:57 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/07 00:41:52 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,4 +157,5 @@ char	*ft_alert_strdup(const char *s1);
 char	*ft_alert_strjoin(char const *s1, char const *s2);
 void	ft_alert_str_append(char **prev, char *added);
 void	ft_safe_strjoin(char **ret, char *str);
+void	set_input_signal(void);
 #endif

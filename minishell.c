@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 19:23:20 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/07 00:41:16 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
-
-static void	new_prompt(int signal)
-{
-	(void)signal;
-	rl_replace_line("", 0);
-	write(1, "\n", 1);
-	rl_on_new_line();
-	rl_redisplay();
-}
-
-static void	set_input_signal(void)
-{
-	// signal(SIGINT, new_prompt);
-	signal(SIGQUIT, SIG_IGN);
-}
 
 static void	loop(char *input, t_list **env_list)
 {
