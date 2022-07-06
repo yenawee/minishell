@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/06 20:57:03 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/06 22:20:57 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,12 +151,10 @@ t_wildcard	*str_to_t_wildcard(char *str);
 int		is_matched(char *file_name, t_wildcard *wildcard);
 void	match_wildcard(char **file_names, int file_count, \
 						t_wildcard **wildcards, int wildcard_count);
-<<<<<<< HEAD
 void	addtoken(t_token **list, char *begin, char *end, t_list *env_list);
-=======
 t_list	*ft_alert_lstnew(void *content);
 char	*ft_alert_strdup(const char *s1);
 char	*ft_alert_strjoin(char const *s1, char const *s2);
 void	ft_alert_str_append(char **prev, char *added);
->>>>>>> cdc73f5be2c26968513b23940bbc61527584f9ec
+void	ft_safe_strjoin(char **ret, char *str);
 #endif

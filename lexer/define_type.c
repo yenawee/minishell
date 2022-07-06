@@ -2,7 +2,7 @@
 
 t_token	*define_type(t_token *list)
 {
-	t_token *curr;
+	t_token	*curr;
 
 	curr = list;
 	while (curr)
@@ -19,7 +19,8 @@ t_token	*define_type(t_token *list)
 			curr->type = T_OR;
 		else if (!ft_strcmp(curr->str, "&&"))
 			curr->type = T_AND;
-		else if (curr->prev && (curr->prev->type == T_REDIRECT || curr->prev->type == T_APPEND))
+		else if (curr->prev && (curr->prev->type == T_REDIRECT \
+		|| curr->prev->type == T_APPEND))
 			curr->type = T_FILE;
 		else
 			curr->type = T_WORD;
