@@ -19,3 +19,13 @@ char	*ft_strdup(const char *s1)
 	rst[i] = '\0';
 	return (rst);
 }
+
+char	*ft_alert_strdup(const char *s1)
+{
+	char	*ret;
+
+	ret = ft_strdup(s1);
+	if (ret == NULL)
+		exit_msg(EXIT_FAILURE, STDERR_FILENO, "malloc error");
+	return (ret);
+}
