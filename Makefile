@@ -8,7 +8,7 @@ HEREDOC_NAME = expand_in_heredoc.c heredoc.c
 HEREDOC_DIR = ./heredoc/
 HEREDOC = $(addprefix $(HEREDOC_DIR), $(HEREDOC_NAME))
 
-WILDCARD_NAME = match_wildcard.c is_matched.c match_wildcard.c str_to_t_wildcard.c main_for_test.c
+WILDCARD_NAME = match_wildcard.c is_matched.c str_to_t_wildcard.c
 WILDCARD_DIR = ./wildcard/
 WILDCARD = $(addprefix $(WILDCARD_DIR), $(WILDCARD_NAME))
 
