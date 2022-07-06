@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:19:21 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 22:21:15 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:35:28 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ int	_is_str_matched(char *target, char *token)
 
 int	_is_front_token_matched(char *file_name, char *front_token)
 {
-	printf("target: |%s| vs token: |%s|\n", file_name, front_token);
 	return (front_token == NULL || _is_str_matched(file_name, front_token));
 }
 
 int	_is_rear_token_matched(char *file_name, char *rear_token)
 {
-	printf("target: |%s| vs token: |%s|\n", \
-	file_name + ft_strlen(file_name) - ft_strlen(rear_token), rear_token);
 	return (rear_token == NULL || \
 		ft_strcmp(file_name + ft_strlen(file_name) - ft_strlen(rear_token), \
 				rear_token) == 0);
@@ -42,12 +39,9 @@ int	_is_middle_tokens_matched(char *file_name, t_list *middle_tokens, \
 
 	if (front_token)
 		file_name += ft_strlen(front_token);
+	deadline = file_name + ft_strlen(file_name);
 	if (rear_token)
-		deadline = file_name + ft_strlen(file_name) - \
-					ft_strlen(rear_token);
-	else
-		deadline = file_name + ft_strlen(file_name);
-	printf("deaeline: |%s|\n", deadline);
+		deadline -= ft_strlen(rear_token);
 	while (middle_tokens)
 	{
 		while (!_is_str_matched(file_name, (char *)middle_tokens->content))
