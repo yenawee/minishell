@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:21:25 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 22:24:03 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:37:41 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,4 @@ void	match_wildcard(char **file_names, int file_count, \
 			}
 		}
 	}
-	i = -1;
-	while (++i < file_count)
-		printf("arr[%d]: %d\n", i, arr[i]);
 }

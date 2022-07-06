@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:22:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 22:22:38 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:31:52 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	_set_rear_token(t_wildcard *ret, char *str)
 
 void	_set_middle_tokens(t_wildcard *ret, char *str)
 {
-	t_list		*new_node;
-
 	while (*str)
 	{
 		while (*str == '*')
@@ -50,10 +48,7 @@ void	_set_middle_tokens(t_wildcard *ret, char *str)
 			break ;
 		if (ft_strchr(str, '*'))
 			*(ft_strchr(str, '*')) = '\0';
-		new_node = ft_lstnew((void *)str);
-		if (new_node == NULL)
-			exit_msg(EXIT_FAILURE, STDERR_FILENO, "malloc error\n");
-		ft_lstadd_back(&ret->middle_tokens, new_node);
+		ft_lstadd_back(&ret->middle_tokens, ft_alert_lstnew((void *)str));
 		str += ft_strlen(str) + 1;
 	}
 }
@@ -63,7 +58,6 @@ t_wildcard	*str_to_t_wildcard(char *str)
 	t_wildcard	*ret;
 	t_list		*node;
 
-	printf("str: |%s|\n", str);
 	ret = ft_alert_calloc(1, sizeof(t_wildcard));
 	str = _set_front_token(ret, str);
 	_set_rear_token(ret, str);
