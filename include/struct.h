@@ -22,13 +22,15 @@ typedef struct s_list
 
 enum e_type
 {
-	T_REDIRECT,
+	T_RRDIR,
+	T_LRDIR,
 	T_HEREDOC,
 	T_APPEND,
 	T_PIPE,
 	T_AND,
 	T_OR,
 	T_FILE,
+	T_LIMITER,
 	T_WORD
 };
 
@@ -44,6 +46,8 @@ typedef struct s_command {
 	t_token				*tokens;
 	char				**argv;
 	int					argc;
+	int					infile;
+	int					outfile;
 	int					token_size;
 	struct s_command	*next;
 }	t_command;

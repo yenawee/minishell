@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_pipelines.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:07:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 16:09:36 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/07 21:29:04 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	syntax_check_near_arrow(t_token *tokens, int token_size)
 	while (token_size)
 	{
 		--token_size;
-		if (((cur->type == T_REDIRECT || cur->type == T_APPEND) && \
+		if (((cur->type == T_RRDIR || cur->type == T_LRDIR || cur->type == T_APPEND) && \
 			(token_size == 0 || cur->next->type != T_FILE)) || \
 			(cur->type == T_HEREDOC && \
-			(token_size == 0 || cur->next->type != T_WORD)))
+			(token_size == 0 || cur->next->type != T_LIMITER)))
 			{
 				ft_putstr_fd(STDERR_FILENO, "🐚 > syntax error near unexpected token `");
 				if (cur->next)
