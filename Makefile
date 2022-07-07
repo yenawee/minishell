@@ -37,11 +37,15 @@ SIGNAL_NAME = exec_signals.c input_signal.c
 SIGNAL_DIR = ./signal/
 SIGNAL = $(addprefix $(SIGNAL_DIR), $(SIGNAL_NAME))
 
+EXECVE_NAME = execve_command.c
+EXECVE_DIR = ./execve/
+EXECVE = $(addprefix $(EXECVE_DIR), $(EXECVE_NAME))
+
 MAIN_NAME = minishell.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL) $(EXECVE)
 
 OBJS = $(SRCS:.c=.o)
 
