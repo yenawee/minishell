@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 00:41:16 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/07 19:58:19 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	loop(char *input, t_list **env_list)
 			continue ;
 		if (!handle_heredoc(tokens, *env_list))
 			continue ;
+		make_cmd_argv(list->commands, *env_list);
 		test_list(list);
 	}
 }
@@ -50,13 +51,14 @@ static void	loop(char *input, t_list **env_list)
 int	main(int ac, char **av, char **envp)
 {
 	char	*input;
-	t_list	*env_list;
+	t_sh	*sh;
 
+	sh = ft_alert_calloc(1, sizeof(t_sh));
 	input = NULL;
 	if (ac != 1)
 		printf("No arguments needed!\n");
-	env_list = envp_init(envp);
+	sh->env_list = envp_init(envp);
 	set_input_signal();
-	loop(input, &env_list);
+	loop(input, &(sh->env_list));
 	return (0);
 }
