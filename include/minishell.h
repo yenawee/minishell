@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 20:13:40 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/07 20:22:39 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	*ft_alert_strdup(const char *s1);
 char	*ft_alert_strjoin(char const *s1, char const *s2);
 void	ft_alert_str_append(char **prev, char *added);
 void	ft_safe_strjoin(char **ret, char *str);
+char	*ft_itoa(int n);
 
 void	exit_msg(int exit_status, int fd, char *msg);
 
@@ -97,8 +98,8 @@ void		match_wildcard(char **file_names, int file_count, \
 //lexer
 int		parse(t_token **list, char *line, t_list *env_list);
 void	addtoken(t_token **list, char *begin, char *end, t_list *env_list);
-char	*expand_str(char *str, t_list *env_list);
-char	*expand_env(char *str, t_list *env_list);
+char	*expand_str(char *str, t_sh *sh);
+char	*expand_env(char *str, t_sh *sh);
 char	*find_value_in_env(char *key, t_list *env_list);
 t_token	*define_type(t_token *list);
 
@@ -110,7 +111,7 @@ char	*expand_in_heredoc(char *input, int fd, t_list *env_list);
 int		handle_heredoc(t_token *tokens, t_list *env_list);
 
 //execve
-void	make_cmd_argv(t_command *cmd, t_list *env_list);
+void	make_cmd_argv(t_command *cmd, t_sh *sh);
 
 
 void	test_list(t_pipeline *list);

@@ -1,5 +1,14 @@
 #include "../include/minishell.h"
 
+void	ft_safe_strjoin(char **ret, char *str)
+{
+	char	*tmp;
+
+	tmp = *ret;
+	*ret = ft_strjoin(*ret, str);
+	safe_free(&tmp);
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*rst;

@@ -6,13 +6,13 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 19:58:19 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/07 21:08:00 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
 
-static void	loop(char *input, t_list **env_list)
+static void	loop(char *input, t_sh *sh)
 {
 	const char	*prompt = "🐚 > ";
 	char		*trimed;
@@ -37,13 +37,13 @@ static void	loop(char *input, t_list **env_list)
 		safe_free((void **)&input);
 		if (*trimed == '\0')
 			continue ;
-		if (!parse(&tokens, trimed, *env_list))
+		if (!parse(&tokens, trimed, sh->env_list))
 			continue ;
 		if (!make_pipelines(&list, tokens))
 			continue ;
-		if (!handle_heredoc(tokens, *env_list))
+		if (!handle_heredoc(tokens, sh->env_list))
 			continue ;
-		make_cmd_argv(list->commands, *env_list);
+		//make_cmd_argv(list->commands, sh);
 		test_list(list);
 	}
 }
@@ -59,6 +59,6 @@ int	main(int ac, char **av, char **envp)
 		printf("No arguments needed!\n");
 	sh->env_list = envp_init(envp);
 	set_input_signal();
-	loop(input, &(sh->env_list));
+	loop(input, sh);
 	return (0);
 }

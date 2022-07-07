@@ -17,7 +17,7 @@ int	get_argc(t_command *cmd)
 	return (cnt);
 }
 
-void	make_cmd_argv(t_command *cmd, t_list *env_list)
+void	make_cmd_argv(t_command *cmd, t_sh *sh)
 {
 	t_token		*cur_token;
 	int			i;
@@ -30,7 +30,7 @@ void	make_cmd_argv(t_command *cmd, t_list *env_list)
 	{
 		if (cur_token->type != T_WORD)
 			cur_token = cur_token->next;
-		cmd->argv[i] = expand_str(cur_token->str, env_list);
+		cmd->argv[i] = expand_str(cur_token->str, sh);
 		cur_token = cur_token->next;
 		i++;
 	}

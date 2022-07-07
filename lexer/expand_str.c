@@ -1,7 +1,7 @@
 #include "../include/minishell.h"
 
 static char	*expand_until_quote(int *end, \
-int start, char *str, t_list *env_list)
+int start, char *str, t_sh *sh)
 {
 	char	*str_slice;
 
@@ -9,11 +9,11 @@ int start, char *str, t_list *env_list)
 			(*end)++;
 	str_slice = ft_substr(str, start, *end - start);
 	if (ft_strchr(str_slice, '$'))
-		str_slice = expand_env(str_slice, env_list);
+		str_slice = expand_env(str_slice, sh);
 	return (str_slice);
 }
 
-static char	*expand_quotes(int c, char *s, t_list *env_list)
+static char	*expand_quotes(int c, char *s, t_sh *sh)
 {
 	char	*str_quote_trim;
 	char	*tmp;
@@ -26,7 +26,7 @@ static char	*expand_quotes(int c, char *s, t_list *env_list)
 		tmp = str_quote_trim;
 		if (ft_strchr(str_quote_trim, '$'))
 		{
-			str_quote_trim = expand_env(str_quote_trim, env_list);
+			str_quote_trim = expand_env(str_quote_trim, sh);
 			safe_free(&tmp);
 		}
 	}
@@ -34,7 +34,7 @@ static char	*expand_quotes(int c, char *s, t_list *env_list)
 }
 
 static char	*slice_str_between_quotes(int *start, \
-int *end, char *str, t_list *env_list)
+int *end, char *str, t_sh *sh)
 {
 	char	*str_slice;
 	char	*tmp;
@@ -44,12 +44,12 @@ int *end, char *str, t_list *env_list)
 		(*end)++;
 	str_slice = ft_substr(str, *start, *end - *start + 1);
 	tmp = str_slice;
-	str_slice = expand_quotes(str[*start], str_slice, env_list);
+	str_slice = expand_quotes(str[*start], str_slice, sh);
 	safe_free(&tmp);
 	return (str_slice);
 }
 
-char	*expand_str(char *str, t_list *env_list)
+char	*expand_str(char *str, t_sh *sh)
 {
 	int		start;
 	int		end;
@@ -62,12 +62,12 @@ char	*expand_str(char *str, t_list *env_list)
 	start = 0;
 	while (str[end])
 	{
-		str_slice = expand_until_quote(&end, start, str, env_list);
+		str_slice = expand_until_quote(&end, start, str, sh);
 		ft_safe_strjoin(&ret, str_slice);
 		if (!str[end])
 			break ;
 		safe_free(&str_slice);
-		str_slice = slice_str_between_quotes(&start, &end, str, env_list);
+		str_slice = slice_str_between_quotes(&start, &end, str, sh);
 		ft_safe_strjoin(&ret, str_slice);
 		start = ++end;
 	}
