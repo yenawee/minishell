@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 21:08:00 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/08 20:24:19 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	loop(char *input, t_sh *sh)
 	while (TRUE)
 	{
 		//clear 함수 구현해야 함
+		safe_free((void **)&input);
 		safe_free((void **)&trimed);
 		input = readline(prompt);
 		list = NULL;
@@ -34,17 +35,19 @@ static void	loop(char *input, t_sh *sh)
 		if (*input)
 			add_history(input);
 		trimed = ft_strtrim(input, " \t");
-		safe_free((void **)&input);
 		if (*trimed == '\0')
 			continue ;
-		if (!parse(&tokens, trimed, sh->env_list))
-			continue ;
-		if (!make_pipelines(&list, tokens))
-			continue ;
-		if (!handle_heredoc(tokens, sh->env_list))
-			continue ;
-		//make_cmd_argv(list->commands, sh);
-		test_list(list);
+		if (!parse(&tokens, trimed, sh->env_list) || \
+			!make_pipelines(&list, tokens) || \
+			!handle_heredoc(tokens, sh->env_list))
+		{
+			sh->exit_status = 1;
+		}
+		else
+		{
+			// test_list(list);`
+			execute_input(sh, list);
+		}
 	}
 }
 
@@ -54,6 +57,9 @@ int	main(int ac, char **av, char **envp)
 	t_sh	*sh;
 
 	sh = ft_alert_calloc(1, sizeof(t_sh));
+	sh->fd_stdin = dup(STDIN_FILENO);
+	sh->fd_stdout = dup(STDOUT_FILENO);
+	sh->fd_stderr = dup(STDERR_FILENO);
 	input = NULL;
 	if (ac != 1)
 		printf("No arguments needed!\n");
