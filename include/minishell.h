@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 20:59:03 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/08 22:03:36 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_alert_lstnew(void *content);
 
-
 //utils
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *s1);
@@ -68,6 +67,8 @@ char	*ft_alert_strjoin(char const *s1, char const *s2);
 void	ft_alert_str_append(char **prev, char *added);
 void	ft_safe_strjoin(char **ret, char *str);
 char	*ft_itoa(int n);
+void	all_clear(char **input, char **trimed, \
+				t_pipeline **list, t_token **tokens);
 
 void	exit_msg(int exit_status, int fd, char *msg);
 
@@ -127,7 +128,8 @@ void	two_dim_arr_clear(char **two_dim_arr);
 int		wait_child(pid_t pid);
 int		wait_childs(t_pipeline *pipeline);
 int		execute_pipeline(t_sh *sh, t_pipeline *pipeline, char **envp);
-void	fork_execute_command(t_sh *sh, t_pipes *p, t_command *command, char **envp);
+void	fork_execute_command(t_sh *sh, t_pipes *p, t_command *command, \
+							char **envp);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 void	ft_alert_safe_close(int *fd);
 void	ft_alert_safe_dup2(t_sh *sh, int fd, int to_fd);
