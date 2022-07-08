@@ -6,7 +6,10 @@ static char	*expand_env_if(char **str, t_sh *sh, char *dlr_pos)
 	char	*key;
 
 	if (**str == '?')
+	{
 		env_value = ft_strdup(ft_itoa(sh->exit_status));
+		(*str)++;
+	}
 	else if (is_valid_key_first(**str))
 	{
 		while (is_valid_key_last(**str))

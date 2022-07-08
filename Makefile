@@ -37,13 +37,9 @@ SIGNAL_NAME = exec_signals.c input_signal.c
 SIGNAL_DIR = ./signal/
 SIGNAL = $(addprefix $(SIGNAL_DIR), $(SIGNAL_NAME))
 
-EXECVE_NAME = execve_command.c
-EXECVE_DIR = ./execve/
-EXECVE = $(addprefix $(EXECVE_DIR), $(EXECVE_NAME))
-
 EXECUTOR_NAME = builtin.c check_file_type.c execute_command.c execute_pipeline.c executor.c \
 				fork_execute_command.c ft_alert_safe_close.c ft_alert_safe_dup2.c handle_redirect.c \
-				redirection.c two_dim_arr_clear.c wait_child.c
+				redirection.c two_dim_arr_clear.c wait_child.c execve_command.c
 EXECUTOR_DIR = ./executor/
 EXECUTOR = $(addprefix $(EXECUTOR_DIR), $(EXECUTOR_NAME))
 
@@ -51,7 +47,7 @@ MAIN_NAME = minishell.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL) $(EXECVE) $(EXECUTOR)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL) $(EXECUTOR)
 
 OBJS = $(SRCS:.c=.o)
 
