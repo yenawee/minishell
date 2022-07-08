@@ -1,48 +1,5 @@
 #include "../include/minishell.h"
 
-void	ft_del(void *p)
-{
-	t_env	*content;
-
-	content = (t_env *)p;
-	if (content)
-	{
-		safe_free((void **)&content->key);
-		safe_free((void **)&content->value);
-		free(content);
-	}
-}
-
-void	ft_lst_remove_if(t_list **list, char *key)
-{
-	t_list 	*curr;
-	t_env	*temp;
-	t_list	*tmp;
-
-	curr = *list;
-	while (curr)
-	{
-		temp = (t_env *)curr->content;
-		if (!ft_strcmp((const char *)temp->key, (const char *)key))
-		{
-			if (curr == *list)
-				*list = curr->next;
-			else
-				tmp->next = curr->next;
-			ft_lstdelone(curr, ft_del);
-		}
-		tmp = curr;
-		curr = curr->next;
-	}
-}
-
-int	ft_unset(t_list **list, char **keys)
-{
-	while (*keys)
-		ft_lst_remove_if(list, *keys++);
-	return (EXIT_SUCCESS);
-}
-
 void	ft_export_one(t_list **list, char *key, char *value, int plus_flag)
 {
 	t_list	*curr;
@@ -92,14 +49,18 @@ static int	check_valid_key(char *key)
 }
 
 
-int	ft_export(t_list **list, char **str)
+int	ft_export(t_list **list, char **argv)
 {
 	char	*key;
 	char	*value;
 	char	*s;
 	int		plus_flag;
 	char	*p;
+	char	**str;
 
+	if (argv[1] == NULL)
+		return (ft_export_no_arg(*list));
+	str = ++argv;
 	plus_flag = 0;
 	while (*str)
 	{

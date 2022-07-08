@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 22:03:36 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/09 00:58:06 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int		ft_export(t_list **list, char **str);
 int		ft_export_no_arg(t_list *env_list);
 int		ft_pwd(void);
 int		ft_env(t_list *list);
-void	ft_del(void *p);
-void	ft_lst_remove_if(t_list **list, char *key);
 int		ft_echo(char **argv);
 
 //env

@@ -1,6 +1,6 @@
 NAME = minishell
 
-BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg.c ft_pwd.c
+BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg.c ft_pwd.c ft_unset.c
 BUILTIN_DIR = ./builtin/
 BUILTIN = $(addprefix $(BUILTIN_DIR), $(BUILTIN_NAME))
 
@@ -55,8 +55,8 @@ INCLUDE = -Iinclude
 CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
-READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${USER}/.brew/opt/readline/include
-# READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
+#READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${USER}/.brew/opt/readline/include
+ READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
 
 all : $(NAME)
 
