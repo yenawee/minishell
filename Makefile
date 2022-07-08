@@ -21,7 +21,7 @@ PARSER_DIR = ./parser/
 PARSER = $(addprefix $(PARSER_DIR), $(PARSER_NAME))
 
 UTILS_NAME = exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
-			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c
+			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c ft_strlcat.c
 UTILS_DIR = ./utils/
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_NAME))
 
@@ -41,11 +41,17 @@ EXECVE_NAME = execve_command.c
 EXECVE_DIR = ./execve/
 EXECVE = $(addprefix $(EXECVE_DIR), $(EXECVE_NAME))
 
+EXECUTOR_NAME = builtin.c check_file_type.c execute_command.c execute_pipeline.c executor.c \
+				fork_execute_command.c ft_alert_safe_close.c ft_alert_safe_dup2.c handle_redirect.c \
+				redirection.c two_dim_arr_clear.c wait_child.c
+EXECUTOR_DIR = ./executor/
+EXECUTOR = $(addprefix $(EXECUTOR_DIR), $(EXECUTOR_NAME))
+
 MAIN_NAME = minishell.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL) $(EXECVE)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL) $(EXECVE) $(EXECUTOR)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -53,7 +59,8 @@ INCLUDE = -Iinclude
 CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
-READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
+READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${USER}/.brew/opt/readline/include
+# READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
 
 all : $(NAME)
 
