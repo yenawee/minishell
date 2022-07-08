@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 19:49:06 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/08 20:59:03 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		ft_pwd(void);
 int		ft_env(t_list *list);
 void	ft_del(void *p);
 void	ft_lst_remove_if(t_list **list, char *key);
-
+int		ft_echo(char **argv);
 
 //env
 t_list	*envp_init(char **envp);

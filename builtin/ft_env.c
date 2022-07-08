@@ -2,7 +2,7 @@
 
 int	ft_env(t_list *list)
 {
-	t_list *curr;
+	t_list	*curr;
 	t_env	*temp;
 
 	curr = list;

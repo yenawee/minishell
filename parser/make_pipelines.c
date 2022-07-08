@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_pipelines.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:07:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 21:29:04 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/08 20:38:53 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,10 @@ int	make_commands(t_command **commands, t_token *tokens)
 	}
 }
 
-int	set_pipeline(t_pipeline	*pipeline, t_token *tokens, int seperated_type)
+int	set_pipeline(t_pipeline	*pipeline, t_token *tokens, t_token *cur)
 {
-	pipeline->seperated_type = seperated_type;
+	if (cur)
+		pipeline->seperated_type = cur->type;
 	pipeline->tokens = tokens;
 	if (pipeline->token_size == 0)
 	{
@@ -109,7 +110,7 @@ int	make_pipelines(t_pipeline **pipelines, t_token *tokens)
 	{
 		if (cur == NULL || cur->type == T_OR || cur->type == T_AND)
 		{
-			if (set_pipeline(cur_pipeline, tokens, cur && cur->type) == FAIL)
+			if (set_pipeline(cur_pipeline, tokens, cur) == FAIL)
 				return (FAIL);
 			if (cur == NULL)
 				return (SUCCESS);

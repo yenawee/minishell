@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 22:00:49 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/08 21:19:23 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,20 @@ int	execute_builtin(t_sh *sh, t_command *command)
 {
 	char	*cmd;
 
-	return (1);
-	// cmd = command->argv[0];
-	// if (ft_strcmp(cmd, "echo") == 0)
-	// 	return (ft_echo(command));
-	// else if (ft_strcmp(cmd, "cd") == 0)
-	// 	return (ft_cd(command));
-	// else if (ft_strcmp(cmd, "pwd") == 0)
-	// 	return (ft_pwd(command));
+	make_cmd_argv(command, sh);
+	cmd = command->argv[0];
+	if (ft_strcmp(cmd, "echo") == 0)
+		return (ft_echo(command->argv));
+	else if (ft_strcmp(cmd, "cd") == 0)
+		return (ft_cd(sh->env_list, command->argv));
+	else if (ft_strcmp(cmd, "pwd") == 0)
+		return (ft_pwd());
 	// else if (ft_strcmp(cmd, "export") == 0)
 	// 	return (ft_export(command));
 	// else if (ft_strcmp(cmd, "unset") == 0)
 	// 	return (ft_unset(command));
-	// else if (ft_strcmp(cmd, "env") == 0)
-	// 	return (ft_env(command));
+	else if (ft_strcmp(cmd, "env") == 0)
+		return (ft_env(sh->env_list));
 	// else if (ft_strcmp(cmd, "exit") == 0)
 	// 	return (ft_exit(command));
 	// else
