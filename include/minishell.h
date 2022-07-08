@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 20:22:39 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/08 19:49:06 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <errno.h>
 # include <sys/wait.h>
 # include <fcntl.h>
+# include <sys/stat.h>
 
 # include "struct.h"
 
@@ -113,7 +114,23 @@ int		handle_heredoc(t_token *tokens, t_list *env_list);
 //execve
 void	make_cmd_argv(t_command *cmd, t_sh *sh);
 
-
+//excutor
+int		check_ftype(char *cmd);
+int		is_builtin(t_command *command);
+int		execute_builtin(t_sh *sh, t_command *command);
+void	execute_input(t_sh *sh, t_pipeline *list);
+char	*ft_alert_join_path(char *path, char *cmd);
+int		search_execve(t_sh *sh, t_command *command, char *envp);
+void	execute_simple_cmd(t_sh *sh, t_command *command, char **envp);
+int		handle_redirect(t_sh *sh, t_command *command);
+void	two_dim_arr_clear(char **two_dim_arr);
+int		wait_child(pid_t pid);
+int		wait_childs(t_pipeline *pipeline);
+int		execute_pipeline(t_sh *sh, t_pipeline *pipeline, char **envp);
+void	fork_execute_command(t_sh *sh, t_pipes *p, t_command *command, char **envp);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+void	ft_alert_safe_close(int *fd);
+void	ft_alert_safe_dup2(t_sh *sh, int fd, int to_fd);
 void	test_list(t_pipeline *list);
 
 #endif
