@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:37:12 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 19:27:17 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/08 22:29:27 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	_set_heredoc(char **file_name, int *fd)
 
 int	_read_from_heredoc(char **eof, t_list *env_list)
 {
-	char	buf[42];
 	char	*file_name;
 	int		fd;
 	char	*input;
@@ -68,10 +67,32 @@ int	_read_from_heredoc(char **eof, t_list *env_list)
 	return (SUCCESS);
 }
 
+int	_is_over_max_heredoc(t_token *tokens)
+{
+	t_token	*cur;
+	int		cnt;
+
+	cnt = 0;
+	cur = tokens;
+	while (cur)
+	{
+		if (cur->type == T_HEREDOC && ++cnt > MAX_HEREDOC)
+			return (FAIL);
+		cur = cur->next;
+	}
+	return (SUCCESS);
+}
+
+//cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof && cat << eof
 int	handle_heredoc(t_token *tokens, t_list *env_list)
 {
 	t_token	*cur;
 
+	if (!_is_over_max_heredoc(tokens))
+	{
+		ft_putstr_fd(STDERR_FILENO, "🐚: maximum here-document count exceeded\n");
+		return (FAIL);
+	}
 	cur = tokens;
 	while (cur)
 	{

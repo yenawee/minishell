@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:03:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 22:03:03 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/08 22:12:11 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define FALSE 	0
 # define SUCCESS 1
 # define FAIL	0
+# define MAX_HEREDOC 16
 
 typedef struct s_env
 {
