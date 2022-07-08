@@ -49,7 +49,6 @@ int	ft_echo(char **argv)
 		i = check_echo_index(argv);
 	else
 		i = 1;
-	// i += new_line_opt_flag;
 	while (argv[i])
 	{
 		ft_putstr_fd(STDOUT_FILENO, argv[i]);

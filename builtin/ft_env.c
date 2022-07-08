@@ -10,7 +10,12 @@ int	ft_env(t_list *list)
 	{
 		temp = (t_env *)curr->content;
 		if (temp->value)
-			printf("%s=%s\n", temp->key, temp->value);
+		{
+			ft_putstr_fd(STDOUT_FILENO, temp->key);
+			ft_putstr_fd(STDOUT_FILENO, "=");
+			ft_putstr_fd(STDOUT_FILENO, temp->value);
+			ft_putstr_fd(STDOUT_FILENO, "\n");
+		}
 		curr = curr->next;
 	}
 	return (EXIT_SUCCESS);
