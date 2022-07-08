@@ -16,15 +16,40 @@ static int	check_echo_opt(char *s)
 	return (TRUE);
 }
 
+static int	check_echo_index(char **s)
+{
+	int ret_idx;
+	int	j;
+
+	ret_idx = 2;
+	while (s[ret_idx])
+	{
+		j = 1;
+		if (s[ret_idx][0] != '-')
+			return (ret_idx);
+		else
+		{
+			while (s[ret_idx][j] == 'n')
+				j++;
+			if (s[ret_idx][j] != '\0')
+				return (ret_idx);
+		}
+		ret_idx++;
+	}
+	return (ret_idx);
+}
+
 int	ft_echo(char **argv)
 {
 	int	new_line_opt_flag;
 	int	i;
 
 	new_line_opt_flag = check_echo_opt(argv[1]);
-	i = 1;
-	i += new_line_opt_flag;
-	// exit_failure 반환할 때 ?? -> 없는거같은디 ??
+	if (new_line_opt_flag)
+		i = check_echo_index(argv);
+	else
+		i = 1;
+	// i += new_line_opt_flag;
 	while (argv[i])
 	{
 		ft_putstr_fd(STDOUT_FILENO, argv[i]);
@@ -36,10 +61,3 @@ int	ft_echo(char **argv)
 		ft_putstr_fd(STDOUT_FILENO, "\n");
 	return (EXIT_SUCCESS);
 }
-
-// int main()
-// {
-// 	char *argv[] = {"echo", "--n", "hi", "good", NULL};
-// 	ft_echo(argv);
-// 	return 0;
-// }
