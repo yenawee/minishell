@@ -4,14 +4,17 @@ int	get_argc(t_command *cmd)
 {
 	int			cnt;
 	t_token		*cur;
+	int			token_size;
+	int			i;
 
+	i = 0;
 	cnt = 0;
 	cur = cmd->tokens;
-	while (cur)
+	while (i < cmd->token_size)
 	{
-		if (cur->type != T_WORD)
-			cur = cur->next;
-		cnt++;
+		if (cur->type == T_WORD)
+			cnt++;
+		i++;
 		cur = cur->next;
 	}
 	return (cnt);
@@ -26,13 +29,11 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh)
 	cmd->argv = ft_alert_calloc(cmd->argc + 1, sizeof(char *));
 	cur_token = cmd->tokens;
 	i = 0;
-	while (cur_token)
+	while (i < cmd->argc)
 	{
-		if (cur_token->type != T_WORD)
-			cur_token = cur_token->next;
-		cmd->argv[i] = expand_str(cur_token->str, sh);
+		if (cur_token->type == T_WORD)
+			cmd->argv[i++] = expand_str(cur_token->str, sh);
 		cur_token = cur_token->next;
-		i++;
 	}
-	cmd->argv[i] = "\0";
+	cmd->argv[i] = NULL;
 }
