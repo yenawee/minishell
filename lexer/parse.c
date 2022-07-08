@@ -41,7 +41,7 @@ int	parse(t_token **list, char *line, t_list *env_list)
 	while (*begin)
 	{
 		parse_operator(&begin, &end);
-		if (begin == end)
+		if (begin == end && !ft_isoperator(*end) && *end != '&')
 		{
 			if (!parse_word(begin, &end))
 			{

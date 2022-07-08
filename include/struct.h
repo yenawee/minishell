@@ -34,6 +34,13 @@ enum e_type
 	T_WORD
 };
 
+typedef enum e_file_type
+{
+	FT_NOTFOUND,
+	FT_DIR,
+	FT_FILE
+}	t_file_type;
+
 typedef struct s_token
 {
 	int				type;
@@ -43,6 +50,7 @@ typedef struct s_token
 }	t_token;
 
 typedef struct s_command {
+	pid_t				pid;
 	t_token				*tokens;
 	char				**argv;
 	int					argc;
@@ -71,7 +79,19 @@ typedef struct s_sh
 {
 	t_list	*env_list;
 	int		exit_status;
+	int		fd_stdin;
+	int		fd_stdout;
+	int		fd_stderr;
 }	t_sh;
 
+typedef struct s_pipes {
+	int	prev_pipe[2];
+	int	next_pipe[2];
+}	t_pipes;
+
+typedef enum e_pipe_fd {
+	READ,
+	WRITE,
+}	t_pipe_fd;
 
 #endif
