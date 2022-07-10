@@ -93,27 +93,5 @@ int	ft_export(t_list **list, char **argv)
 		}
 		str++;
 	}
-	//while (*list)
-	//{
-	//	printf("key : %s , value : %s\n", ((t_env *)(*list)->content)->key, ((t_env *)(*list)->content)->value);
-	//	*list = (*list)->next;
-	//}
-	//ft_export_no_arg(*list);
 	return (EXIT_SUCCESS);
 }
-
-// int main(int argc, char **argv, char **envp)
-// {
-// 	t_list *env_list;
-
-// 	env_list = envp_init(envp);
-// 	char	**keys = malloc(sizeof(void *) * 3);
-// 	keys[0] = ft_strdup("a");
-// 	keys[1] =  ft_strdup("b=222");
-// 	keys[2] = NULL;
-// 	ft_export(&env_list, keys);
-// 	ft_export_no_arg(env_list);
-// 	// ft_unset(&env_list, keys);
-// 	// ft_env(env_list);
-// 	return 0;
-// }

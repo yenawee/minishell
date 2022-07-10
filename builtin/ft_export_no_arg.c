@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_no_arg.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/04 21:43:38 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/10 16:58:00 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,21 @@ int	ft_export_no_arg(t_list *env_list)
 	while (*ret)
 	{
 		if ((*ret)->value)
-			printf("declare -x %s=\"%s\"\n", (*ret)->key, (*ret)->value);
+		{
+			ft_putstr_fd(STDOUT_FILENO, "declare -x ");
+			ft_putstr_fd(STDOUT_FILENO, (*ret)->key);
+			ft_putstr_fd(STDOUT_FILENO, "=\"");
+			ft_putstr_fd(STDOUT_FILENO, (*ret)->value);
+			ft_putstr_fd(STDOUT_FILENO, "\"\n");
+		}
 		else
-			printf("declare -x %s\n", (*ret)->key);
+		{
+			ft_putstr_fd(STDOUT_FILENO, "declare -x ");
+			ft_putstr_fd(STDOUT_FILENO, (*ret)->key);
+			ft_putstr_fd(STDOUT_FILENO, "\n");
+		}
 		ret++;
 	}
-	free(origin);
+	safe_free(&origin);
 	return (EXIT_SUCCESS);
 }
-
-// int	main(int ac, char **av, char **envp)
-// {
-// 	t_list	*env_list;
-// 	t_env	**sorted_t_env_arr;
-// 	t_env	**arr;
-
-// 	env_list = envp_init(envp);
-// 	if (env_list == NULL)
-// 		exit(EXIT_FAILURE);
-// 	ft_export_no_arg(env_list);
-// 	free(env_list);
-// }

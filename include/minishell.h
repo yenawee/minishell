@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/09 00:58:06 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:03:42 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_safe_strjoin(char **ret, char *str);
 char	*ft_itoa(int n);
 void	all_clear(char **input, char **trimed, \
 				t_pipeline **list, t_token **tokens);
-
+int		ft_atoi(const char *str);
 void	exit_msg(int exit_status, int fd, char *msg);
 
 //builtin
@@ -80,10 +80,13 @@ int		ft_export_no_arg(t_list *env_list);
 int		ft_pwd(void);
 int		ft_env(t_list *list);
 int		ft_echo(char **argv);
+int		ft_exit(t_sh *sh, int argc, char **argv);
 
 //env
 t_list	*envp_init(char **envp);
 char	**env_list_to_char_arr(t_list *env_list);
+char	*get_env_value(t_list *env_list, char *key);
+char	*_get_env_value_without_malloc(t_list *env_list, char *key);
 
 //signal
 void	exec_signals(void);

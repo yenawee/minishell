@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 23:43:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/04 20:59:38 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/10 16:59:14 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_pwd(void)
 	path = getcwd(NULL, 0);
 	if (path == NULL)
 		return (EXIT_FAILURE);
-	printf("%s\n", path);
-	free(path);
+	ft_putstr_fd(STDOUT_FILENO, path);
+	ft_putstr_fd(STDOUT_FILENO, "\n");
+	safe_free(&path);
 	return (EXIT_SUCCESS);
 }
