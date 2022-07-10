@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 19:20:55 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 20:18:20 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,4 @@ char	*expand_in_heredoc(char *input, int fd, t_list *env_list)
 		ft_putstr_fd(fd, input);
 		input = _expand_variable(dollar + 1, fd, env_list);
 	}
-	ft_putstr_fd(fd, "\n");
 }

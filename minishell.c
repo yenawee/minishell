@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 22:00:14 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 18:13:35 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	_loop(t_sh *sh, char *input, t_pipeline *list, t_token *tokens)
 	while (TRUE)
 	{
 		all_clear(&input, &trimed, &list, &tokens);
+		sh->heredoc_index = 0;
 		input = readline("🐚 > ");
 		if (!input)
 			exit_msg(EXIT_SUCCESS, STDOUT_FILENO, "exit\n");

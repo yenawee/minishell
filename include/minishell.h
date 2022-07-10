@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 18:43:46 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:11:24 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,9 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 void	ft_alert_safe_close(int *fd);
 void	ft_alert_safe_dup2(t_sh *sh, int fd, int to_fd);
 void	test_list(t_pipeline *list);
+int		redir_in(char *file_name);
+int		redir_out(char *file_name);
+int		redir_append(char *file_name);
+int		redir_heredoc(t_sh *sh);
 
 #endif
