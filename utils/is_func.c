@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:31:34 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 18:31:35 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 20:07:40 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,12 @@ int	ft_isalnum(int c)
 		return (0);
 }
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
-
-int ft_isoperator(char c)
+int	ft_isoperator(char c)
 {
 	return (c == '|' || c == '>' || c == '<');
 }
-
