@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:56 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 20:26:37 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:27:12 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,22 @@ void	_read_and_expand(t_sh *sh, int file_fd, int pipe_fd)
 	char	buf[1024];
 	int		res;
 
-	buf[0] = '\0';
+	ft_memset(buf, 0, 1024);
 	str = NULL;
 	new_str = NULL;
 	while (42)
 	{
-		res = read(file_fd, buf, 1024);
+		res = read(file_fd, buf, 1023);
 		if (res == -1)
 			exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail read()\n");
+		buf[res] = '\0';
 		if (res == 0)
 			break ;
-		new_str = ft_strjoin((const char *)str, (const char *)buf);
-		safe_free((void **)&str);
-		str = new_str;
-		new_str = NULL;
+		ft_alert_str_append(&str, buf);
 	}
-	expand_in_heredoc(str, pipe_fd, sh->env_list);
-	safe_free((void **)str);
+	if (str)
+		expand_in_heredoc(str, pipe_fd, sh->env_list);
+	safe_free((void **)&str);
 }
 
 int	redir_heredoc(t_sh *sh)

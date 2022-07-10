@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:44 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 20:06:45 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 21:27:35 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (ft_strdup(s1));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
-	rst = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	rst = ft_calloc(sizeof(char), (s1_len + s2_len + 1));
 	if (!rst)
 		return (NULL);
 	ft_strlcpy(rst, s1, s1_len + 1);
@@ -46,22 +46,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 char	*ft_alert_strjoin(char const *s1, char const *s2)
 {
 	char	*rst;
-	size_t	s1_len;
-	size_t	s2_len;
-
-	if (!s1 && !s2)
-		return (NULL);
-	if (!s1)
-		return (ft_alert_strdup(s2));
-	if (!s2)
-		return (ft_alert_strdup(s1));
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	rst = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
-	if (!rst)
+	
+	rst = ft_strjoin(s1, s2);
+	if (rst == NULL)
 		exit_msg(EXIT_FAILURE, STDERR_FILENO, "malloc error\n");
-	ft_strlcpy(rst, s1, s1_len + 1);
-	ft_strlcpy(rst + s1_len, s2, s2_len + 1);
 	return (rst);
 }
 
@@ -71,11 +59,12 @@ void	ft_alert_str_append(char **prev, char *added)
 	char	*origin;
 	size_t	size;
 
+	if (added == NULL || *added == '\0')
+		return ;
 	if (*prev == NULL && added == NULL)
 		ret = ft_alert_strdup("");
 	else
 		ret = ft_alert_strjoin((char const *)*prev, (char const *)added);
-	if (*prev)
-		free(*prev);
+	safe_free(prev);
 	*prev = ret;
 }
