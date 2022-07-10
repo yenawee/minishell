@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:03:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 22:12:11 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 18:05:38 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_sh
 	int		fd_stdin;
 	int		fd_stdout;
 	int		fd_stderr;
+	int		heredoc_index;
 }	t_sh;
 
 typedef struct s_pipes {

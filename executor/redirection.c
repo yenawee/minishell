@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:56 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/07 23:38:58 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 18:12:13 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,13 @@ int	redir_append(char *file_name)
 					STDOUT_FILENO, 0644));
 }
 
-int	redir_heredoc(t_sh *sh, char *file_name)
+int	redir_heredoc(t_sh *sh)
 {
-	return (SUCCESS);
+	char		file_name[12];
+	const char	*alnum = "0123456789abcdef";
+
+	ft_strlcpy(file_name, "./heredoc_", 12);
+	file_name[10] = alnum[(sh->heredoc_index)++];
+	file_name[11] = '\0';
+	return (_redir(file_name, O_RDONLY, STDIN_FILENO, 0));
 }

@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:37:12 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 17:39:26 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 18:24:58 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,41 +21,37 @@ static void	_end_prompt(int signal)
 	exit(EXIT_FAILURE);
 }
 
-void	_set_heredoc(char **file_name, int *fd, int i)
+void	_set_heredoc(int *fd, int i)
 {
-	char				buf[12];
-	const char			*alnum = "0123456789abcdef";
+	char		file_name[12];
+	const char	*alnum = "0123456789abcdef";
 
-	ft_strlcpy(buf, "./heredoc_", 12);
-	buf[10] = alnum[i];
-	buf[11] = '\0';
-	*file_name = ft_alert_strdup(buf);
-	*fd = open(*file_name, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
+	ft_strlcpy(file_name, "./heredoc_", 12);
+	file_name[10] = alnum[i];
+	file_name[11] = '\0';
+	*fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	if (*fd < 0)
 		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail open()\n");
 }
 
-void	_read(char **eof, t_list *env_list, int i)
+void	_read(char *eof, t_list *env_list, int i)
 {
-	char	*file_name;
 	int		fd;
 	char	*input;
 
 	input = NULL;
-	_set_heredoc(&file_name, &fd, i);
+	_set_heredoc(&fd, i);
 	while (42)
 	{
 		safe_free((void **)&input);
 		input = readline("heredoc 🐚> ");
 		if (input == NULL)
 			write(1, "\n", 1);
-		if (input == NULL || ft_strcmp(input, *eof) == 0)
+		if (input == NULL || ft_strcmp(input, eof) == 0)
 			break ;
 		expand_in_heredoc(input, fd, env_list);
 	}
 	close(fd);
-	safe_free(eof);
-	*eof = file_name;
 	safe_free((void **)&input);
 }
 
@@ -96,7 +92,7 @@ int	handle_heredoc(t_token *tokens, t_list *env_list)
 		while (tokens)
 		{
 			if (tokens->type == T_HEREDOC)
-				_read(&tokens->next->str, env_list, i++);
+				_read(tokens->next->str, env_list, i++);
 			tokens = tokens->next;
 		}
 		exit(EXIT_SUCCESS);
