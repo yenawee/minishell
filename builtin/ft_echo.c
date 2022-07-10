@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:28:35 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 18:28:52 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 22:30:42 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int	ft_echo(char **argv)
 	int	new_line_opt_flag;
 	int	i;
 
+	if (!argv[1])
+	{
+		ft_putstr_fd(STDOUT_FILENO, "\n");
+		return (EXIT_SUCCESS);
+	}
 	new_line_opt_flag = check_echo_opt(argv[1]);
 	if (new_line_opt_flag)
 		i = check_echo_index(argv);
