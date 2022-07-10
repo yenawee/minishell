@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:37:12 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 18:24:58 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 20:19:55 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	_read(char *eof, t_list *env_list, int i)
 			write(1, "\n", 1);
 		if (input == NULL || ft_strcmp(input, eof) == 0)
 			break ;
-		expand_in_heredoc(input, fd, env_list);
+		ft_putstr_fd(fd, input);
+		ft_putstr_fd(fd, "\n");
 	}
 	close(fd);
 	safe_free((void **)&input);
