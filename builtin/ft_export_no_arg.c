@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_no_arg.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 18:43:25 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 20:34:06 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_export_no_arg(t_list *env_list)
 	origin = ret;
 	while (*ret)
 	{
-		_export_print(*ret);
+		export_print(*ret);
 		ret++;
 	}
 	safe_free(&origin);
