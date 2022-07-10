@@ -17,12 +17,15 @@ void	ft_export_one(t_list **list, char *key, char *value, int plus_flag)
 			{
 				temp = tmp->value;
 				tmp->value = ft_strjoin(temp, value);
-				free(temp);
+				safe_free(&temp);
 			}
 			else
 			{
-				free(tmp->value);
-				tmp->value = ft_strdup(value);
+				safe_free(&(tmp->value));
+				if (value)
+					tmp->value = ft_strdup(value);
+				else
+					tmp->value = NULL;
 			}
 			return ;
 		}
@@ -90,6 +93,12 @@ int	ft_export(t_list **list, char **argv)
 		}
 		str++;
 	}
+	//while (*list)
+	//{
+	//	printf("key : %s , value : %s\n", ((t_env *)(*list)->content)->key, ((t_env *)(*list)->content)->value);
+	//	*list = (*list)->next;
+	//}
+	//ft_export_no_arg(*list);
 	return (EXIT_SUCCESS);
 }
 

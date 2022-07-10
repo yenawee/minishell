@@ -1,19 +1,5 @@
 #include "../include/minishell.h"
 
-char	*get_env_value(t_list *env_list, char *key)
-{
-	t_list *curr;
-
-	curr = env_list;
-	while (curr)
-	{
-		if (!ft_strcmp(((t_env *)curr->content)->key, key))
-			return (ft_strdup(((t_env *)curr->content)->value));
-		curr = curr->next;
-	}
-	return (NULL);
-}
-
 int	ft_cd(t_list *env_list, char **argv)
 {
 	char	*oldpwd;
@@ -24,12 +10,14 @@ int	ft_cd(t_list *env_list, char **argv)
 	if (!ft_strcmp(argv[1], "~"))
 	{
 		target = get_env_value(env_list, "HOME");
+		printf("%s\n", target);
 		if (!target)
 			return (EXIT_FAILURE);
 	}
 	else if (!ft_strcmp(argv[1], "-"))
 	{
-		target = get_env_value(env_list, "OLDPwD");
+		target = get_env_value(env_list, "OLDPWD");
+		//printf("%s\n", target);
 		if (!target)
 			return (EXIT_FAILURE);
 	}

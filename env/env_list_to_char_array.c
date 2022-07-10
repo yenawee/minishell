@@ -9,7 +9,8 @@ int	env_count(t_list	*env_list)
 	env_cnt = 0;
 	while (curr)
 	{
-		env_cnt++;
+		if (((t_env *)(curr->content))->value)
+			env_cnt++;
 		curr = curr->next;
 	}
 	return (env_cnt);
@@ -29,7 +30,7 @@ char	*get_env_line(t_list *env_list)
 	ret = ft_strjoin(key, "=");
 	tmp = ret;
 	ret = ft_strjoin(ret, value);
-	free(tmp);
+	safe_free(&tmp);
 	return (ret);
 }
 
@@ -42,11 +43,12 @@ char	**env_list_to_char_arr(t_list *env_list)
 
 	curr = env_list;
 	env_cnt = env_count(env_list);
-	env_arr = ft_calloc(env_cnt + 1, sizeof(char *));
+	env_arr = ft_alert_calloc(env_cnt + 1, sizeof(char *));
 	i = 0;
 	while (i < env_cnt)
 	{
-		env_arr[i] = get_env_line(curr);
+		if (((t_env *)(curr->content))->value)
+			env_arr[i] = get_env_line(curr);
 		curr = curr->next;
 		i++;
 	}
