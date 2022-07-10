@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 20:31:50 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 23:15:20 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <sys/stat.h>
 
 # include "struct.h"
+
+void	welcome_prompt(void);
 
 //lst
 void	ft_lstadd_back(t_list	**head, t_list *new);
@@ -72,6 +74,7 @@ void	all_clear(char **input, char **trimed, \
 				t_pipeline **list, t_token **tokens);
 int		ft_atoi(const char *str);
 void	exit_msg(int exit_status, int fd, char *msg);
+char	*get_next_line(int fd);
 
 //builtin
 int		ft_unset(t_list **list, char **keys);
