@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   env_list_to_char_array.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 19:38:28 by yenawee           #+#    #+#             */
+/*   Updated: 2022/07/10 19:39:33 by yenawee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-int	env_count(t_list	*env_list)
+static int	env_count(t_list	*env_list)
 {
 	t_list	*curr;
 	int		env_cnt;
@@ -16,7 +28,7 @@ int	env_count(t_list	*env_list)
 	return (env_cnt);
 }
 
-char	*get_env_line(t_list *env_list)
+static char	*get_env_line(t_list *env_list)
 {
 	char	*ret;
 	char	*key;
@@ -55,14 +67,3 @@ char	**env_list_to_char_arr(t_list *env_list)
 	env_arr[i] = NULL;
 	return (env_arr);
 }
-
-// int main(int ac, char **av, char **envp)
-// {
-// 	t_list *env_list = envp_init(envp);
-
-// 	char **env_arr = env_list_to_char_arr(env_list);
-// 	for (int i = 0; env_arr[i]; i++)
-// 		printf("%s\n", env_arr[i]);
-// 	return 0;
-// }
-
