@@ -6,53 +6,56 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:56 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 18:12:13 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 20:26:37 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	_redir(char *file_name, int flag, int target_fd, int mode)
+void	_read_and_expand(t_sh *sh, int file_fd, int pipe_fd)
 {
-	int	fd;
+	char	*str;
+	char	*new_str;
+	char	buf[1024];
+	int		res;
 
-	if (mode)
-		fd = open(file_name, flag, mode);
-	else
-		fd = open(file_name, flag);
-	if (fd == -1)
-		return (FAIL);
-	if (dup2(fd, target_fd) == -1)
-		exit_msg(EXIT_FAILURE, STDERR_FILENO, "dup2 fail\n");
-	if (close(fd))
-		exit_msg(EXIT_FAILURE, STDERR_FILENO, "close fail\n");
-	return (SUCCESS);
-}
-
-int	redir_in(char *file_name)
-{
-	return (_redir(file_name, O_RDONLY, STDIN_FILENO, 0));
-}
-
-int	redir_out(char *file_name)
-{
-	return (_redir(file_name, O_WRONLY | O_TRUNC | O_CREAT, \
-					STDOUT_FILENO, 0644));
-}
-
-int	redir_append(char *file_name)
-{
-	return (_redir(file_name, O_WRONLY | O_APPEND | O_CREAT, \
-					STDOUT_FILENO, 0644));
+	buf[0] = '\0';
+	str = NULL;
+	new_str = NULL;
+	while (42)
+	{
+		res = read(file_fd, buf, 1024);
+		if (res == -1)
+			exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail read()\n");
+		if (res == 0)
+			break ;
+		new_str = ft_strjoin((const char *)str, (const char *)buf);
+		safe_free((void **)&str);
+		str = new_str;
+		new_str = NULL;
+	}
+	expand_in_heredoc(str, pipe_fd, sh->env_list);
+	safe_free((void **)str);
 }
 
 int	redir_heredoc(t_sh *sh)
 {
+	int			heredoc_pipe[2];
 	char		file_name[12];
-	const char	*alnum = "0123456789abcdef";
+	int			fd;
+	char		*str;
 
-	ft_strlcpy(file_name, "./heredoc_", 12);
-	file_name[10] = alnum[(sh->heredoc_index)++];
-	file_name[11] = '\0';
-	return (_redir(file_name, O_RDONLY, STDIN_FILENO, 0));
+	ft_strlcpy(file_name, "./heredoc_0", 12);
+	file_name[10] = "0123456789abcdef"[(sh->heredoc_index)++];
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		return (FAIL);
+	if (pipe(heredoc_pipe) == -1)
+		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail pipe()\n");
+	str = NULL;
+	_read_and_expand(sh, fd, heredoc_pipe[WRITE]);
+	ft_alert_safe_dup2(sh, heredoc_pipe[READ], STDIN_FILENO);
+	ft_alert_safe_close(&heredoc_pipe[WRITE]);
+	ft_alert_safe_close(&heredoc_pipe[READ]);
+	return (SUCCESS);
 }
