@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 21:19:23 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 18:04:18 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int	is_builtin(t_command *command)
 
 /**
  * @brief 빌트인 함수를 실행 시킨후, 리턴값을 반환하는 함수
- * 
- * @param sh 
- * @param command 
- * @param tokens 
- * @param token_size 
+ *
+ * @param sh
+ * @param command
+ * @param tokens
+ * @param token_size
  * @return int exit_status
  */
 int	execute_builtin(t_sh *sh, t_command *command)
@@ -47,14 +47,12 @@ int	execute_builtin(t_sh *sh, t_command *command)
 		return (ft_cd(sh->env_list, command->argv));
 	else if (ft_strcmp(cmd, "pwd") == 0)
 		return (ft_pwd());
-	// else if (ft_strcmp(cmd, "export") == 0)
-	// 	return (ft_export(command));
-	// else if (ft_strcmp(cmd, "unset") == 0)
-	// 	return (ft_unset(command));
+	 else if (ft_strcmp(cmd, "export") == 0)
+	 	return (ft_export(&(sh->env_list), command->argv));
+	 else if (ft_strcmp(cmd, "unset") == 0)
+	 	return (ft_unset(&(sh->env_list), command->argv));
 	else if (ft_strcmp(cmd, "env") == 0)
 		return (ft_env(sh->env_list));
-	// else if (ft_strcmp(cmd, "exit") == 0)
-	// 	return (ft_exit(command));
-	// else
-	// 	return (1);
+	 else if (ft_strcmp(cmd, "exit") == 0)
+	 	return (ft_exit(sh, command->argc, command->argv));
 }

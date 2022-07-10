@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
 /*   Updated: 2022/07/10 18:11:24 by hyeonjan         ###   ########.fr       */
@@ -62,6 +62,7 @@ int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		is_valid_key_first(char c);
 int		is_valid_key_last(char c);
+int		check_valid_key(char *key);
 char	*ft_alert_strdup(const char *s1);
 char	*ft_alert_strjoin(char const *s1, char const *s2);
 void	ft_alert_str_append(char **prev, char *added);
@@ -69,7 +70,7 @@ void	ft_safe_strjoin(char **ret, char *str);
 char	*ft_itoa(int n);
 void	all_clear(char **input, char **trimed, \
 				t_pipeline **list, t_token **tokens);
-
+int		ft_atoi(const char *str);
 void	exit_msg(int exit_status, int fd, char *msg);
 
 //builtin
@@ -77,15 +78,17 @@ int		ft_unset(t_list **list, char **keys);
 void	ft_export_one(t_list **list, char *key, char *value, int plus_flag);
 int		ft_export(t_list **list, char **str);
 int		ft_export_no_arg(t_list *env_list);
+void	_export_print(t_env *ret);
 int		ft_pwd(void);
 int		ft_env(t_list *list);
-void	ft_del(void *p);
-void	ft_lst_remove_if(t_list **list, char *key);
 int		ft_echo(char **argv);
+int		ft_exit(t_sh *sh, int argc, char **argv);
 
 //env
 t_list	*envp_init(char **envp);
 char	**env_list_to_char_arr(t_list *env_list);
+char	*get_env_value(t_list *env_list, char *key);
+char	*_get_env_value_without_malloc(t_list *env_list, char *key);
 
 //signal
 void	exec_signals(void);

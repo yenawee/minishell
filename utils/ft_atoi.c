@@ -1,23 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 17:29:15 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/09 12:01:08 by yenawee          ###   ########.fr       */
+/*   Created: 2022/07/10 20:06:09 by yenawee           #+#    #+#             */
+/*   Updated: 2022/07/10 20:06:09 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_atoi(const char *str)
 {
-	int	length;
+	int			sign;
+	long long	result;
 
-	length = 0;
-	while (s && s[length])
-		length++;
-	return (length);
+	sign = 1;
+	result = 0;
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '+' || *str == '-')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	if (sign == 1 && result < 0)
+		return (-1);
+	if (sign == -1 && (sign * result) > 0)
+		return (0);
+	return (result * sign);
 }

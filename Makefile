@@ -1,6 +1,6 @@
 NAME = minishell
 
-BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg.c ft_pwd.c
+BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg.c ft_pwd.c ft_unset.c ft_export_no_arg_2.c ft_export_one.c
 BUILTIN_DIR = ./builtin/
 BUILTIN = $(addprefix $(BUILTIN_DIR), $(BUILTIN_NAME))
 
@@ -21,7 +21,7 @@ PARSER_DIR = ./parser/
 PARSER = $(addprefix $(PARSER_DIR), $(PARSER_NAME))
 
 UTILS_NAME = exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
-			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c ft_strlcat.c all_clear.c
+			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c ft_strlcat.c all_clear.c ft_atoi.c check_valid_env_key.c
 UTILS_DIR = ./utils/
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_NAME))
 
@@ -29,7 +29,7 @@ LST_NAME = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_ls
 LST_DIR = ./lst/
 LST = $(addprefix $(LST_DIR), $(LST_NAME))
 
-ENV_NAME = env_init.c env_list_to_char_array.c
+ENV_NAME = env_init.c env_list_to_char_array.c get_env_value.c
 ENV_DIR = ./env/
 ENV = $(addprefix $(ENV_DIR), $(ENV_NAME))
 
@@ -39,7 +39,7 @@ SIGNAL = $(addprefix $(SIGNAL_DIR), $(SIGNAL_NAME))
 
 EXECUTOR_NAME = builtin.c check_file_type.c execute_command.c execute_pipeline.c executor.c \
 				fork_execute_command.c ft_alert_safe_close.c ft_alert_safe_dup2.c handle_redirect.c \
-				redirection.c two_dim_arr_clear.c wait_child.c execve_command.c
+				redirection.c two_dim_arr_clear.c wait_child.c make_cmd_argv.c
 EXECUTOR_DIR = ./executor/
 EXECUTOR = $(addprefix $(EXECUTOR_DIR), $(EXECUTOR_NAME))
 
@@ -55,8 +55,8 @@ INCLUDE = -Iinclude
 CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
-READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${USER}/.brew/opt/readline/include
-# READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
+#READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${USER}/.brew/opt/readline/include
+ READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
 
 all : $(NAME)
 

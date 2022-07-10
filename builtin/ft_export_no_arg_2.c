@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_export_no_arg_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 17:29:15 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/09 12:01:08 by yenawee          ###   ########.fr       */
+/*   Created: 2022/07/10 18:41:31 by yenawee           #+#    #+#             */
+/*   Updated: 2022/07/10 18:44:26 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-size_t	ft_strlen(const char *s)
+void	_export_print(t_env *ret)
 {
-	int	length;
-
-	length = 0;
-	while (s && s[length])
-		length++;
-	return (length);
+	if (ret->value)
+	{
+		ft_putstr_fd(STDOUT_FILENO, "declare -x ");
+		ft_putstr_fd(STDOUT_FILENO, ret->key);
+		ft_putstr_fd(STDOUT_FILENO, "=\"");
+		ft_putstr_fd(STDOUT_FILENO, ret->value);
+		ft_putstr_fd(STDOUT_FILENO, "\"\n");
+	}
+	else
+	{
+		ft_putstr_fd(STDOUT_FILENO, "declare -x ");
+		ft_putstr_fd(STDOUT_FILENO, ret->key);
+		ft_putstr_fd(STDOUT_FILENO, "\n");
+	}
 }
