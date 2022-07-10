@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_no_arg_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:41:31 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 18:44:26 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 20:31:38 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	_export_print(t_env *ret)
+void	export_print(t_env *ret)
 {
 	if (ret->value)
 	{
