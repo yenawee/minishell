@@ -6,13 +6,13 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 16:58:00 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:43:25 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	_swap_t_env(t_env **a, t_env **b)
+static void	_swap_t_env(t_env **a, t_env **b)
 {
 	t_env	*temp;
 
@@ -21,7 +21,7 @@ void	_swap_t_env(t_env **a, t_env **b)
 	*b = temp;
 }
 
-void	_selection_sort_env_arr(t_env **env_arr)
+static void	_selection_sort_env_arr(t_env **env_arr)
 {
 	t_env	**target;
 	t_env	**cur;
@@ -42,7 +42,7 @@ void	_selection_sort_env_arr(t_env **env_arr)
 	}
 }
 
-t_env	**_get_t_env_arr_from_t_list(t_list *env_list)
+static t_env	**_get_t_env_arr_from_t_list(t_list *env_list)
 {
 	t_env	**ret;
 	t_list	*cur;
@@ -62,7 +62,7 @@ t_env	**_get_t_env_arr_from_t_list(t_list *env_list)
 	return (ret);
 }
 
-t_env	**_ft_sorted_t_env_from_t_list(t_list *env_list)
+static t_env	**_ft_sorted_t_env_from_t_list(t_list *env_list)
 {
 	t_env	**env_arr;
 	t_list	*cur;
@@ -87,20 +87,7 @@ int	ft_export_no_arg(t_list *env_list)
 	origin = ret;
 	while (*ret)
 	{
-		if ((*ret)->value)
-		{
-			ft_putstr_fd(STDOUT_FILENO, "declare -x ");
-			ft_putstr_fd(STDOUT_FILENO, (*ret)->key);
-			ft_putstr_fd(STDOUT_FILENO, "=\"");
-			ft_putstr_fd(STDOUT_FILENO, (*ret)->value);
-			ft_putstr_fd(STDOUT_FILENO, "\"\n");
-		}
-		else
-		{
-			ft_putstr_fd(STDOUT_FILENO, "declare -x ");
-			ft_putstr_fd(STDOUT_FILENO, (*ret)->key);
-			ft_putstr_fd(STDOUT_FILENO, "\n");
-		}
+		_export_print(*ret);
 		ret++;
 	}
 	safe_free(&origin);

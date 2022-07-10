@@ -1,6 +1,6 @@
 NAME = minishell
 
-BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg.c ft_pwd.c ft_unset.c
+BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg.c ft_pwd.c ft_unset.c ft_export_no_arg_2.c ft_export_one.c
 BUILTIN_DIR = ./builtin/
 BUILTIN = $(addprefix $(BUILTIN_DIR), $(BUILTIN_NAME))
 
@@ -21,7 +21,7 @@ PARSER_DIR = ./parser/
 PARSER = $(addprefix $(PARSER_DIR), $(PARSER_NAME))
 
 UTILS_NAME = exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
-			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c ft_strlcat.c all_clear.c ft_atoi.c
+			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c ft_strlcat.c all_clear.c ft_atoi.c check_valid_env_key.c
 UTILS_DIR = ./utils/
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_NAME))
 

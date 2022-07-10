@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 18:03:42 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/10 18:43:46 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		ft_isascii(int c);
 int		ft_isprint(int c);
 int		is_valid_key_first(char c);
 int		is_valid_key_last(char c);
+int		check_valid_key(char *key);
 char	*ft_alert_strdup(const char *s1);
 char	*ft_alert_strjoin(char const *s1, char const *s2);
 void	ft_alert_str_append(char **prev, char *added);
@@ -77,6 +78,7 @@ int		ft_unset(t_list **list, char **keys);
 void	ft_export_one(t_list **list, char *key, char *value, int plus_flag);
 int		ft_export(t_list **list, char **str);
 int		ft_export_no_arg(t_list *env_list);
+void	_export_print(t_env *ret);
 int		ft_pwd(void);
 int		ft_env(t_list *list);
 int		ft_echo(char **argv);

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 18:25:55 by yenawee           #+#    #+#             */
+/*   Updated: 2022/07/10 18:26:41 by yenawee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-static void ft_del(void *p)
+static void	ft_del(void *p)
 {
 	t_env	*content;
 
@@ -13,9 +25,9 @@ static void ft_del(void *p)
 	}
 }
 
-static void ft_lst_remove_if(t_list **list, char *key)
+static void	ft_lst_remove_if(t_list **list, char *key)
 {
-	t_list 	*curr;
+	t_list	*curr;
 	t_env	*temp;
 	t_list	*tmp;
 
@@ -30,7 +42,7 @@ static void ft_lst_remove_if(t_list **list, char *key)
 			else
 				tmp->next = curr->next;
 			ft_lstdelone(curr, ft_del);
-            return ;
+			return ;
 		}
 		tmp = curr;
 		curr = curr->next;

@@ -1,14 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_func.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 18:31:34 by yenawee           #+#    #+#             */
+/*   Updated: 2022/07/10 18:31:35 by yenawee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
-
-int	is_valid_key_first(char c)
-{
-	return (ft_isalpha(c) || c == '_');
-}
-
-int	is_valid_key_last(char c)
-{
-	return (ft_isalnum(c) || c == '_');
-}
 
 int	ft_isalpha(int c)
 {

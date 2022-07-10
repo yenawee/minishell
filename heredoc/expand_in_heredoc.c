@@ -3,28 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_in_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/05 19:32:13 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:20:55 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-char	*_get_env_value_without_malloc(t_list *env_list, char *key)
-{
-	t_list	*curr;
-
-	curr = env_list;
-	while (curr)
-	{
-		if (!ft_strcmp(((t_env *)curr->content)->key, key))
-			return (((t_env *)curr->content)->value);
-		curr = curr->next;
-	}
-	return (NULL);
-}
 
 char	*_expand_variable(char *s, int fd, t_list *env_list)
 {

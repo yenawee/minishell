@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 18:28:35 by yenawee           #+#    #+#             */
+/*   Updated: 2022/07/10 18:28:52 by yenawee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static int	check_echo_opt(char *s)
@@ -18,7 +30,7 @@ static int	check_echo_opt(char *s)
 
 static int	check_echo_index(char **s)
 {
-	int ret_idx;
+	int	ret_idx;
 	int	j;
 
 	ret_idx = 2;

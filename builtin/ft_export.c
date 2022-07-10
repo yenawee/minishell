@@ -1,96 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 19:09:13 by yenawee           #+#    #+#             */
+/*   Updated: 2022/07/10 19:09:41 by yenawee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
-void	ft_export_one(t_list **list, char *key, char *value, int plus_flag)
+static void	_export_key_and_value(char *str, char *s, \
+t_list *list, int *plus_flag)
 {
-	t_list	*curr;
-	t_env	*tmp;
-	t_env	*content;
-	t_list	*new_node;
-	char	*temp;
-	curr = *list;
-	while (curr)
+	char	*p;
+	char	*key;
+	char	*value;
+
+	p = ft_strchr(str, '+');
+	if (p + 1 == s)
 	{
-		tmp = (t_env *)curr->content;
-		if (!ft_strcmp((const char *)tmp->key, (const char *)key))
-		{
-			if (plus_flag)
-			{
-				temp = tmp->value;
-				tmp->value = ft_strjoin(temp, value);
-				safe_free(&temp);
-			}
-			else
-			{
-				safe_free(&(tmp->value));
-				if (value)
-					tmp->value = ft_strdup(value);
-				else
-					tmp->value = NULL;
-			}
-			return ;
-		}
-		curr = curr->next;
+		*plus_flag = 1;
+		*p = '\0';
 	}
-	content = malloc(sizeof(t_env));
-	content->key = ft_strdup(key);
-	if (value)
-		content->value = ft_strdup(value);
+	*s = '\0';
+	key = str;
+	value = s + 1;
+	if (check_valid_key(key))
+		ft_export_one(&list, key, value, *plus_flag);
 	else
-		content->value = NULL;
-	new_node = ft_lstnew(content);
-	ft_lstadd_back(list, new_node);
+		ft_putstr_fd(STDERR_FILENO, "not a valid identifier\n");
 }
 
-static int	check_valid_key(char *key)
+static void	_export(t_list *list, char *str, int *plus_flag)
 {
-	int	len;
+	char	*s;
+	char	*key;
+	char	*value;
+	char	*p;
 
-	len = ft_strlen(key);
-	if (is_valid_key_first(key[0]) && is_valid_key_last(key[len - 1]))
-		return (TRUE);
-	return (FALSE);
+	s = ft_strchr(str, '=');
+	if (!s)
+	{
+		if (check_valid_key(str))
+			ft_export_one(&list, str, NULL, *plus_flag);
+		else
+			ft_putstr_fd(STDERR_FILENO, "not a valid identifier\n");
+	}
+	else
+		_export_key_and_value(str, s, list, plus_flag);
 }
-
 
 int	ft_export(t_list **list, char **argv)
 {
-	char	*key;
-	char	*value;
-	char	*s;
-	int		plus_flag;
-	char	*p;
 	char	**str;
+	int		plus_flag;
 
+	plus_flag = 0;
 	if (argv[1] == NULL)
 		return (ft_export_no_arg(*list));
 	str = ++argv;
-	plus_flag = 0;
 	while (*str)
 	{
-		s = ft_strchr(*str, '=');
-		if (!s)
-		{
-			if (check_valid_key(*str))
-				ft_export_one(list, *str, NULL, plus_flag);
-			else
-				printf("not a valid identifier\n");
-		}
-		else
-		{
-			p = ft_strchr(*str, '+');
-			if (p + 1 == s)
-			{
-				plus_flag = 1;
-				*p = '\0';
-			}
-			*s = '\0';
-			key = *str;
-			value = s + 1;
-			if (check_valid_key(key))
-				ft_export_one(list, key, value, plus_flag);
-			else
-				printf("not a valid identifier\n");
-		}
+		_export(*list, *str, &plus_flag);
 		str++;
 	}
 	return (EXIT_SUCCESS);
