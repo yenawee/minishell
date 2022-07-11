@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:37 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 16:35:43 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:38:20 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	_restore_fd(t_sh *sh)
 
 /**
  * @brief pipeline이 하나의 command만을 보유한 상태.
- * 
- * @param env_list 
- * @param pipeline 
+ *
+ * @param env_list
+ * @param pipeline
  * @return int exit_status
  */
 static int	_execute_single_cmd(t_sh *sh, t_command *command, char **envp)
@@ -41,7 +41,10 @@ static int	_execute_single_cmd(t_sh *sh, t_command *command, char **envp)
 	if (command->pid == -1)
 		exit_msg(10, STDERR_FILENO, "fork error\n");
 	else if (command->pid == 0)
+	{
+		exec_signals();
 		execute_simple_cmd(sh, command, envp);
+	}
 	return (wait_child(command->pid));
 }
 

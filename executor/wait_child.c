@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait_child.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:59 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 16:50:00 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:23:53 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,15 @@ int	_trans_status(int status)
 	if (WIFEXITED(status))
 		return (WEXITSTATUS(status));
 	else if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+			ft_putstr_fd(STDOUT_FILENO, "\n");
+		if (WTERMSIG(status) == SIGQUIT)
+			ft_putstr_fd(STDOUT_FILENO, "Quit: 3\n");
 		return (WTERMSIG(status));
+	}
 	else
-		return (status);
+		return (EXIT_FAILURE);
 }
 
 int	wait_child(pid_t pid)

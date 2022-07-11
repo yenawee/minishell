@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 22:51:51 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:37:21 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	_loop(t_sh *sh, char *input, t_pipeline *list, t_token *tokens)
 	while (TRUE)
 	{
 		all_clear(&input, &trimed, &list, &tokens);
+		set_input_signal();
 		sh->heredoc_index = 0;
 		input = readline("🐚 > ");
 		if (!input)
@@ -51,7 +52,6 @@ int	main(int ac, char **av, char **envp)
 	if (sh.fd_stdin == -1 || sh.fd_stdin == -1 || sh.fd_stdin == -1)
 		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail dup()\n");
 	sh.env_list = envp_init(envp);
-	set_input_signal();
 	_loop(&sh, NULL, NULL, NULL);
 	return (0);
 }
