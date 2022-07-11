@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 16:38:54 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:40:18 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int	execute_builtin(t_sh *sh, t_command *command)
 		return (ft_cd(sh->env_list, command->argv));
 	else if (ft_strcmp(cmd, "pwd") == 0)
 		return (ft_pwd());
-	 else if (ft_strcmp(cmd, "export") == 0)
-	 	return (ft_export(&(sh->env_list), command->argv));
-	 else if (ft_strcmp(cmd, "unset") == 0)
-	 	return (ft_unset(&(sh->env_list), command->argv));
+	else if (ft_strcmp(cmd, "export") == 0)
+		return (ft_export(&(sh->env_list), command->argv));
+	else if (ft_strcmp(cmd, "unset") == 0)
+		return (ft_unset(&(sh->env_list), command->argv));
 	else if (ft_strcmp(cmd, "env") == 0)
 		return (ft_env(sh->env_list));
-	 else if (ft_strcmp(cmd, "exit") == 0)
-	 	return (ft_exit(sh, command->argc, command->argv));
+	else if (ft_strcmp(cmd, "exit") == 0)
+		return (ft_exit(sh, command->argc, command->argv));
 }

@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:02:28 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 22:02:44 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:02:54 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ static void	_clear_list(t_pipeline **list)
 	*list = NULL;
 }
 
+static void _clear_token(t_token **token)
+{
+	if (*token)
+	{
+		if ((*token)->str)
+			safe_free((void **)&(*token)->str);
+		free(*token);
+		*token = NULL;
+	}
+}
+
 static void	_clear_tokens(t_token **tokens)
 {
 	t_token	*cur;
@@ -57,7 +68,7 @@ static void	_clear_tokens(t_token **tokens)
 	while (cur)
 	{
 		temp = cur->next;
-		free(cur);
+		_clear_token(&cur);
 		cur = temp;
 	}
 	*tokens = NULL;
@@ -72,7 +83,7 @@ void	all_clear(char **input, char **trimed, \
 	t_token		*temp_c;
 
 	safe_free((void **)input);
-	safe_free((void **)trimed);
+	*trimed = NULL;
 	_clear_list(list);
 	_clear_tokens(tokens);
 }

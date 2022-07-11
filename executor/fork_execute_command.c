@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fork_execute_command.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/11 20:41:41 by hyeonjan          #+#    #+#             */
+/*   Updated: 2022/07/11 20:41:57 by hyeonjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	_alert_close_pipes(t_pipes *p)
@@ -8,8 +20,10 @@ void	_alert_close_pipes(t_pipes *p)
 	ft_alert_safe_close(&(p->next_pipe[WRITE]));
 }
 
-void	fork_execute_command(t_sh *sh, t_pipes *p, t_command *command, char **envp)
+void	fork_execute_command(t_sh *sh, t_pipes *p, \
+							t_command *command, char **envp)
 {
+	exec_signals();
 	ft_alert_safe_dup2(sh, p->prev_pipe[READ], STDIN_FILENO);
 	ft_alert_safe_dup2(sh, p->next_pipe[WRITE], STDOUT_FILENO);
 	_alert_close_pipes(p);

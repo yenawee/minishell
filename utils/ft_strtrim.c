@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:58 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 20:06:59 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:10:32 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,21 @@ char	*ft_strtrim(char const *s1, char const *set)
 		return (NULL);
 	len = ft_strlcpy(rst, s1 + start, end - start + 1);
 	return (rst);
+}
+
+char	*ft_strtrim_without_malloc(char *s1, char const *set)
+{
+	char	*front;
+	char	*back;
+
+	front = s1;
+	while (*front != '\0' && ft_strchr(set, *front))
+		front++;
+	if (*front == '\0')
+		return (front);
+	back = s1 + ft_strlen(s1);
+	while (ft_strchr(set, *(back - 1)))
+		back--;
+	*back = '\0';
+	return (front);
 }

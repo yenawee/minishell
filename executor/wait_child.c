@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait_child.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:59 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 18:23:53 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/11 20:43:03 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ int	wait_childs(t_pipeline *pipeline)
 	int			last_status;
 
 	last_status = 1;
-	// printf("last_pid: %d\n", last_pid);
 	while (42)
 	{
 		pid = wait(&status);
-		// printf("🐚 wait_childs: in pid=>%d\n", pid);
 		if (pid == -1)
 			return (_trans_status(last_status));
 		else if (pid == last_pid)

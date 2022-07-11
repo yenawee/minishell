@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 23:15:20 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:04:27 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 void	safe_free(void **p);
 void	ft_putstr_fd(int fd, char *msg);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_strtrim_without_malloc(char *s1, char const *set);
 int		ft_isspace(char c);
 int		ft_isoperator(char c);
 int		ft_isalpha(int c);
@@ -125,7 +126,7 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh);
 int		check_ftype(char *cmd);
 int		is_builtin(t_command *command);
 int		execute_builtin(t_sh *sh, t_command *command);
-void	execute_input(t_sh *sh, t_pipeline *list);
+void	execute_input(t_sh *sh, t_pipeline *list, char **envp, int prev_sep);
 char	*ft_alert_join_path(char *path, char *cmd);
 int		search_execve(t_sh *sh, t_command *command, char *envp);
 void	execute_simple_cmd(t_sh *sh, t_command *command, char **envp);

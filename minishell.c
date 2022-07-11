@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 17:37:21 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/11 20:39:21 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	_loop(t_sh *sh, char *input, t_pipeline *list, t_token *tokens)
 {
 	char		*trimed;
 
-	trimed = NULL;
 	while (TRUE)
 	{
 		all_clear(&input, &trimed, &list, &tokens);
@@ -27,7 +26,7 @@ static void	_loop(t_sh *sh, char *input, t_pipeline *list, t_token *tokens)
 			exit_msg(EXIT_SUCCESS, STDOUT_FILENO, "exit\n");
 		if (*input)
 			add_history(input);
-		trimed = ft_strtrim(input, " \t");
+		trimed = ft_strtrim_without_malloc(input, " \t");
 		if (*trimed == '\0')
 			continue ;
 		if (!parse(&tokens, trimed, sh->env_list) || \
@@ -35,7 +34,7 @@ static void	_loop(t_sh *sh, char *input, t_pipeline *list, t_token *tokens)
 			!handle_heredoc(tokens, sh->env_list))
 			sh->exit_status = 1;
 		else
-			execute_input(sh, list);
+			execute_input(sh, list, NULL, 0);
 	}
 }
 

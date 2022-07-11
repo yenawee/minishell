@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_pipeline.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:38:07 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 17:39:12 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/11 20:40:52 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ int	execute_pipeline(t_sh *sh, t_pipeline *pipeline, char **envp)
 		if (command->pid == -1)
 			exit_msg(EXIT_FAILURE, sh->fd_stderr, "fail fork()\n");
 		else if (command->pid == 0)
-		{
-			exec_signals();
 			fork_execute_command(sh, &p, command, envp);
-		}
 		else
 		{
 			ft_alert_safe_close(&p.prev_pipe[READ]);
