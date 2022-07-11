@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:37:12 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 21:53:54 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 22:13:10 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	_set_heredoc(int *fd, int i)
 {
-	char		file_name[12];
+	char		file_name[11];
 	const char	*alnum = "0123456789abcdef";
 
-	ft_strlcpy(file_name, "./heredoc_", 12);
-	file_name[10] = alnum[i];
-	file_name[11] = '\0';
+	ft_strlcpy(file_name, ".heredoc_0", 11);
+	file_name[9] = alnum[i];
 	*fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 	if (*fd < 0)
 		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail open()\n");
