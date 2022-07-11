@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_make_pipelines.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/11 20:48:18 by hyeonjan          #+#    #+#             */
+/*   Updated: 2022/07/11 20:48:19 by hyeonjan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	test_command(t_command *command, int i)
@@ -18,7 +30,7 @@ void	test_command(t_command *command, int i)
 
 void	test_pipeline(t_pipeline *pipeline, int i)
 {
-	int	j;
+	int			j;
 	t_command	*cur_command;
 
 	printf("=== test_pipeline[%d] ===\n", i);
@@ -34,7 +46,7 @@ void	test_pipeline(t_pipeline *pipeline, int i)
 void	test_list(t_pipeline *list)
 {
 	t_pipeline	*cur_pipeline;
-	int	i;
+	int			i;
 
 	printf("=== test_list ===\n");
 	i = 0;

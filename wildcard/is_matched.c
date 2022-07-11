@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:19:21 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/06 14:35:28 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:55:21 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	_is_middle_tokens_matched(char *file_name, t_list *middle_tokens, \
 	return (SUCCESS);
 }
 
-int	is_matched(char *file_name, t_wildcard *wildcard)
+int	is_matched(char *file_name, t_wc *wildcard)
 {
 	return (ft_strlen(file_name) >= wildcard->total_len && \
 			_is_front_token_matched(file_name, wildcard->front_token) && \

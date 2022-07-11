@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:07:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:34:36 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:52:53 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 int	syntax_check_near_arrow(t_token *tokens, int token_size)
 {
-	t_token	*cur;
+	t_token		*cur;
+	char *const	msg = "🐚 > syntax error near unexpected token `";
 
 	cur = tokens;
 	while (token_size)
 	{
 		--token_size;
-		if (((cur->type == T_RRDIR || cur->type == T_LRDIR || cur->type == T_APPEND) && \
+		if (((cur->type == T_RRDIR || cur->type == T_LRDIR || \
+			cur->type == T_APPEND) && \
 			(token_size == 0 || cur->next->type != T_FILE)) || \
 			(cur->type == T_HEREDOC && \
 			(token_size == 0 || cur->next->type != T_LIMITER)))
-			{
-				ft_putstr_fd(STDERR_FILENO, "🐚 > syntax error near unexpected token `");
-				if (cur->next)
-					ft_putstr_fd(STDERR_FILENO, cur->next->str);
-				else
-					ft_putstr_fd(STDERR_FILENO, "newline");
-				ft_putstr_fd(STDERR_FILENO, "'\n");
-				return (FAIL);
-			}
+		{
+			ft_putstr_fd(STDERR_FILENO, msg);
+			if (cur->next)
+				ft_putstr_fd(STDERR_FILENO, cur->next->str);
+			else
+				ft_putstr_fd(STDERR_FILENO, "newline");
+			ft_putstr_fd(STDERR_FILENO, "'\n");
+			return (FAIL);
+		}
 		cur = cur->next;
 	}
 	return (SUCCESS);
@@ -40,10 +42,12 @@ int	syntax_check_near_arrow(t_token *tokens, int token_size)
 
 int	set_command(t_command *command, t_token *tokens)
 {
+	char *const	msg = "🐚 > syntax error near unexpected token `";
+
 	command->tokens = tokens;
 	if (command->token_size == 0)
 	{
-		ft_putstr_fd(STDERR_FILENO, "🐚 > syntax error near unexpected token `");
+		ft_putstr_fd(STDERR_FILENO, msg);
 		if (command->tokens)
 			ft_putstr_fd(STDERR_FILENO, command->tokens->str);
 		else
@@ -84,12 +88,14 @@ int	make_commands(t_command **commands, t_token *tokens)
 
 int	set_pipeline(t_pipeline	*pipeline, t_token *tokens, t_token *cur)
 {
+	char *const	msg = "🐚 > syntax error near unexpected token `";
+
 	if (cur)
 		pipeline->seperated_type = cur->type;
 	pipeline->tokens = tokens;
 	if (pipeline->token_size == 0)
 	{
-		ft_putstr_fd(STDERR_FILENO, "🐚 > syntax error near unexpected token `");
+		ft_putstr_fd(STDERR_FILENO, msg);
 		if (pipeline->tokens)
 			ft_putstr_fd(STDERR_FILENO, pipeline->tokens->str);
 		else

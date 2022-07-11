@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:04:27 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:56:13 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ void	exec_signals(void);
 void	set_input_signal(void);
 
 //wildcard
-t_wildcard	*str_to_t_wildcard(char *str);
-int			is_matched(char *file_name, t_wildcard *wildcard);
-void		match_wildcard(char **file_names, int file_count, \
-						t_wildcard **wildcards, int wildcard_count);
+t_wc	*str_to_t_wc(char *str);
+int		is_matched(char *file_name, t_wc *wildcard);
+void	match_wildcard(char **file_names, int file_count, \
+						t_wc **wildcards, int wildcard_count);
 
 //lexer
 int		parse(t_token **list, char *line, t_list *env_list);

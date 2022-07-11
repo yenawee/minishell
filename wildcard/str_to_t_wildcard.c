@@ -6,13 +6,13 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:22:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/06 14:31:52 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:55:34 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*_set_front_token(t_wildcard *ret, char *str)
+char	*_set_front_token(t_wc *ret, char *str)
 {
 	if (*str != '*')
 	{
@@ -24,7 +24,7 @@ char	*_set_front_token(t_wildcard *ret, char *str)
 	return (str);
 }
 
-void	_set_rear_token(t_wildcard *ret, char *str)
+void	_set_rear_token(t_wc *ret, char *str)
 {
 	char	*rear;
 
@@ -38,7 +38,7 @@ void	_set_rear_token(t_wildcard *ret, char *str)
 	}
 }
 
-void	_set_middle_tokens(t_wildcard *ret, char *str)
+void	_set_middle_tokens(t_wc *ret, char *str)
 {
 	while (*str)
 	{
@@ -53,12 +53,12 @@ void	_set_middle_tokens(t_wildcard *ret, char *str)
 	}
 }
 
-t_wildcard	*str_to_t_wildcard(char *str)
+t_wc	*str_to_t_wc(char *str)
 {
-	t_wildcard	*ret;
-	t_list		*node;
+	t_wc	*ret;
+	t_list	*node;
 
-	ret = ft_alert_calloc(1, sizeof(t_wildcard));
+	ret = ft_alert_calloc(1, sizeof(t_wc));
 	str = _set_front_token(ret, str);
 	_set_rear_token(ret, str);
 	_set_middle_tokens(ret, str);

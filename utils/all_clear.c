@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:02:28 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:02:54 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:53:36 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	_clear_list(t_pipeline **list)
 	*list = NULL;
 }
 
-static void _clear_token(t_token **token)
+static void	_clear_token(t_token **token)
 {
 	if (*token)
 	{

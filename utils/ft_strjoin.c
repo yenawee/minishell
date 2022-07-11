@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:44 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 21:27:35 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:53:42 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 char	*ft_alert_strjoin(char const *s1, char const *s2)
 {
 	char	*rst;
-	
+
 	rst = ft_strjoin(s1, s2);
 	if (rst == NULL)
 		exit_msg(EXIT_FAILURE, STDERR_FILENO, "malloc error\n");
