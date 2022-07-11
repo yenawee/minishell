@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:59 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 20:14:10 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:50:00 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	_trans_status(int status)
 	else if (WIFSIGNALED(status))
 		return (WTERMSIG(status));
 	else
-		return (status % 128);
+		return (status);
 }
 
 int	wait_child(pid_t pid)
