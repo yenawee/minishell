@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:09:13 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 19:09:41 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:10:03 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list *list, int *plus_flag)
 		ft_putstr_fd(STDERR_FILENO, "not a valid identifier\n");
 }
 
-static void	_export(t_list *list, char *str, int *plus_flag)
+static void	_export(t_list **list, char *str, int *plus_flag)
 {
 	char	*s;
 	char	*key;
@@ -45,12 +45,12 @@ static void	_export(t_list *list, char *str, int *plus_flag)
 	if (!s)
 	{
 		if (check_valid_key(str))
-			ft_export_one(&list, str, NULL, *plus_flag);
+			ft_export_one(list, str, NULL, *plus_flag);
 		else
 			ft_putstr_fd(STDERR_FILENO, "not a valid identifier\n");
 	}
 	else
-		_export_key_and_value(str, s, list, plus_flag);
+		_export_key_and_value(str, s, *list, plus_flag);
 }
 
 int	ft_export(t_list **list, char **argv)
@@ -64,7 +64,7 @@ int	ft_export(t_list **list, char **argv)
 	str = ++argv;
 	while (*str)
 	{
-		_export(*list, *str, &plus_flag);
+		_export(list, *str, &plus_flag);
 		str++;
 	}
 	return (EXIT_SUCCESS);

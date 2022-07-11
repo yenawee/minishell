@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 18:04:18 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:38:54 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int	execute_builtin(t_sh *sh, t_command *command)
 {
 	char	*cmd;
 
-	make_cmd_argv(command, sh);
 	cmd = command->argv[0];
 	if (ft_strcmp(cmd, "echo") == 0)
 		return (ft_echo(command->argv));
