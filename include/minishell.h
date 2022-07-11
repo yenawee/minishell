@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:56:13 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 21:54:17 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char	*_get_env_value_without_malloc(t_list *env_list, char *key);
 //signal
 void	exec_signals(void);
 void	set_input_signal(void);
+void	heredoc_prompt(int signal);
 
 //wildcard
 t_wc	*str_to_t_wc(char *str);

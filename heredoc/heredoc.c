@@ -6,20 +6,11 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:37:12 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 20:19:55 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/11 21:53:54 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-static void	_end_prompt(int signal)
-{
-	(void)signal;
-	rl_replace_line("", 0);
-	write(1, "\n", 1);
-	rl_on_new_line();
-	exit(EXIT_FAILURE);
-}
 
 void	_set_heredoc(int *fd, int i)
 {
@@ -88,7 +79,7 @@ int	handle_heredoc(t_token *tokens, t_list *env_list)
 		exit_msg(10, STDERR_FILENO, "fail fork()\n");
 	else if (pid == 0)
 	{
-		signal(SIGINT, _end_prompt);
+		signal(SIGINT, heredoc_prompt);
 		i = 0;
 		while (tokens)
 		{
