@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:26:57 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 19:34:43 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 14:02:31 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*get_target(char *str, t_list *env_list)
 {
 	char	*target;
 
-	if (!ft_strcmp(str, "~") || !ft_strcmp(str, "~/"))
+	if (!str || !ft_strcmp(str, "~") || !ft_strcmp(str, "~/"))
 		target = get_env_value(env_list, "HOME");
 	else if (!ft_strcmp(str, "-"))
 		target = get_env_value(env_list, "OLDPWD");
