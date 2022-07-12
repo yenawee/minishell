@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:27:24 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 18:28:24 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 12:58:33 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	is_string_digit(char *s)
 	i = 0;
 	while (s[i])
 	{
-		if (!isdigit(s[i]))
+		if (!ft_isdigit(s[i]))
 			return (FALSE);
 		i++;
 	}

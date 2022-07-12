@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
+#    Updated: 2022/07/12 13:16:05 by yenawee          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 
 BUILTIN_NAME = ft_cd.c ft_echo.c ft_env.c ft_exit.c ft_export.c ft_export_no_arg.c ft_pwd.c ft_unset.c ft_export_no_arg_2.c ft_export_one.c
@@ -48,7 +60,7 @@ MAIN_NAME = minishell.c welcome_prompt.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(MAIN) $(HEREDOC) $(ENV) $(WILDCARD) $(SIGNAL) $(EXECUTOR)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(ENV) $(WILDCARD) $(EXECUTOR) $(MAIN) $(HEREDOC) $(SIGNAL)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -56,16 +68,18 @@ INCLUDE = -Iinclude
 CC = cc
 # CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
-#READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib -I /Users/${USER}/.brew/opt/readline/include
- READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
+READLINE_INCLUDE = -I /opt/homebrew/opt/readline/include
+#READLINE_INCLUDE = -I /Users/${USER}/.brew/opt/readline/include
+#READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib
+READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib
 
 all : $(NAME)
 
 %.o : %.c
-	@$(CC) $(INCLUDE) $(READLINE_FLAG) -w -c $< -o $@ -g
+	$(CC) $(INCLUDE) $(READLINE_INCLUDE) -c $< -o $@ -g
 
 $(NAME) : $(OBJS)
-	$(CC) $(READLINE_FLAG) $? -o $@ -g
+	$(CC) $? $(READLINE_FLAG) $(READLINE_INCLUDE) -o $@ -g
 	@echo "\033[47;30m* $(NAME) was created *\033[0m"
 
 clean :

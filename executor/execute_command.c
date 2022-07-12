@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:54 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 12:44:07 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 12:52:18 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	search_execve(t_sh *sh, t_command *command, char **envp)
 			path_cmd = ft_alert_join_path((char *)path, command->argv[0]);
 			file_type = check_ftype(path_cmd);
 			if (file_type == FT_DIR)
-				exit_command_perror_msg(126, cmd[0], "is a directory");
+				exit_command_perror_msg(126, cmd, "is a directory");
 			else if (file_type == FT_FILE && \
 					execve(path_cmd, command->argv, envp))
-				exit_command_perror_msg(126, cmd[0], strerror(errno));
+				exit_command_perror_msg(126, cmd, strerror(errno));
 			free(path_cmd);
 		}
 		path = ft_strchr(path, ':');

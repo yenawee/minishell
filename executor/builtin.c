@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:40:18 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:54:02 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,6 @@ int	execute_builtin(t_sh *sh, t_command *command)
 		return (ft_env(sh->env_list));
 	else if (ft_strcmp(cmd, "exit") == 0)
 		return (ft_exit(sh, command->argc, command->argv));
+	else
+		return (0);
 }
