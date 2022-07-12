@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:44 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 12:36:12 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 13:35:58 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ char	*ft_alert_strjoin(char const *s1, char const *s2)
 void	ft_alert_str_append(char **prev, char *added)
 {
 	char	*ret;
-	char	*origin;
-	size_t	size;
 
 	if (added == NULL || *added == '\0')
 		return ;

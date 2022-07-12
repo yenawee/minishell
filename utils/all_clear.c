@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:02:28 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:53:36 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:36:26 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,6 @@ static void	_clear_tokens(t_token **tokens)
 void	all_clear(char **input, char **trimed, \
 				t_pipeline **list, t_token **tokens)
 {
-	t_pipeline	*cur_p;
-	t_pipeline	*temp_p;
-	t_command	*cur_c;
-	t_token		*temp_c;
-
 	safe_free((void **)input);
 	*trimed = NULL;
 	_clear_list(list);

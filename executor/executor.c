@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:37 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 19:47:49 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:40:05 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static void	_restore_fd(t_sh *sh)
  */
 static int	_execute_single_cmd(t_sh *sh, t_command *command, char **envp)
 {
-	pid_t	pid;
-
 	if (!handle_redirect(sh, command))
 		return (1);
 	make_cmd_argv(command, sh);

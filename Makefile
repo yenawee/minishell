@@ -6,7 +6,7 @@
 #    By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
-#    Updated: 2022/07/12 13:16:05 by yenawee          ###   ########.fr        #
+#    Updated: 2022/07/12 13:34:21 by yenawee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ WILDCARD_NAME = match_wildcard.c is_matched.c str_to_t_wildcard.c
 WILDCARD_DIR = ./wildcard/
 WILDCARD = $(addprefix $(WILDCARD_DIR), $(WILDCARD_NAME))
 
-LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c add_token.c parse.c
+LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c add_token.c tokenize.c
 LEXER_DIR = ./lexer/
 LEXER = $(addprefix $(LEXER_DIR), $(LEXER_NAME))
 
@@ -66,7 +66,7 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDE = -Iinclude
 CC = cc
-# CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 READLINE_INCLUDE = -I /opt/homebrew/opt/readline/include
 #READLINE_INCLUDE = -I /Users/${USER}/.brew/opt/readline/include
@@ -76,10 +76,10 @@ READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(INCLUDE) $(READLINE_INCLUDE) -c $< -o $@ -g
+	$(CC) $(CFLAGS) $(INCLUDE) $(READLINE_INCLUDE) -c $< -o $@ -g
 
 $(NAME) : $(OBJS)
-	$(CC) $? $(READLINE_FLAG) $(READLINE_INCLUDE) -o $@ -g
+	$(CC) $? $(CFLAGS) $(READLINE_FLAG) $(READLINE_INCLUDE) -o $@ -g
 	@echo "\033[47;30m* $(NAME) was created *\033[0m"
 
 clean :
@@ -88,8 +88,10 @@ clean :
 fclean : clean
 	$(RM) $(NAME)
 
+bonus : all
+
 re :
 	make fclean
 	make all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re bonus

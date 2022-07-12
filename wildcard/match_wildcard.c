@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   match_wildcard.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:21:25 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:55:21 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:38:54 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	match_wildcard(char **file_names, int file_count, \
 	int	j;
 	int	size;
 
+	size = 0;
 	arr = ft_alert_calloc(file_count, sizeof(int));
 	i = -1;
 	while (++i < file_count)

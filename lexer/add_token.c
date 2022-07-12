@@ -6,13 +6,13 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:40:33 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 19:40:34 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 13:32:48 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	addtoken(t_token **list, char *begin, char *end, t_list *env_list)
+void	addtoken(t_token **list, char *begin, char *end)
 {
 	t_token	*new_node;
 	t_token	*tmp;

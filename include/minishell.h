@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 12:59:45 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 13:44:47 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void	match_wildcard(char **file_names, int file_count, \
 						t_wc **wildcards, int wildcard_count);
 
 //lexer
-int		parse(t_token **list, char *line, t_list *env_list);
-void	addtoken(t_token **list, char *begin, char *end, t_list *env_list);
+int		tokenize(t_token **list, char *line);
+void	addtoken(t_token **list, char *begin, char *end);
 char	*expand_str(char *str, t_sh *sh);
 char	*expand_env(char *str, t_sh *sh);
 char	*find_value_in_env(char *key, t_list *env_list);
@@ -122,7 +122,7 @@ int		make_pipelines(t_pipeline **pipelines, t_token *tokens);
 
 //heredoc
 char	*expand_in_heredoc(char *input, int fd, t_list *env_list);
-int		handle_heredoc(t_token *tokens, t_list *env_list);
+int		handle_heredoc(t_token *tokens);
 
 //execve
 void	make_cmd_argv(t_command *cmd, t_sh *sh);

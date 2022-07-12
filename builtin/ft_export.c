@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:09:13 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/11 16:10:03 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:28:56 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ t_list *list, int *plus_flag)
 static void	_export(t_list **list, char *str, int *plus_flag)
 {
 	char	*s;
-	char	*key;
-	char	*value;
-	char	*p;
 
 	s = ft_strchr(str, '=');
 	if (!s)
