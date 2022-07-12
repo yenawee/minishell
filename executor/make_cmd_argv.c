@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 19:58:22 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:04:15 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh)
 	t_token		*cur_token;
 	int			i;
 	int			token_i;
+
 	cur_token = cmd->tokens;
 	i = 0;
 	token_i = 0;
