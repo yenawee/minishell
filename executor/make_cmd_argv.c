@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_cmd_argv.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 13:41:18 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 18:53:28 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,20 @@ int	get_argc(t_command *cmd)
 	return (cnt);
 }
 
+int	_temp_expand_str(char **argv_i, char *str, t_sh *sh)
+{
+	char	*ret;
+
+	ret = expand_str(str, sh);
+	if (*ret == '\0')
+	{
+		free(ret);
+		return (0);
+	}
+	*argv_i = ret;
+	return (1);
+}
+
 void	make_cmd_argv(t_command *cmd, t_sh *sh)
 {
 	t_token		*cur_token;
@@ -40,10 +54,11 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh)
 	cmd->argv = ft_alert_calloc(cmd->argc + 1, sizeof(char *));
 	cur_token = cmd->tokens;
 	i = 0;
-	while (i < cmd->argc)
+	while (cur_token)
 	{
-		if (cur_token->type == T_WORD)
-			cmd->argv[i++] = expand_str(cur_token->str, sh);
+		if (cur_token->type == T_WORD && \
+			_temp_expand_str(&cmd->argv[i], cur_token->str, sh))
+			i++;
 		cur_token = cur_token->next;
 	}
 	cmd->argv[i] = NULL;
