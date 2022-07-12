@@ -54,7 +54,11 @@ static char	*_expand_out_of_quote(t_sh *sh, char *str, char *p, char *ret)
 		while (*p && !ft_strchr("\'\"$", *p))
 			p++;
 		if (*p == '\0')
+		{
 			ft_alert_str_append(&ret, str);
+			printf("str1: %s\n", str);
+			break ;
+		}
 		else if (ft_strchr("\'\"", *p))
 			p = ft_strchr(p + 1, *p) + 1;
 		else if (*p == '$' && !ft_strchr("_?", p[1]) && !ft_isalpha(p[1]))
