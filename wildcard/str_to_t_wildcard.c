@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_to_t_wildcard.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:22:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:55:34 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:36:49 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	_set_middle_tokens(t_wc *ret, char *str)
 t_wc	*str_to_t_wc(char *str)
 {
 	t_wc	*ret;
-	t_list	*node;
 
 	ret = ft_alert_calloc(1, sizeof(t_wc));
 	str = _set_front_token(ret, str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 19:22:38 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 21:54:00 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:44:40 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	_loop(t_sh *sh, char *input, t_pipeline *list, t_token *tokens)
 		trimed = ft_strtrim_without_malloc(input, " \t");
 		if (*trimed == '\0')
 			continue ;
-		if (!parse(&tokens, trimed, sh->env_list) || \
+		if (!tokenize(&tokens, trimed) || \
 			!make_pipelines(&list, tokens) || \
-			!handle_heredoc(tokens, sh->env_list))
+			!handle_heredoc(tokens))
 			sh->exit_status = 1;
 		else
 			execute_input(sh, list, NULL, 0);
@@ -42,6 +42,7 @@ int	main(int ac, char **av, char **envp)
 {
 	t_sh	sh;
 
+	(void)av;
 	welcome_prompt();
 	set_sh(&sh);
 	if (ac != 1)

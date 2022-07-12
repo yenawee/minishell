@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:37:12 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 22:13:10 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:43:14 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	_set_heredoc(int *fd, int i)
 		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail open()\n");
 }
 
-void	_read(char *eof, t_list *env_list, int i)
+void	_read(char *eof, int i)
 {
 	int		fd;
 	char	*input;
@@ -62,7 +62,7 @@ int	_is_over_max_heredoc(t_token *tokens)
 	return (SUCCESS);
 }
 
-int	handle_heredoc(t_token *tokens, t_list *env_list)
+int	handle_heredoc(t_token *tokens)
 {
 	int		i;
 	pid_t	pid;
@@ -83,7 +83,7 @@ int	handle_heredoc(t_token *tokens, t_list *env_list)
 		while (tokens)
 		{
 			if (tokens->type == T_HEREDOC)
-				_read(tokens->next->str, env_list, i++);
+				_read(tokens->next->str, i++);
 			tokens = tokens->next;
 		}
 		exit(EXIT_SUCCESS);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:41:09 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 19:41:10 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 13:34:39 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	parse_word(char	*begin, char **end)
 	return (SUCCESS);
 }
 
-int	parse(t_token **list, char *line, t_list *env_list)
+int	tokenize(t_token **list, char *line)
 {
 	char	*begin;
 	char	*end;
@@ -62,7 +62,7 @@ int	parse(t_token **list, char *line, t_list *env_list)
 			}
 		}
 		if (begin <= end)
-			addtoken(list, begin, end, env_list);
+			addtoken(list, begin, end);
 		begin = end + 1;
 	}
 	*list = define_type(*list);

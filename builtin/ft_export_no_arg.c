@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 12:35:10 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 13:29:36 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,6 @@ static t_env	**_get_t_env_arr_from_t_list(t_list *env_list)
 static t_env	**_ft_sorted_t_env_from_t_list(t_list *env_list)
 {
 	t_env	**env_arr;
-	t_list	*cur;
-	t_list	*candidate;
-	size_t	i;
 
 	env_arr = _get_t_env_arr_from_t_list(env_list);
 	if (env_arr == NULL)

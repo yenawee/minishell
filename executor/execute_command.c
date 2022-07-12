@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:54 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 12:52:18 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 13:38:01 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 char	*ft_alert_join_path(char *path, char *cmd)
 {
 	char	*ret;
-	char	*colon;
-	char	*p;
 	size_t	size;
 
 	if (ft_strchr(path, ':'))

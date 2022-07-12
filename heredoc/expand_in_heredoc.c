@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_in_heredoc.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 21:53:26 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 15:40:51 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*_expand_variable(char *s, int fd, t_list *env_list)
 	return (s);
 }
 
-char	*expand_in_heredoc(char *input, int fd, t_list *env_list)
+void expand_in_heredoc(char *input, int fd, t_list *env_list)
 {
 	char	*dollar;
 

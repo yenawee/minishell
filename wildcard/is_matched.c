@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_matched.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:19:21 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:55:21 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 13:39:34 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	_is_middle_tokens_matched(char *file_name, t_list *middle_tokens, \
 
 int	is_matched(char *file_name, t_wc *wildcard)
 {
-	return (ft_strlen(file_name) >= wildcard->total_len && \
+	return (ft_strlen(file_name) >= (size_t)wildcard->total_len && \
 			_is_front_token_matched(file_name, wildcard->front_token) && \
 			_is_rear_token_matched(file_name, wildcard->rear_token) && \
 			_is_middle_tokens_matched(file_name, wildcard->middle_tokens, \
