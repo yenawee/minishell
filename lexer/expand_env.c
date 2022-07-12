@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:40:49 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 12:35:44 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:45:53 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*expand_env_if(char **str, t_sh *sh, char *dlr_pos)
 
 	if (**str == '?')
 	{
-		env_value = ft_strdup(ft_itoa(sh->exit_status));
+		env_value = ft_itoa(sh->exit_status);
 		(*str)++;
 	}
 	else if (is_valid_key_first(**str))
