@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 18:53:28 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:59:41 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	_temp_expand_str(char **argv_i, char *str, t_sh *sh)
 	char	*ret;
 
 	ret = expand_str(str, sh);
-	if (*ret == '\0')
+	if (*str == '$' && *ret == '\0')
 	{
 		free(ret);
 		return (0);
