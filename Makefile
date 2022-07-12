@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+         #
+#    By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
-#    Updated: 2022/07/12 13:34:21 by yenawee          ###   ########.fr        #
+#    Updated: 2022/07/12 15:43:07 by hyeonjan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,10 +68,10 @@ INCLUDE = -Iinclude
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
-READLINE_INCLUDE = -I /opt/homebrew/opt/readline/include
-#READLINE_INCLUDE = -I /Users/${USER}/.brew/opt/readline/include
-#READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib
-READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib
+# READLINE_INCLUDE = -I /opt/homebrew/opt/readline/include
+READLINE_INCLUDE = -I /Users/${USER}/.brew/opt/readline/include
+READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib
+# READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib
 
 all : $(NAME)
 

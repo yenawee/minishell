@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 23:29:52 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 21:41:24 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:19:20 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ int	handle_redirect(t_sh *sh, t_command *command)
 		token_size--;
 		token = token->next;
 	}
-	// sh->exit_status = 1;
 	return (SUCCESS);
 }

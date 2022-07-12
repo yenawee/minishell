@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 22:07:35 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:52:53 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:19:43 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,3 @@ int	make_pipelines(t_pipeline **pipelines, t_token *tokens)
 		cur = cur->next;
 	}
 }
-
-//cat < infile > outfile && export a b=c d=e && export | grep PWD
