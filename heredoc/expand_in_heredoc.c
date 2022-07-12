@@ -6,19 +6,31 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 16:16:12 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 16:44:42 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-char	*_expand_variable(char *s, int fd, t_list *env_list)
+static char	*_handle_exit_status(char *s, int fd, int exit_status)
+{
+	char	*ret;
+
+	ret = ft_itoa(exit_status);
+	ft_putstr_fd(fd, ret);
+	safe_free((void **)&ret);
+	return (s + 1);
+}
+
+static char	*_expand_variable(t_sh *sh, char *s, int fd, t_list *env_list)
 {
 	char	temp;
 	char	*var;
 	char	*val;
 
 	val = NULL;
+	if (*s == '?')
+		return (_handle_exit_status(s, fd, sh->exit_status));
 	if (*s != '_' && !ft_isalpha(*s))
 	{
 		ft_putstr_fd(fd, "$");
@@ -36,7 +48,7 @@ char	*_expand_variable(char *s, int fd, t_list *env_list)
 	return (s);
 }
 
-void	expand_in_heredoc(char *input, int fd, t_list *env_list)
+void	expand_in_heredoc(t_sh *sh, char *input, int fd, t_list *env_list)
 {
 	char	*dollar;
 
@@ -50,6 +62,6 @@ void	expand_in_heredoc(char *input, int fd, t_list *env_list)
 		}
 		*dollar = '\0';
 		ft_putstr_fd(fd, input);
-		input = _expand_variable(dollar + 1, fd, env_list);
+		input = _expand_variable(sh, dollar + 1, fd, env_list);
 	}
 }

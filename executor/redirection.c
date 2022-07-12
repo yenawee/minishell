@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:59:56 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 13:40:51 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:39:30 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	_read_and_expand(t_sh *sh, int file_fd, int pipe_fd)
 		ft_alert_str_append(&str, buf);
 	}
 	if (str)
-		expand_in_heredoc(str, pipe_fd, sh->env_list);
+		expand_in_heredoc(sh, str, pipe_fd, sh->env_list);
 	safe_free((void **)&str);
 }
 
