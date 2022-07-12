@@ -6,7 +6,7 @@
 #    By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
-#    Updated: 2022/07/12 21:47:09 by hyeonjan         ###   ########.fr        #
+#    Updated: 2022/07/12 22:47:18 by hyeonjan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ PARSER = $(addprefix $(PARSER_DIR), $(PARSER_NAME))
 
 UTILS_NAME = exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
 			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c ft_strlcat.c all_clear.c ft_atoi.c check_valid_env_key.c \
-			get_next_line.c ft_split.c
+			get_next_line.c
 UTILS_DIR = ./utils/
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_NAME))
 
@@ -52,7 +52,7 @@ SIGNAL = $(addprefix $(SIGNAL_DIR), $(SIGNAL_NAME))
 
 EXECUTOR_NAME = builtin.c check_file_type.c execute_command.c execute_pipeline.c executor.c \
 				fork_execute_command.c ft_alert_safe_close.c ft_alert_safe_dup2.c handle_redirect.c \
-				redirection.c two_dim_arr_clear.c wait_child.c make_cmd_argv.c
+				redirection.c two_dim_arr_clear.c wait_child.c make_cmd_argv.c make_argv_list.c
 EXECUTOR_DIR = ./executor/
 EXECUTOR = $(addprefix $(EXECUTOR_DIR), $(EXECUTOR_NAME))
 

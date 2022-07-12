@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 21:47:52 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 22:42:10 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int		ft_atoi(const char *str);
 void	exit_msg(int exit_status, int fd, char *msg);
 void	exit_command_perror_msg(int exit_status, char *cmd, char *msg);
 char	*get_next_line(int fd);
-char	**ft_split(const char *str, char c);
 
 //builtin
 int		ft_cd(t_list *env_list, char **argv);
@@ -130,6 +129,7 @@ int		handle_heredoc(t_token *tokens);
 
 //execve
 void	make_cmd_argv(t_command *cmd, t_sh *sh);
+void	make_argv_list(t_sh *sh, t_token **argv, t_command *cmd);
 
 //excutor
 int		check_ftype(char *cmd);
