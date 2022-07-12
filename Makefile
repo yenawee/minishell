@@ -6,7 +6,7 @@
 #    By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
-#    Updated: 2022/07/12 15:43:07 by hyeonjan         ###   ########.fr        #
+#    Updated: 2022/07/12 16:26:55 by hyeonjan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,10 +76,10 @@ READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(INCLUDE) $(READLINE_INCLUDE) -c $< -o $@ -g
+	$(CC) $(CFLAGS) $(INCLUDE) $(READLINE_INCLUDE) -c $< -o $@
 
 $(NAME) : $(OBJS)
-	$(CC) $? $(CFLAGS) $(READLINE_FLAG) $(READLINE_INCLUDE) -o $@ -g
+	$(CC) $? $(CFLAGS) $(READLINE_FLAG) $(READLINE_INCLUDE) -o $@
 	@echo "\033[47;30m* $(NAME) was created *\033[0m"
 
 clean :
