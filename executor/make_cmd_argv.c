@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 18:59:41 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:58:22 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,16 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh)
 {
 	t_token		*cur_token;
 	int			i;
-
-	cmd->argc = get_argc(cmd);
-	cmd->argv = ft_alert_calloc(cmd->argc + 1, sizeof(char *));
+	int			token_i;
 	cur_token = cmd->tokens;
 	i = 0;
-	while (cur_token)
+	token_i = 0;
+	while (token_i < cmd->token_size)
 	{
 		if (cur_token->type == T_WORD && \
 			_temp_expand_str(&cmd->argv[i], cur_token->str, sh))
 			i++;
+		token_i++;
 		cur_token = cur_token->next;
 	}
-	cmd->argv[i] = NULL;
-}
+}	
