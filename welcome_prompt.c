@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   welcome_prompt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:08:10 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 23:19:32 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 17:21:52 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	welcome_prompt(void)
 		i++;
 		free(line);
 	}
+	close(fd);
 }
