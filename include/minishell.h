@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 13:44:47 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 15:41:01 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ t_token	*define_type(t_token *list);
 int		make_pipelines(t_pipeline **pipelines, t_token *tokens);
 
 //heredoc
-char	*expand_in_heredoc(char *input, int fd, t_list *env_list);
+void	expand_in_heredoc(char *input, int fd, t_list *env_list);
 int		handle_heredoc(t_token *tokens);
 
 //execve
