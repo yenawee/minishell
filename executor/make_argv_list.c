@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:44:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 22:47:54 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 23:11:22 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ void	*_expand_variable(t_sh *sh, char **ret, char *var)
 {
 	char	*key;
 	char	*malloced_val;
-	char	*s;
+	size_t	i;
 
 	if (*var == '?')
 	{
 		*ret = var + 1;
 		return (ft_alert_itoa(sh->exit_status));
 	}
-	s = var;
-	while (*s == '_' || ft_isalnum(*s))
-		s++;
-	*ret = s;
-	key = ft_alert_substr(var, 0, (size_t)(s - var));
+	i = 1;
+	while (var[i] == '_' || ft_isalnum(var[i]))
+		i++;
+	*ret = &var[i];
+	key = ft_alert_substr(var, 0, i);
 	malloced_val = get_env_value(sh->env_list, key);
+	// printf("key: %s\n", key);
 	safe_free((void **)&key);
 	return (malloced_val);
 }
@@ -71,6 +72,7 @@ static char	*_expand_out_of_quote(t_sh *sh, char *str, char *p, char *ret)
 		if (*p == '\0')
 		{
 			ft_alert_str_append(&ret, str);
+			// printf("ret1: %s\n", ret);
 			break ;
 		}
 		else if (ft_strchr("\'\"", *p))
@@ -81,6 +83,7 @@ static char	*_expand_out_of_quote(t_sh *sh, char *str, char *p, char *ret)
 		{
 			ft_alert_added(&ret, ft_alert_substr(str, 0, p - str));
 			ft_alert_added(&ret, _expand_variable(sh, &str, &p[1]));
+			// printf("ret2: %s\n", ret);
 			p = str;
 		}
 	}
@@ -96,6 +99,9 @@ static void	_add_argv(t_sh *sh, t_token **argv, char *str)
 	if (*str == '\0')
 		return ;
 	ret = _expand_out_of_quote(sh, str, str, NULL);
+	if (ret == NULL)
+		return ;
+	// printf("_expand_out_of_quote: %s\n", ret);
 	p = ret;
 	while (*p)
 	{
@@ -114,6 +120,7 @@ static void	_add_argv(t_sh *sh, t_token **argv, char *str)
 			*p++ = '\0';
 		_expand_pusback(sh, argv, front);
 	}
+	safe_free((void **)&ret);
 }
 
 void	make_argv_list(t_sh *sh, t_token **argv, t_command *cmd)

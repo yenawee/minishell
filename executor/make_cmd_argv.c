@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 22:49:31 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 23:11:50 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,10 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh)
 	argv = NULL;
 	make_argv_list(sh, &argv, cmd);
 	_make_argv_from_argv(cmd, argv);
+	// int i = 0;
+	// printf("argv: ");
+	// while (cmd->argv[i])
+	// 	printf("|%s|,", cmd->argv[i++]);
+	// printf("\n");
 	_clear_argv(argv);
 }
