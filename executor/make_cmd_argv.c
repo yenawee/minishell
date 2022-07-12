@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 20:04:15 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:08:14 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh)
 	int			i;
 	int			token_i;
 
+	cmd->argc = get_argc(cmd);
+	cmd->argv = ft_alert_calloc(cmd->argc + 1, sizeof(char *));
 	cur_token = cmd->tokens;
 	i = 0;
 	token_i = 0;
@@ -62,4 +64,4 @@ void	make_cmd_argv(t_command *cmd, t_sh *sh)
 		token_i++;
 		cur_token = cur_token->next;
 	}
-}	
+}
