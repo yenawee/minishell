@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_no_arg.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 22:50:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 20:34:06 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:35:10 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ int	ft_export_no_arg(t_list *env_list)
 		export_print(*ret);
 		ret++;
 	}
-	safe_free(&origin);
+	safe_free((void **)&origin);
 	return (EXIT_SUCCESS);
 }

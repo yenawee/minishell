@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:44 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/11 20:53:42 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:36:12 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_safe_strjoin(char **ret, char *str)
 
 	tmp = *ret;
 	*ret = ft_strjoin(*ret, str);
-	safe_free(&tmp);
+	safe_free((void **)&tmp);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -65,6 +65,6 @@ void	ft_alert_str_append(char **prev, char *added)
 		ret = ft_alert_strdup("");
 	else
 		ret = ft_alert_strjoin((char const *)*prev, (char const *)added);
-	safe_free(prev);
+	safe_free((void **)prev);
 	*prev = ret;
 }

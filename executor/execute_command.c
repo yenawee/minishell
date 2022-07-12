@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:54 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/08 20:18:25 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:44:07 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_alert_join_path(char *path, char *cmd)
 	return (ret);
 }
 
-int	search_execve(t_sh *sh, t_command *command, char *envp)
+int	search_execve(t_sh *sh, t_command *command, char **envp)
 {
 	const char	*path = find_value_in_env("PATH", sh->env_list);
 	char *const	cmd = command->argv[0];
@@ -49,7 +49,7 @@ int	search_execve(t_sh *sh, t_command *command, char *envp)
 	{
 		if (*path == '/')
 		{
-			path_cmd = ft_alert_join_path(path, command->argv[0]);
+			path_cmd = ft_alert_join_path((char *)path, command->argv[0]);
 			file_type = check_ftype(path_cmd);
 			if (file_type == FT_DIR)
 				exit_command_perror_msg(126, cmd[0], "is a directory");
@@ -67,11 +67,11 @@ int	search_execve(t_sh *sh, t_command *command, char *envp)
 
 /**
  * @brief simple의 기준이 무엇인지 아직 모르겠음
- * 
- * @param sh 
- * @param command 
- * @param tokens 
- * @param token_size 
+ *
+ * @param sh
+ * @param command
+ * @param tokens
+ * @param token_size
  */
 void	execute_simple_cmd(t_sh *sh, t_command *command, char **envp)
 {

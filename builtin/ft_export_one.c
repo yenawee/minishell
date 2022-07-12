@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:09:02 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 19:17:57 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 12:35:27 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ char *value, int plus_flag)
 		{
 			temp = tmp->value;
 			tmp->value = ft_strjoin(temp, value);
-			safe_free(&temp);
+			safe_free((void **)&temp);
 		}
 		else
 		{
-			safe_free(&(tmp->value));
+			safe_free((void **)&(tmp->value));
 			if (value)
 				tmp->value = ft_strdup(value);
 			else

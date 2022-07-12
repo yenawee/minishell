@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:40:56 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/11 15:47:56 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:36:00 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*expand_quotes(int c, char *s, t_sh *sh)
 		if (ft_strchr(str_quote_trim, '$'))
 		{
 			str_quote_trim = expand_env(str_quote_trim, sh);
-			safe_free(&tmp);
+			safe_free((void **)&tmp);
 		}
 	}
 	return (str_quote_trim);
@@ -62,7 +62,7 @@ int *end, char *str, t_sh *sh)
 	str_slice = ft_substr(str, *start, *end - *start + 1);
 	tmp = str_slice;
 	str_slice = expand_quotes(str[*start], str_slice, sh);
-	safe_free(&tmp);
+	safe_free((void **)&tmp);
 	return (str_slice);
 }
 
@@ -81,12 +81,12 @@ char	*expand_str(char *str, t_sh *sh)
 	{
 		str_slice = expand_until_quote(&end, start, str, sh);
 		ft_safe_strjoin(&ret, str_slice);
-		safe_free(&str_slice);
+		safe_free((void **)&str_slice);
 		if (!str[end])
 			break ;
 		str_slice = slice_str_between_quotes(&start, &end, str, sh);
 		ft_safe_strjoin(&ret, str_slice);
-		safe_free(&str_slice);
+		safe_free((void **)&str_slice);
 		start = ++end;
 	}
 	return (ret);

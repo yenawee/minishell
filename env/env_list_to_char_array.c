@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_to_char_array.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:38:28 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/11 15:01:38 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:35:38 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static char	*get_env_line(t_list *env_list)
 	ret = ft_strjoin(key, "=");
 	tmp = ret;
 	ret = ft_strjoin(ret, value);
-	safe_free(&tmp);
-	safe_free(&key);
-	safe_free(&value);
+	safe_free((void **)&tmp);
+	safe_free((void **)&key);
+	safe_free((void **)&value);
 	return (ret);
 }
 

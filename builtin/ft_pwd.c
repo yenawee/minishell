@@ -6,7 +6,7 @@
 /*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 23:43:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/10 18:27:15 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 12:35:30 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	ft_pwd(void)
 		return (EXIT_FAILURE);
 	ft_putstr_fd(STDOUT_FILENO, path);
 	ft_putstr_fd(STDOUT_FILENO, "\n");
-	safe_free(&path);
+	safe_free((void **)&path);
 	return (EXIT_SUCCESS);
 }

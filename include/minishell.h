@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 21:54:17 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/12 12:44:13 by yenawee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,11 @@ void	all_clear(char **input, char **trimed, \
 				t_pipeline **list, t_token **tokens);
 int		ft_atoi(const char *str);
 void	exit_msg(int exit_status, int fd, char *msg);
+void	exit_command_perror_msg(int exit_status, char *cmd, char *msg);
 char	*get_next_line(int fd);
 
 //builtin
+int		ft_cd(t_list *env_list, char **argv);
 int		ft_unset(t_list **list, char **keys);
 void	ft_export_one(t_list **list, char *key, char *value, int plus_flag);
 int		ft_export(t_list **list, char **str);
@@ -98,6 +100,7 @@ char	*_get_env_value_without_malloc(t_list *env_list, char *key);
 void	exec_signals(void);
 void	set_input_signal(void);
 void	heredoc_prompt(int signal);
+void	set_sh(t_sh *sh);
 
 //wildcard
 t_wc	*str_to_t_wc(char *str);
@@ -129,7 +132,7 @@ int		is_builtin(t_command *command);
 int		execute_builtin(t_sh *sh, t_command *command);
 void	execute_input(t_sh *sh, t_pipeline *list, char **envp, int prev_sep);
 char	*ft_alert_join_path(char *path, char *cmd);
-int		search_execve(t_sh *sh, t_command *command, char *envp);
+int		search_execve(t_sh *sh, t_command *command, char **envp);
 void	execute_simple_cmd(t_sh *sh, t_command *command, char **envp);
 int		handle_redirect(t_sh *sh, t_command *command);
 void	two_dim_arr_clear(char **two_dim_arr);
