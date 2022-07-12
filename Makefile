@@ -6,7 +6,7 @@
 #    By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
-#    Updated: 2022/07/12 16:26:55 by hyeonjan         ###   ########.fr        #
+#    Updated: 2022/07/12 21:47:09 by hyeonjan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ PARSER = $(addprefix $(PARSER_DIR), $(PARSER_NAME))
 
 UTILS_NAME = exit_msg.c ft_calloc.c ft_memset.c ft_putstr_fd.c ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlcpy.c \
 			ft_strlen.c ft_strtrim.c ft_substr.c is_func.c safe_free.c ft_itoa.c ft_strlcat.c all_clear.c ft_atoi.c check_valid_env_key.c \
-			get_next_line.c
+			get_next_line.c ft_split.c
 UTILS_DIR = ./utils/
 UTILS = $(addprefix $(UTILS_DIR), $(UTILS_NAME))
 
