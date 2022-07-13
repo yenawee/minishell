@@ -6,33 +6,11 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:44:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/13 14:45:18 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:26:28 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-void	*_expand_variable(t_sh *sh, char **ret, char *var)
-{
-	char	*key;
-	char	*malloced_val;
-	size_t	i;
-
-	if (*var == '?')
-	{
-		*ret = var + 1;
-		return (ft_alert_itoa(sh->exit_status));
-	}
-	i = 1;
-	while (var[i] == '_' || ft_isalnum(var[i]))
-		i++;
-	*ret = &var[i];
-	key = ft_alert_substr(var, 0, i);
-	malloced_val = get_env_value(sh->env_list, key);
-	// printf("key: %s\n", key);
-	safe_free((void **)&key);
-	return (malloced_val);
-}
 
 static void	_expand_pusback(t_sh *sh, t_token **argv, char *str)
 {
@@ -56,43 +34,14 @@ static void	_expand_pusback(t_sh *sh, t_token **argv, char *str)
 	}
 }
 
-static char	*_expand_out_of_quote(t_sh *sh, char *str, char *p, char *ret)
+static void	_add_argv(t_sh *sh, t_token **argv, char *token_str, char *ret)
 {
-	while (42)
-	{
-		while (*p && !ft_strchr("\'\"$", *p))
-			p++;
-		if (*p == '\0')
-		{
-			ft_alert_str_append(&ret, str);
-			// printf("ret1: %s\n", ret);
-			break ;
-		}
-		else if (ft_strchr("\'\"", *p))
-			p = ft_strchr(p + 1, *p) + 1;
-		else if (*p == '$' && !ft_strchr("_?", p[1]) && !ft_isalpha(p[1]))
-			p++;
-		else if (*p == '$')
-		{
-			ft_alert_added(&ret, ft_alert_substr(str, 0, p - str));
-			ft_alert_added(&ret, _expand_variable(sh, &str, &p[1]));
-			// printf("ret2: %s\n", ret);
-			p = str;
-		}
-	}
-	return (ret);
-}
-
-static void	_add_argv(t_sh *sh, t_token **argv, char *token_str)
-{
-	char	*ret;
 	char	*p;
 	char	*front;
 
-	ret = _expand_out_of_quote(sh, token_str, token_str, NULL);
+	ret = expand_out_of_quote(sh, token_str, token_str, NULL);
 	if (ret == NULL)
 		return ;
-	// printf("_expand_out_of_quote: %s\n", ret);
 	p = ret;
 	while (*p)
 	{
@@ -126,7 +75,7 @@ void	make_argv_list(t_sh *sh, t_token **argv, t_command *cmd)
 		if (cur_token->type == T_WORD && *(cur_token->str) == '\0')
 			_expand_pusback(sh, argv, cur_token->str);
 		else if (cur_token->type == T_WORD)
-			_add_argv(sh, argv, cur_token->str);
+			_add_argv(sh, argv, cur_token->str, NULL);
 		token_i++;
 		cur_token = cur_token->next;
 	}

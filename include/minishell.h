@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 22:42:10 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:25:51 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,6 @@ void	ft_alert_safe_close(int *fd);
 void	ft_alert_safe_dup2(t_sh *sh, int fd, int to_fd);
 void	test_list(t_pipeline *list);
 int		redir_heredoc(t_sh *sh);
+char	*expand_out_of_quote(t_sh *sh, char *str, char *p, char *ret);
 
 #endif

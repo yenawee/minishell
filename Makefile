@@ -52,7 +52,7 @@ SIGNAL = $(addprefix $(SIGNAL_DIR), $(SIGNAL_NAME))
 
 EXECUTOR_NAME = builtin.c check_file_type.c execute_command.c execute_pipeline.c executor.c \
 				fork_execute_command.c ft_alert_safe_close.c ft_alert_safe_dup2.c handle_redirect.c \
-				redirection.c two_dim_arr_clear.c wait_child.c make_cmd_argv.c make_argv_list.c
+				redirection.c two_dim_arr_clear.c wait_child.c make_cmd_argv.c make_argv_list.c expand_out_of_quote.c
 EXECUTOR_DIR = ./executor/
 EXECUTOR = $(addprefix $(EXECUTOR_DIR), $(EXECUTOR_NAME))
 
