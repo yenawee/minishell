@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_signal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:05:33 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 00:24:28 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/13 21:08:09 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	new_prompt(int signal)
 {
 	(void)signal;
 	g_sh->exit_status = 1;
+	g_sh->heredoc_index = 0;
 	ft_putstr_fd(1, "\b\b  ");
 	rl_replace_line("", 0);
 	write(1, "\n", 1);
@@ -34,6 +35,7 @@ void	heredoc_prompt(int signal)
 {
 	(void)signal;
 	g_sh->exit_status = 1;
+	g_sh->heredoc_index = 0;
 	ft_putstr_fd(1, "\b\b  ");
 	rl_replace_line("", 0);
 	write(1, "\n", 1);

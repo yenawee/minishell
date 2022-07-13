@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:40:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 20:56:38 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:31:56 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*_expand_variable(t_sh *sh, char *s, int fd, t_list *env_list)
 {
 	char	temp;
 	char	*var;
-	char	*malloced_val;
+	char	*unmalloced_val;
 
 	if (*s == '?')
 		return (_handle_exit_status(s, fd, sh->exit_status));
@@ -40,7 +40,8 @@ static char	*_expand_variable(t_sh *sh, char *s, int fd, t_list *env_list)
 		s++;
 	temp = *s;
 	*s = '\0';
-	malloced_val = get_env_value(env_list, var);
+	unmalloced_val = _get_env_value_without_malloc(env_list, var);
+	ft_putstr_fd(fd, unmalloced_val);
 	*s = temp;
 	return (s);
 }

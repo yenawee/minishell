@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 20:25:19 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/13 20:32:57 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:31:16 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static char	*_attach_double_quote(char *str, int need_blank)
 
 static char	*_add_dqoute_blank(char *str, char *p, char *front, char *ret)
 {
+	if (str == NULL)
+		return (NULL);
 	while (*p && ft_strchr(" \t", *p))
 		p++;
 	while (*p)
