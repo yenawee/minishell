@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:44:32 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 23:11:22 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 14:45:18 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,18 @@ static void	_expand_pusback(t_sh *sh, t_token **argv, char *str)
 	t_token	*cur;
 
 	ret = expand_str(str, sh);
-	if (*str == '$' && *ret == '\0')
-		free(ret);
+	new_node = ft_alert_calloc(1, sizeof(t_token));
+	new_node->str = ret;
+	new_node->type = T_WORD;
+	if (*argv == NULL)
+		*argv = new_node;
 	else
 	{
-		new_node = ft_alert_calloc(1, sizeof(t_token));
-		new_node->str = ret;
-		new_node->type = T_WORD;
-		if (*argv == NULL)
-			*argv = new_node;
-		else
-		{
-			cur = *argv;
-			while (cur->next)
-			{
-				new_node->prev = cur;
-				cur = cur->next;
-			}
-			cur->next = new_node;
-		}
+		cur = *argv;
+		while (cur->next)
+			cur = cur->next;
+		cur->next = new_node;
+		new_node->prev = cur;
 	}
 }
 
@@ -90,15 +83,13 @@ static char	*_expand_out_of_quote(t_sh *sh, char *str, char *p, char *ret)
 	return (ret);
 }
 
-static void	_add_argv(t_sh *sh, t_token **argv, char *str)
+static void	_add_argv(t_sh *sh, t_token **argv, char *token_str)
 {
 	char	*ret;
 	char	*p;
 	char	*front;
 
-	if (*str == '\0')
-		return ;
-	ret = _expand_out_of_quote(sh, str, str, NULL);
+	ret = _expand_out_of_quote(sh, token_str, token_str, NULL);
 	if (ret == NULL)
 		return ;
 	// printf("_expand_out_of_quote: %s\n", ret);
@@ -132,7 +123,9 @@ void	make_argv_list(t_sh *sh, t_token **argv, t_command *cmd)
 	token_i = 0;
 	while (token_i < cmd->token_size)
 	{
-		if (cur_token->type == T_WORD)
+		if (cur_token->type == T_WORD && *(cur_token->str) == '\0')
+			_expand_pusback(sh, argv, cur_token->str);
+		else if (cur_token->type == T_WORD)
 			_add_argv(sh, argv, cur_token->str);
 		token_i++;
 		cur_token = cur_token->next;

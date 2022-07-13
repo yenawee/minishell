@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 23:11:50 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 14:40:22 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,7 @@ static void	_make_argv_from_argv(t_command *cmd, t_token *argv)
 void	make_cmd_argv(t_command *cmd, t_sh *sh)
 {
 	t_token	*argv;
-	t_token	*cur_token;
-	int		token_i;
 
-	cur_token = cmd->tokens;
-	token_i = 0;
 	argv = NULL;
 	make_argv_list(sh, &argv, cmd);
 	_make_argv_from_argv(cmd, argv);
