@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:03:02 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:56:32 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:36:09 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,6 @@ typedef struct s_pipeline {
 	t_command			*commands;
 	struct s_pipeline	*next;
 }	t_pipeline;
-
-typedef struct s_wc {
-	char	*front_token;
-	char	*rear_token;
-	t_list	*middle_tokens;
-	int		total_len;
-}	t_wc;
 
 typedef struct s_sh
 {

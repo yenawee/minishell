@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/13 20:25:51 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:34:29 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,6 @@ void	exec_signals(void);
 void	set_input_signal(void);
 void	heredoc_prompt(int signal);
 void	set_sh(t_sh *sh);
-
-//wildcard
-t_wc	*str_to_t_wc(char *str);
-int		is_matched(char *file_name, t_wc *wildcard);
-void	match_wildcard(char **file_names, int file_count, \
-						t_wc **wildcards, int wildcard_count);
 
 //lexer
 int		tokenize(t_token **list, char *line);

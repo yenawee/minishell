@@ -6,7 +6,7 @@
 #    By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
-#    Updated: 2022/07/12 22:47:18 by hyeonjan         ###   ########.fr        #
+#    Updated: 2022/07/13 21:34:22 by hyeonjan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,6 @@ BUILTIN = $(addprefix $(BUILTIN_DIR), $(BUILTIN_NAME))
 HEREDOC_NAME = expand_in_heredoc.c heredoc.c
 HEREDOC_DIR = ./heredoc/
 HEREDOC = $(addprefix $(HEREDOC_DIR), $(HEREDOC_NAME))
-
-WILDCARD_NAME = match_wildcard.c is_matched.c str_to_t_wildcard.c
-WILDCARD_DIR = ./wildcard/
-WILDCARD = $(addprefix $(WILDCARD_DIR), $(WILDCARD_NAME))
 
 LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c add_token.c tokenize.c
 LEXER_DIR = ./lexer/
@@ -60,7 +56,7 @@ MAIN_NAME = minishell.c welcome_prompt.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(ENV) $(WILDCARD) $(EXECUTOR) $(MAIN) $(HEREDOC) $(SIGNAL)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(ENV) $(EXECUTOR) $(MAIN) $(HEREDOC) $(SIGNAL)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -72,7 +68,7 @@ RM = rm -rf
 READLINE_INCLUDE = -I /Users/${USER}/.brew/opt/readline/include
 READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib
 # READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib
-
+# -g -fsanitize=address
 all : $(NAME)
 
 %.o : %.c
