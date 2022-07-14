@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:27:24 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/14 11:13:59 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:31:19 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	_check_first_argv(t_sh *sh, char *av)
 
 int	ft_exit(t_sh *sh, int argc, char **argv)
 {
-	if (argc == 1 || (argc >= 2 && *(argv[1]) == '\0'))
+	if (argc == 2 || (argc > 2 && *(argv[1]) == '\0'))
 		_check_first_argv(sh, argv[1]);
 	else if (argc > 2)
 	{
