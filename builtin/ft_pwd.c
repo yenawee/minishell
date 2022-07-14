@@ -3,22 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 23:43:09 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 12:35:30 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/14 10:51:46 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+static void	_alert_getcwd(char **pwd)
+{
+	*pwd = getcwd(NULL, 0);
+	if (*pwd == NULL)
+		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail getcwd()\n");
+}
+
 int	ft_pwd(void)
 {
 	char	*path;
 
-	path = getcwd(NULL, 0);
-	if (path == NULL)
-		return (EXIT_FAILURE);
+	_alert_getcwd(&path);
 	ft_putstr_fd(STDOUT_FILENO, path);
 	ft_putstr_fd(STDOUT_FILENO, "\n");
 	safe_free((void **)&path);
