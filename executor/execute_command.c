@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:54 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 13:38:01 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/14 00:47:31 by ywee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,8 @@ int	search_execve(t_sh *sh, t_command *command, char **envp)
  */
 void	execute_simple_cmd(t_sh *sh, t_command *command, char **envp)
 {
-	char		**argv;
 	int			ftype;
 	char *const	cmd = command->argv[0];
-
 	if (ft_strchr(cmd, '/'))
 	{
 		ftype = check_ftype(cmd);
@@ -84,7 +82,7 @@ void	execute_simple_cmd(t_sh *sh, t_command *command, char **envp)
 			exit_command_perror_msg(127, cmd, strerror(errno));
 		else if (ftype == FT_DIR)
 			exit_command_perror_msg(126, cmd, "is a directory");
-		else if (execve(cmd, argv, envp))
+		else if (execve(cmd, command->argv, envp))
 			exit_command_perror_msg(127, cmd, strerror(errno));
 	}
 	search_execve(sh, command, envp);
