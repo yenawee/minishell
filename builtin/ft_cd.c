@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:26:57 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/14 10:56:01 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 11:16:03 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	_alert_getcwd(char **pwd)
 		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail getcwd()\n");
 }
 
-static int	_handle_prev_path(char *str, char **target, t_list *env_list, int *print_pwd)
+static int	_handle_dash(char *str, char **target, t_list *env_list, \
+						int *print_pwd)
 {
 	*target = NULL;
 	*print_pwd = 0;
@@ -70,7 +71,7 @@ int	ft_cd(t_list *env_list, char **argv)
 	char	*cwd;
 	int		print_pwd;
 
-	if (!_handle_prev_path(argv[1], &target, env_list, &print_pwd) || \
+	if (!_handle_dash(argv[1], &target, env_list, &print_pwd) || \
 		!_handle_home(argv[1], &target, env_list))
 		return (EXIT_FAILURE);
 	_alert_getcwd(&oldpwd);
