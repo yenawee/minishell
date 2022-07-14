@@ -3,16 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:26:57 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 14:02:31 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/13 23:45:42 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-static char	*get_target(char *str, t_list *env_list)
+static int	_return(int exit_status, char *p1, char *p2, char *p3)
+{
+	if (p1)
+		free(p1);
+	if (p2)
+		free(p2);
+	if (p3)
+		free(p3);
+	return (exit_status);
+}
+
+static char	*_get_target(char *str, t_list *env_list)
 {
 	char	*target;
 
@@ -31,22 +42,23 @@ int	ft_cd(t_list *env_list, char **argv)
 	char	*target;
 	char	*cwd;
 
+	cwd = NULL;
 	oldpwd = getcwd(NULL, 0);
-	target = get_target(argv[1], env_list);
+	target = _get_target(argv[1], env_list);
 	if (!target)
-		return (EXIT_FAILURE);
+		return (_return(EXIT_FAILURE, target, oldpwd, cwd));
 	if (chdir(target) == -1)
 	{
 		ft_putstr_fd(STDERR_FILENO, "minishell: cd: ");
 		ft_putstr_fd(STDERR_FILENO, strerror(errno));
 		ft_putstr_fd(STDERR_FILENO, "\n");
-		return (EXIT_FAILURE);
+		return (_return(EXIT_FAILURE, target, oldpwd, cwd));
 	}
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		return (EXIT_FAILURE);
+		return (_return(EXIT_FAILURE, target, oldpwd, cwd));
 	ft_export_one(&env_list, "PWD", cwd, 0);
 	if (oldpwd)
 		ft_export_one(&env_list, "OLDPWD", oldpwd, 0);
-	return (EXIT_SUCCESS);
+	return (_return(EXIT_SUCCESS, target, oldpwd, cwd));
 }
