@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export_one.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:09:02 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 12:35:27 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/14 09:44:57 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ char *value, int plus_flag)
 		if (plus_flag)
 		{
 			temp = tmp->value;
-			tmp->value = ft_strjoin(temp, value);
+			tmp->value = ft_alert_strjoin(temp, value);
 			safe_free((void **)&temp);
 		}
 		else
 		{
 			safe_free((void **)&(tmp->value));
 			if (value)
-				tmp->value = ft_strdup(value);
+				tmp->value = ft_alert_strdup(value);
 			else
 				tmp->value = NULL;
 		}
@@ -54,9 +54,9 @@ void	ft_export_one(t_list **list, char *key, char *value, int plus_flag)
 		curr = curr->next;
 	}
 	content = ft_alert_calloc(1, sizeof(t_env));
-	content->key = ft_strdup(key);
+	content->key = ft_alert_strdup(key);
 	if (value)
-		content->value = ft_strdup(value);
+		content->value = ft_alert_strdup(value);
 	else
 		content->value = NULL;
 	new_node = ft_lstnew(content);

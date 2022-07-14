@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:53:46 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/11 20:53:47 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 09:45:09 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_space(int fd, char *space)
 	{
 		buf[read_size] = '\0';
 		tmp = space;
-		space = ft_strjoin(tmp, buf);
+		space = ft_alert_strjoin(tmp, buf);
 		free(tmp);
 		tmp = NULL;
 		if (ft_strchr(space, '\n') || !space)
@@ -81,7 +81,7 @@ char	*get_next_line(int fd)
 	}
 	line = get_printline(space);
 	tmp = space;
-	space = ft_strdup(tmp + ft_strlen(line));
+	space = ft_alert_strdup(tmp + ft_strlen(line));
 	free(tmp);
 	tmp = NULL;
 	if (!space)

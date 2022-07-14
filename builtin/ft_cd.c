@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:26:57 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/14 09:39:11 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 09:40:09 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char	*_get_target(char *str, t_list *env_list)
 	else if (!ft_strcmp(str, "-"))
 		target = get_env_value(env_list, "OLDPWD");
 	else
-		target = ft_strdup(str);
+		target = ft_alert_strdup(str);
 	return (target);
 }
 

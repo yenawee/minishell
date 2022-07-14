@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:40:49 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 16:45:53 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 09:41:14 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static char	*expand_env_if(char **str, t_sh *sh, char *dlr_pos)
 		while (is_valid_key_last(**str))
 			(*str)++;
 		key = ft_substr(dlr_pos + 1, 0, *str - dlr_pos - 1);
-		env_value = ft_strdup(find_value_in_env(key, sh->env_list));
+		env_value = ft_alert_strdup(find_value_in_env(key, sh->env_list));
 		safe_free((void **)&key);
 	}
 	else
-		env_value = ft_strdup("$");
+		env_value = ft_alert_strdup("$");
 	return (env_value);
 }
 

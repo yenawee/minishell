@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:44 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 22:39:07 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 09:41:31 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft_alert_strdup(s2));
 	if (!s2)
-		return (ft_strdup(s1));
+		return (ft_alert_strdup(s1));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	rst = ft_calloc(sizeof(char), (s1_len + s2_len + 1));
