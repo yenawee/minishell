@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:26:57 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/14 13:12:34 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 20:27:37 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ static int	_handle_home(char *str, char **target, t_list *env_list)
 			ft_putstr_fd(STDERR_FILENO, "🐚: cd: HOME not set\n");
 			return (FAIL);
 		}
-		ft_alert_str_append(target, str + 1);
+		if (str && str[0] != '\0')
+			ft_alert_str_append(target, str + 1);
 	}
 	else if (*target == NULL)
 		*target = ft_alert_strdup(str);
