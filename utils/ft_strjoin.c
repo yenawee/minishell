@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:44 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 13:35:58 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/14 09:41:31 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1)
-		return (ft_strdup(s2));
+		return (ft_alert_strdup(s2));
 	if (!s2)
-		return (ft_strdup(s1));
+		return (ft_alert_strdup(s1));
 	s1_len = ft_strlen(s1);
 	s2_len = ft_strlen(s2);
 	rst = ft_calloc(sizeof(char), (s1_len + s2_len + 1));
@@ -63,6 +63,23 @@ void	ft_alert_str_append(char **prev, char *added)
 		ret = ft_alert_strdup("");
 	else
 		ret = ft_alert_strjoin((char const *)*prev, (char const *)added);
+	safe_free((void **)prev);
+	*prev = ret;
+}
+
+void	ft_alert_added(char **prev, char *added)
+{
+	char	*ret;
+
+	if (added == NULL)
+		return ;
+	if (*added == '\0')
+	{
+		free(added);
+		return ;
+	}
+	ret = ft_alert_strjoin((char const *)*prev, (char const *)added);
+	free(added);
 	safe_free((void **)prev);
 	*prev = ret;
 }

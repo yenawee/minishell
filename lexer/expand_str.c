@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:40:56 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 12:36:00 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/14 12:37:29 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int start, char *str, t_sh *sh)
 
 	while (str[*end] && str[*end] != '\'' && str[*end] != '\"')
 			(*end)++;
-	str_slice = ft_substr(str, start, *end - start);
+	str_slice = ft_alert_substr(str, start, *end - start);
 	if (ft_strchr(str_slice, '$'))
 	{
 		temp = str_slice;
@@ -59,7 +59,7 @@ int *end, char *str, t_sh *sh)
 	*start = (*end)++;
 	while (str[*end] && str[*end] != str[*start])
 		(*end)++;
-	str_slice = ft_substr(str, *start, *end - *start + 1);
+	str_slice = ft_alert_substr(str, *start, *end - *start + 1);
 	tmp = str_slice;
 	str_slice = expand_quotes(str[*start], str_slice, sh);
 	safe_free((void **)&tmp);

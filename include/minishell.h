@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 22:13:34 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 16:39:36 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:34:29 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	*ft_alert_calloc(size_t count, size_t size);
 void	*ft_memset(void *b, int c, size_t len);
 size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_alert_substr(char const *s, unsigned int start, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -69,9 +70,11 @@ int		is_valid_key_last(char c);
 int		check_valid_key(char *key);
 char	*ft_alert_strdup(const char *s1);
 char	*ft_alert_strjoin(char const *s1, char const *s2);
+void	ft_alert_added(char **prev, char *added);
 void	ft_alert_str_append(char **prev, char *added);
 void	ft_safe_strjoin(char **ret, char *str);
 char	*ft_itoa(int n);
+char	*ft_alert_itoa(int n);
 void	all_clear(char **input, char **trimed, \
 				t_pipeline **list, t_token **tokens);
 int		ft_atoi(const char *str);
@@ -103,12 +106,6 @@ void	set_input_signal(void);
 void	heredoc_prompt(int signal);
 void	set_sh(t_sh *sh);
 
-//wildcard
-t_wc	*str_to_t_wc(char *str);
-int		is_matched(char *file_name, t_wc *wildcard);
-void	match_wildcard(char **file_names, int file_count, \
-						t_wc **wildcards, int wildcard_count);
-
 //lexer
 int		tokenize(t_token **list, char *line);
 void	addtoken(t_token **list, char *begin, char *end);
@@ -126,6 +123,7 @@ int		handle_heredoc(t_token *tokens);
 
 //execve
 void	make_cmd_argv(t_command *cmd, t_sh *sh);
+void	make_argv_list(t_sh *sh, t_token **argv, t_command *cmd);
 
 //excutor
 int		check_ftype(char *cmd);
@@ -147,5 +145,6 @@ void	ft_alert_safe_close(int *fd);
 void	ft_alert_safe_dup2(t_sh *sh, int fd, int to_fd);
 void	test_list(t_pipeline *list);
 int		redir_heredoc(t_sh *sh);
+char	*expand_out_of_quote(t_sh *sh, char *str, char *p, char *ret);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:29:18 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/04 17:42:55 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/12 22:38:51 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,15 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		i++;
 	}
 	ret[i] = '\0';
+	return (ret);
+}
+
+char	*ft_alert_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ret;
+
+	ret = ft_substr(s, start, len);
+	if (ret == NULL)
+		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail malloc()\n");
 	return (ret);
 }

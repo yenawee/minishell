@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:06:20 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/10 20:06:20 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/12 22:38:15 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,14 @@ char	*ft_itoa(int n)
 	make_rst(rst, num, count, &minus_check);
 	ft_strrev(rst);
 	return (rst);
+}
+
+char	*ft_alert_itoa(int n)
+{
+	char	*ret;
+
+	ret = ft_itoa(n);
+	if (ret == NULL)
+		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail malloc()\n");
+	return (ret);
 }

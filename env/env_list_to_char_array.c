@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_list_to_char_array.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yenawee <yenawee@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:38:28 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 12:35:38 by yenawee          ###   ########.fr       */
+/*   Updated: 2022/07/14 09:45:00 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static char	*get_env_line(t_list *env_list)
 	char	*tmp;
 
 	env = (t_env *)env_list->content;
-	key = ft_strdup(env->key);
-	value = ft_strdup(env->value);
-	ret = ft_strjoin(key, "=");
+	key = ft_alert_strdup(env->key);
+	value = ft_alert_strdup(env->value);
+	ret = ft_alert_strjoin(key, "=");
 	tmp = ret;
-	ret = ft_strjoin(ret, value);
+	ret = ft_alert_strjoin(ret, value);
 	safe_free((void **)&tmp);
 	safe_free((void **)&key);
 	safe_free((void **)&value);

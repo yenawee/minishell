@@ -6,7 +6,7 @@
 #    By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 13:16:03 by yenawee           #+#    #+#              #
-#    Updated: 2022/07/12 16:26:55 by hyeonjan         ###   ########.fr        #
+#    Updated: 2022/07/13 21:34:22 by hyeonjan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,6 @@ BUILTIN = $(addprefix $(BUILTIN_DIR), $(BUILTIN_NAME))
 HEREDOC_NAME = expand_in_heredoc.c heredoc.c
 HEREDOC_DIR = ./heredoc/
 HEREDOC = $(addprefix $(HEREDOC_DIR), $(HEREDOC_NAME))
-
-WILDCARD_NAME = match_wildcard.c is_matched.c str_to_t_wildcard.c
-WILDCARD_DIR = ./wildcard/
-WILDCARD = $(addprefix $(WILDCARD_DIR), $(WILDCARD_NAME))
 
 LEXER_NAME = define_type.c expand_env.c expand_str.c find_value_in_env.c add_token.c tokenize.c
 LEXER_DIR = ./lexer/
@@ -52,7 +48,7 @@ SIGNAL = $(addprefix $(SIGNAL_DIR), $(SIGNAL_NAME))
 
 EXECUTOR_NAME = builtin.c check_file_type.c execute_command.c execute_pipeline.c executor.c \
 				fork_execute_command.c ft_alert_safe_close.c ft_alert_safe_dup2.c handle_redirect.c \
-				redirection.c two_dim_arr_clear.c wait_child.c make_cmd_argv.c
+				redirection.c two_dim_arr_clear.c wait_child.c make_cmd_argv.c make_argv_list.c expand_out_of_quote.c
 EXECUTOR_DIR = ./executor/
 EXECUTOR = $(addprefix $(EXECUTOR_DIR), $(EXECUTOR_NAME))
 
@@ -60,7 +56,7 @@ MAIN_NAME = minishell.c welcome_prompt.c
 MAIN_DIR = ./
 MAIN = $(addprefix $(MAIN_DIR), $(MAIN_NAME))
 
-SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(ENV) $(WILDCARD) $(EXECUTOR) $(MAIN) $(HEREDOC) $(SIGNAL)
+SRCS = $(BUILTIN) $(LEXER) $(PARSER) $(UTILS) $(LST) $(ENV) $(EXECUTOR) $(MAIN) $(HEREDOC) $(SIGNAL)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -72,7 +68,7 @@ RM = rm -rf
 READLINE_INCLUDE = -I /Users/${USER}/.brew/opt/readline/include
 READLINE_FLAG = -lreadline -L /Users/${USER}/.brew/opt/readline/lib
 # READLINE_FLAG = -lreadline -L /opt/homebrew/opt/readline/lib
-
+# -g -fsanitize=address
 all : $(NAME)
 
 %.o : %.c

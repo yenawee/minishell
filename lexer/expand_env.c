@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:40:49 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/12 16:45:53 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 12:37:22 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ static char	*expand_env_if(char **str, t_sh *sh, char *dlr_pos)
 	{
 		while (is_valid_key_last(**str))
 			(*str)++;
-		key = ft_substr(dlr_pos + 1, 0, *str - dlr_pos - 1);
-		env_value = ft_strdup(find_value_in_env(key, sh->env_list));
+		key = ft_alert_substr(dlr_pos + 1, 0, *str - dlr_pos - 1);
+		env_value = ft_alert_strdup(find_value_in_env(key, sh->env_list));
 		safe_free((void **)&key);
 	}
 	else
-		env_value = ft_strdup("$");
+		env_value = ft_alert_strdup("$");
 	return (env_value);
 }
 
@@ -53,7 +53,7 @@ char	*expand_env(char *str, t_sh *sh)
 			ft_safe_strjoin(&ret, str);
 			break ;
 		}
-		str_slice = ft_substr(str, 0, dlr_pos - str);
+		str_slice = ft_alert_substr(str, 0, dlr_pos - str);
 		ft_safe_strjoin(&ret, str_slice);
 		safe_free((void **)&str_slice);
 		str = dlr_pos + 1;

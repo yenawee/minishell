@@ -6,62 +6,53 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 20:42:53 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/12 20:08:14 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:23:40 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	get_argc(t_command *cmd)
+static void	_clear_argv(t_token *argv)
 {
-	int			cnt;
-	t_token		*cur;
-	int			i;
+	t_token	*cur;
+	t_token	*temp;
 
-	i = 0;
-	cnt = 0;
-	cur = cmd->tokens;
-	while (i < cmd->token_size)
+	cur = argv;
+	while (cur)
 	{
-		if (cur->type == T_WORD)
-			cnt++;
-		i++;
-		cur = cur->next;
+		temp = cur->next;
+		free(cur);
+		cur = temp;
 	}
-	return (cnt);
 }
 
-int	_temp_expand_str(char **argv_i, char *str, t_sh *sh)
+static void	_make_argv_from_argv(t_command *cmd, t_token *argv)
 {
-	char	*ret;
+	t_token	*cur;
+	int		i;
 
-	ret = expand_str(str, sh);
-	if (*str == '$' && *ret == '\0')
+	cur = argv;
+	while (cur)
 	{
-		free(ret);
-		return (0);
+		cur = cur->next;
+		(cmd->argc)++;
 	}
-	*argv_i = ret;
-	return (1);
+	cmd->argv = ft_alert_calloc(cmd->argc + 1, sizeof(char *));
+	cur = argv;
+	i = 0;
+	while (cur)
+	{
+		cmd->argv[i++] = cur->str;
+		cur = cur->next;
+	}
 }
 
 void	make_cmd_argv(t_command *cmd, t_sh *sh)
 {
-	t_token		*cur_token;
-	int			i;
-	int			token_i;
+	t_token	*argv;
 
-	cmd->argc = get_argc(cmd);
-	cmd->argv = ft_alert_calloc(cmd->argc + 1, sizeof(char *));
-	cur_token = cmd->tokens;
-	i = 0;
-	token_i = 0;
-	while (token_i < cmd->token_size)
-	{
-		if (cur_token->type == T_WORD && \
-			_temp_expand_str(&cmd->argv[i], cur_token->str, sh))
-			i++;
-		token_i++;
-		cur_token = cur_token->next;
-	}
+	argv = NULL;
+	make_argv_list(sh, &argv, cmd);
+	_make_argv_from_argv(cmd, argv);
+	_clear_argv(argv);
 }
