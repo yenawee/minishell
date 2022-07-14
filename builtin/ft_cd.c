@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:26:57 by yenawee           #+#    #+#             */
-/*   Updated: 2022/07/14 09:40:09 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/14 10:40:00 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,41 @@ static int	_return(int exit_status, char *p1, char *p2, char *p3)
 	return (exit_status);
 }
 
-static char	*_get_target(char *str, t_list *env_list)
+static void	_alert_getcwd(char **pwd)
 {
-	char	*target;
+	*pwd = getcwd(NULL, 0);
+	if (*pwd == NULL)
+		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail getcwd()\n");
+}
 
-	if (!str || !ft_strcmp(str, "~") || !ft_strcmp(str, "~/"))
-		target = get_env_value(env_list, "HOME");
-	else if (!ft_strcmp(str, "-"))
-		target = get_env_value(env_list, "OLDPWD");
-	else
-		target = ft_alert_strdup(str);
-	return (target);
+static int	_handle_prev_path(char *str, char **target, t_list *env_list)
+{
+	if (str == NULL || ft_strcmp(str, "-") != 0)
+		return (SUCCESS);
+	*target = get_env_value(env_list, "OLDPWD");
+	if (*target == NULL)
+	{
+		ft_putstr_fd(STDERR_FILENO, "minishell: cd: OLDPWD not set\n");
+		return (FAIL);
+	}
+	return (SUCCESS);
+}
+
+static int	_handle_home(char *str, char **target, t_list *env_list)
+{
+	if (!str || ft_strcmp(str, "~") == 0 || (str[0] == '~' && str[1] == '/'))
+	{
+		*target = get_env_value(env_list, "HOME");
+		if (*target == NULL)
+		{
+			ft_putstr_fd(STDERR_FILENO, "🐚: cd: HOME not set\n");
+			return (FAIL);
+		}
+		ft_alert_str_append(target, str + 1 + (str[1] == '/'));
+	}
+	else if (*target == NULL)
+		*target = ft_alert_strdup(str);
+	return (SUCCESS);
 }
 
 int	ft_cd(t_list *env_list, char **argv)
@@ -42,10 +66,11 @@ int	ft_cd(t_list *env_list, char **argv)
 	char	*target;
 	char	*cwd;
 
-	oldpwd = getcwd(NULL, 0);
-	target = _get_target(argv[1], env_list);
-	if (!target)
-		return (_return(EXIT_FAILURE, target, oldpwd, NULL));
+	target = NULL;
+	if (!_handle_prev_path(argv[1], &target, env_list) || \
+		!_handle_home(argv[1], &target, env_list))
+		return (EXIT_FAILURE);
+	_alert_getcwd(&oldpwd);
 	if (chdir(target) == -1)
 	{
 		ft_putstr_fd(STDERR_FILENO, "minishell: cd: ");
@@ -53,9 +78,7 @@ int	ft_cd(t_list *env_list, char **argv)
 		ft_putstr_fd(STDERR_FILENO, "\n");
 		return (_return(EXIT_FAILURE, target, oldpwd, NULL));
 	}
-	cwd = getcwd(NULL, 0);
-	if (!cwd || !oldpwd)
-		exit_msg(EXIT_FAILURE, STDERR_FILENO, "fail getcwd()\n");
+	_alert_getcwd(&cwd);
 	ft_export_one(&env_list, "PWD", cwd, 0);
 	ft_export_one(&env_list, "OLDPWD", oldpwd, 0);
 	return (_return(EXIT_SUCCESS, target, oldpwd, cwd));
