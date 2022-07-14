@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ywee <ywee@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 21:54:54 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/14 00:47:31 by ywee             ###   ########.fr       */
+/*   Updated: 2022/07/14 20:32:28 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,11 @@ int	search_execve(t_sh *sh, t_command *command, char **envp)
 	}
 }
 
-/**
- * @brief simple의 기준이 무엇인지 아직 모르겠음
- *
- * @param sh
- * @param command
- * @param tokens
- * @param token_size
- */
 void	execute_simple_cmd(t_sh *sh, t_command *command, char **envp)
 {
 	int			ftype;
 	char *const	cmd = command->argv[0];
+
 	if (ft_strchr(cmd, '/'))
 	{
 		ftype = check_ftype(cmd);
