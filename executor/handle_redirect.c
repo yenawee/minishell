@@ -6,7 +6,7 @@
 /*   By: hyeonjan <hyeonjan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 23:29:52 by hyeonjan          #+#    #+#             */
-/*   Updated: 2022/07/15 15:26:42 by hyeonjan         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:13:09 by hyeonjan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	handle_redirect(t_sh *sh, t_command *command)
 			(token->type == T_APPEND && !_redir_append(token->next->str)) || \
 			(token->type == T_HEREDOC && !redir_heredoc(sh)))
 		{
-			ft_putstr_fd(STDOUT_FILENO, "minishell: ");
+			ft_putstr_fd(STDERR_FILENO, "minishell: ");
 			ft_putstr_fd(STDERR_FILENO, token->next->str);
 			ft_putstr_fd(STDERR_FILENO, ": No such file or directory\n");
 			return (FAIL);
