@@ -32,7 +32,8 @@ pipeline.
   - ctrl-C print a new prompt on a newline.
   - ctrl-D exit the shell.
   - ctrl-\ do nothing.
-Anything not asked is not required
+  
+- Anything not asked is not required
 
 ## FLOW CHART
 <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F19dfc9a5-b483-4cd2-891d-9773df02b673%2FUntitled.png?table=block&id=417bc390-8dac-49f3-ab14-5c1dff158d76&spaceId=cf1b8bdd-9a75-4920-9590-391452f0ccbd&width=2000&userId=56d57c89-b9e6-45eb-aa02-039b56e56ee7&cache=v2">
